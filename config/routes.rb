@@ -1,4 +1,6 @@
 StoreEngine::Application.routes.draw do
+  
+  root :to => 'store#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
