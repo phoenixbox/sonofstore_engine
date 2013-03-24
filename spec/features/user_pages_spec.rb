@@ -29,12 +29,33 @@ describe "User pages" do
     end
   end
 
-  # describe "login" do
-  #   before { visit login_path }
-  #   let(:submit) { "Log In" }
+  describe "login" do
+    before { visit login_path }
+    let!(:user){ User.create(first_name: "Paul", last_name: "Blackwell", email: "s@s.com", password: "yolo")}
+    let(:submit) { "Log In" }
 
-  #   describe "with invalid information" do
-  #     it "should not log in a user" do
-  #       expect { click_button submit }.not_to 
-  # end
+    describe "with valid information" do
+      before do
+        fill_in "Email", with: "s@s.com"
+        fill_in "Password", with: "yolo"
+      end
+
+      it "should log in a user" do
+        click_button submit
+        page.should have_content("s@s.com")
+      end
+    end
+    
+    describe "with invalid information" do
+      before do 
+        fill_in "Email", with: "A@"
+        fill_in "Password", with: "yolo"
+      end
+
+      it "should not log in a user" do
+        click_button submit
+        page.should have_content("Sign Up or Log In")
+      end
+    end
+  end
 end
