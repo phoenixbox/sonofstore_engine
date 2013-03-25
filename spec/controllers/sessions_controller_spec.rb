@@ -8,7 +8,10 @@ describe SessionsController do
       response.should be_success
     end
 
-    it 'renders the new template'
+    it 'renders the new template' do
+      get 'new'
+      expect(response).to render_template :new
+    end
   end
 
   describe 'POST #create' do
@@ -52,8 +55,19 @@ describe SessionsController do
   end
 
   describe 'DELETE #destroy' do
-    it "clears the session user id"
-    it "redirects to the root url"
-  end
 
+    #let!(:user) { User.create first_name: "Walter", last_name: "White", email: "breaking@bad.com", password: "meth" }
+
+    it "clears the session user id" do
+      session[:user_id] = 567
+
+      post :destroy
+      expect(session[:user_id]).to be_nil
+    end
+
+    it "redirects to the root url" do
+      post :destroy
+      expect(response).to redirect_to root_path
+    end
+  end
 end
