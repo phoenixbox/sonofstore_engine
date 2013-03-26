@@ -52,20 +52,30 @@ describe "Category pages" do
 
   end
 
-  describe "Edit category" do
+  describe "When editing a category" do
 
     let!(:category){Category.create(name: "Capybara")}
 
     before { visit edit_category_path(category) }
 
-    describe "edit works" do
-      
-      it "should have edited content" do
-        fill_in "Name", with: "Change"
-        page.should have_content("Change")
-      end
+    it "successfully updates the category" do
+      fill_in "Name", with: "Kareem"
+      click_button "submit"
+      page.should have_content("Kareem")
     end
   end
 
 
+  describe "Deletes category" do
+
+    let!(:category){Category.create(name: "Capybara")}
+
+    before { visit categories_path }
+    
+    it "successfully deletes the category" do
+      page.click_link(href: category_path(category)) 
+      page.should_not have_link("Delete", href: category_path(category))
+    end
+  end
+  
 end
