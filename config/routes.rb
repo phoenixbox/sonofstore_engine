@@ -1,4 +1,7 @@
 StoreEngine::Application.routes.draw do
+  resources :products
+
+
   get "sessions/new"
 
   get 'signup', to: 'users#new', as: 'signup'
