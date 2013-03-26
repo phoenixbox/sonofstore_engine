@@ -3,6 +3,7 @@ require 'capybara/rspec'
 
 describe "Category pages" do
   subject { page }
+
   
   describe "Creating a category" do
     before { visit new_category_path }
@@ -17,6 +18,7 @@ describe "Category pages" do
         click_button "submit"
         page.should have_content("prohibited")
       end
+
     end
 
     describe "with valid information" do
@@ -25,6 +27,45 @@ describe "Category pages" do
         fill_in "Name", with: "Anything"
         expect { click_button "submit"}.to change(Category, :count)
       end
+
+    end
+
+  end
+
+  describe "Viewing list of categories" do
+
+    let!(:category){ Category.create(name: "Beards")}
+
+    before { visit categories_path }
+      
+    describe "content on index page" do
+      
+      it "should have delete links for each category listed" do
+        page.should have_content("Beards")
+        page.should have_link("Delete", href: category_path(category))
+      end
+
+      it "should have an edit link on the page" do
+        page.should have_link("Edit", href: edit_category_path(category))
+      end
+    end
+
+  end
+
+  describe "Edit category" do
+
+    let!(:category){Category.create(name: "Capybara")}
+
+    before { visit edit_category_path(category) }
+
+    describe "edit works" do
+      
+      it "should have edited content" do
+        fill_in "Name", with: "Change"
+        page.should have_content("Change")
+      end
     end
   end
+
+
 end
