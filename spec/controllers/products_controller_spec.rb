@@ -72,8 +72,22 @@ describe ProductsController do
     context "with invalid information" do
       it "does not update a single product" do
         product = Product.create(title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00)
-        put :update, product: {title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso"}
+        put :update, id: product.id, product: {title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: nil}
         expect(response).to render_template :edit
+      end
+    end
+  end
+  describe "DELETE #destroy" do
+    context "removing items from product index" do
+      it "redirects after delete" do
+        product = Product.create(title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00)
+        delete :destroy, id: product.id 
+        expect(response).to redirect_to root_path
+      end
+      it "removes a single product" do
+        product = Product.create(title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00)
+        delete :destroy, id: product.id
+        expect(Product.exists?(product.id)).to eq false 
       end
     end
   end
