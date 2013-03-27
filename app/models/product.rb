@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price
-  validates :price, :numericality => {:greater_than => 0}
+  validates :price, :numericality => {:greater_than => 001, :message => "price must be greater than zero"}
   
   def active?
     if self.active == false
