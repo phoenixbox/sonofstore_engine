@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
-    #binding.pry
     if @product.save
       redirect_to product_path(@product), notice: "Product Added!"
     else
