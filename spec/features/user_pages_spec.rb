@@ -16,8 +16,7 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "First name", with: "Kareem"
-        fill_in "Last name", with: "Grant"
+        fill_in "Full name", with: "Kareem Grant"
         fill_in "Email", with: "sample@sample.com"
         fill_in "user_password", with: "yes"
         fill_in "Password confirmation", with: "yes"
@@ -31,7 +30,7 @@ describe "User pages" do
 
   describe "login" do
     before { visit login_path }
-    let!(:user){ User.create(first_name: "Paul", last_name: "Blackwell", email: "s@s.com", password: "yolo")}
+    let!(:user){ User.create(full_name: "Paul Blackwell", email: "s@s.com", password: "yolo")}
     let(:submit) { "Log In" }
 
     describe "with valid information" do

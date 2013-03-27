@@ -34,7 +34,7 @@ describe SessionsController do
 
     context "user with email address" do
 
-      let!(:user) { User.create first_name: "Walter", last_name: "White", email: "breaking@bad.com", password: "meth" }
+      let!(:user) { User.create full_name: "Walter White", email: "breaking@bad.com", password: "meth" }
 
       context "when the user provides an incorrect password" do
         it_behaves_like "a user that fails to login"
@@ -55,8 +55,6 @@ describe SessionsController do
   end
 
   describe 'DELETE #destroy' do
-
-    #let!(:user) { User.create first_name: "Walter", last_name: "White", email: "breaking@bad.com", password: "meth" }
 
     it "clears the session user id" do
       session[:user_id] = 567
