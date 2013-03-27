@@ -57,4 +57,9 @@ describe Product do
       expect(product2).to have(1).error
     end
   end
+
+  it "returns whether or not a product is active" do
+    product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price: 10.13, active: false
+    expect(product.active?).to eq("retired")
+  end
 end
