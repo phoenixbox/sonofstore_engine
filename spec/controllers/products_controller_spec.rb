@@ -45,7 +45,7 @@ describe ProductsController do
 
     context "with valid information" do
       it "creates new product" do
-        post :create, product: {title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00}
+        post :create, product: {title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 8.99}
         product = assigns(:product)
         expect(response).to redirect_to product_path(product)
       end

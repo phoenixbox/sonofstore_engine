@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
+    #binding.pry
     if @product.save
       redirect_to product_path(@product), notice: "Product Added!"
     else
@@ -27,8 +28,6 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes params[:product]
-      #flash[:message] = "You're awesome, you updated the product"
-      puts @product.inspect
       redirect_to product_path(@product)
     else
       render :edit
