@@ -82,7 +82,7 @@ describe ProductsController do
       it "redirects after delete" do
         product = Product.create(title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00)
         delete :destroy, id: product.id 
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to products_path
       end
       it "removes a single product" do
         product = Product.create(title: "El Mormono Hamberguesa con Queso con largo papas fritas", description: "Muy delicioso", price: 80.00)
