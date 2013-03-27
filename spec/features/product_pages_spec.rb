@@ -29,7 +29,7 @@ describe "Product Pages" do
   describe "individual product page" do
 
     before do
-      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price: 5.99)
+      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
     end
 
     it "should show the page for an individual product" do
@@ -41,8 +41,8 @@ describe "Product Pages" do
 
   describe "product index page" do
     before do
-      Product.create(title: "Mustache", description: "I mustache you a question.", price: 5.99)
-      Product.create(title: "Wig", description: "I'm wigging out!", price: 15.50)
+      Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
+      Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars_and_cents: 15.50)
       visit products_path
     end
 
@@ -59,7 +59,7 @@ describe "Product Pages" do
 
   describe "editing a product" do
     before do 
-      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price: 5.99)
+      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
     end  
       before { visit edit_product_path(@product) } 
     before do
@@ -90,7 +90,7 @@ describe "Product Pages" do
   end
   
   describe "destroying a product" do
-    let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price: 5.99)}
+    let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)}
 
     context "removing items from the product index" do
       it "deletes a product" do

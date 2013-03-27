@@ -14,7 +14,6 @@ class Product < ActiveRecord::Base
   end
 
   def price_in_dollars_and_cents
-    #price.to_i / 100.0
     "%.2f" % (price.to_i / 100.0)
   end
 
