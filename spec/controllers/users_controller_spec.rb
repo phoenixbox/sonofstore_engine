@@ -17,14 +17,14 @@ describe UsersController do
   describe "POST '#create'" do
     context "user logs in with invalid information" do
       it "with passwords that do not match" do 
-        post :create, user: {first_name: "Walter", last_name: "White", email: "breaking@bad.com", password: "meth", password_confirmation: "bob"}
+        post :create, user: {full_name: "Walter White", email: "breaking@bad.com", password: "meth", password_confirmation: "bob"}
         expect(response).to render_template :new
       end
     end
 
     context "user logs in with valid information" do
       it "with passwords that match" do
-        post :create, user: {first_name: "Walter", last_name: "White", email: "breaking@bad.com", password: "meth", password_confirmation: "meth"}
+        post :create, user: {full_name: "Walter White", email: "breaking@bad.com", password: "meth", password_confirmation: "meth"}
         expect(response).to redirect_to root_path
       end
     end
