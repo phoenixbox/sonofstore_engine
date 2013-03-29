@@ -122,4 +122,34 @@ describe "Product Pages" do
       end
     end
   end
+
+  describe "Adding a product to the cart" do
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)}
+
+    context "When clicking the 'Add to Cart' button" do
+      it "creates a line item" do
+        visit product_path(product)
+        expect { click_button("Add to Cart")}.to change(LineItem, :count).by(1)
+      end
+
+      it "displays a cart with the item added" do
+        visit product_path(product)
+        click_button "Add to Cart"
+        expect( page ).to have_content "Mustache"
+      end
+    end
+  end
+  describe "Adding multiple items to a cart" do
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)}
+
+    context "When adding multiple of the same item" do
+      it "lists quantity without duplication of lines" do
+        visit product_path(product)
+        click_button("Add to Cart")
+        visit product_path(product)
+        click_button("Add to Cart")
+        expect( page ).to have_content "2"
+      end
+    end
+  end
 end

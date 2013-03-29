@@ -1,9 +1,12 @@
 StoreEngine::Application.routes.draw do
+  resources :carts
+
+
   resources :categories
 
 
   resources :products
-
+  resources :line_items
 
   get "sessions/new"
 

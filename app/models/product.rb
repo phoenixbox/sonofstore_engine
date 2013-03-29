@@ -6,6 +6,9 @@ class Product < ActiveRecord::Base
   validates :price, :numericality => {:greater_than => 001, :message => "price must be greater than zero"}
   has_many :product_categories
   has_many :categories, through: :product_categories
+  has_many :line_items
+
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   def active?
     if self.active == false
@@ -25,5 +28,16 @@ class Product < ActiveRecord::Base
 
   def categories_list
     self.categories.join(", ")
+  end
+
+  private
+
+  def ensure_not_referenced_by_any_line_item
+    if line_items.empty?
+      true
+    else
+      errors.add(:base, 'Line Items present')
+      false
+    end
   end
 end

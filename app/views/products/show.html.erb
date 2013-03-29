@@ -6,6 +6,7 @@
   <%= @product.categories_list %>
 </p>
 <br/>
+<p><%= button_to "Add to Cart", line_items_path(product_id: @product)%></p>
 <p><%= link_to "Edit product", edit_product_path(@product) %></p>
 <p><%= link_to "Delete", product_path(@product), method: 'Delete', confirm: "Are you sure you want to delete?" %></p>
 <p><%= link_to "Back to all products", products_path %></p>
