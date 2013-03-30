@@ -18,6 +18,7 @@
 
   def show
     @product = Product.find(params[:id])
+    @cart = current_cart
   end
 
   def edit

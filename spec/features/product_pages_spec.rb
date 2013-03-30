@@ -139,6 +139,7 @@ describe "Product Pages" do
       end
     end
   end
+  
   describe "Adding multiple items to a cart" do
     let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)}
 
@@ -150,6 +151,16 @@ describe "Product Pages" do
         click_button("Add to Cart")
         expect( page ).to have_content "2"
       end
+    end
+  end
+
+  describe "Deleting items from a cart" do
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)} 
+    
+    it "shows an empty cart" do
+      visit product_path(product)
+      click_button("Add to Cart")
+      expect{ click_button("Empty cart") }.to change(Cart, :count).by(-1)
     end
   end
 end

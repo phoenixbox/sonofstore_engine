@@ -8,10 +8,11 @@ class LineItemsController < ApplicationController
       
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: "Line Item was sucessfully created!" }
+        format.html { redirect_to product_path(product) }
+        format.js
         format.json { render json: @line_item, status: :created, location: @line_item} 
       else
-        format.html { redirect_to product_path(product) }
+        format.html { redirect_to product_path(product), notice: 'An error occurred, please try again' }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
