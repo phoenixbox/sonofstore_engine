@@ -1,6 +1,7 @@
 class LineItemsController < ApplicationController
 
   def create
+    puts "in create"
     @cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
