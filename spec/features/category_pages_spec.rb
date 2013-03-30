@@ -53,7 +53,7 @@ describe "Category pages" do
 
   describe "Viewing a specific category" do
     let!(:category){ Category.create(name: "Beards")}
-    let!(:product){ Product.create(title: "Karl Marx beard", description: "It's Red!", price_in_dollars_and_cents: 20.05)}
+    let!(:product){ Product.create(title: "Karl Marx beard", description: "It's Red!", price_in_dollars: 20.05)}
     let!(:product_category){ ProductCategory.create(product_id: (product.id), category_id: (category.id))}
 
     it "has a list of related products" do
