@@ -9,7 +9,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to product_path(product) }
-        format.js
+        format.js   { @current_item = @line_item }
         format.json { render json: @line_item, status: :created, location: @line_item} 
       else
         format.html { redirect_to product_path(product), notice: 'An error occurred, please try again' }
