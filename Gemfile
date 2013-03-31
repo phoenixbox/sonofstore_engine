@@ -31,3 +31,5 @@ group :development, :test do
   gem 'heroku'
   gem 'simplecov'
 end
+
+  gem 'simple_form'
