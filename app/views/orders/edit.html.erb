@@ -1,0 +1,21 @@
+<h1>Update order <%= @order.id %></h1>
+
+<%= form_for @order do |f| %>
+  <% if @order.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  
+  
+<% end %>

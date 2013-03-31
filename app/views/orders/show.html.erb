@@ -1,0 +1,10 @@
+Thanks for ordering!  Your order details are as follows:
+
+<% @order.line_items.each do |li| %>
+  <p><%= link_to li.product, product_path(li.product) %> <%= "quantity: #{li.quantity}, subtotal: #{li.total_price}" %></p>
+<% end %>
+<p><%= "Total order price: #{@order.total_price}" %></p>
+<p><%= "Order submitted: #{@order.created_at}" %></p>
+<p><%= "Current order status #{@order.status}" %></p>
+
+  
