@@ -154,7 +154,7 @@ describe "Product Pages" do
     end
   end
 
-  describe "Deleting items from a cart" do
+  describe "Deleting all items from a cart" do
     let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)} 
     
     it "shows an empty cart" do
@@ -163,4 +163,6 @@ describe "Product Pages" do
       expect{ click_button("Empty cart") }.to change(Cart, :count).by(-1)
     end
   end
+
+  describe "Deleting individual items from a cart"
 end
