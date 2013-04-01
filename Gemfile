@@ -32,9 +32,11 @@ group :development, :test do
   gem 'pry'
   gem 'heroku'
   gem 'simplecov'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
-  gem 'quiet_assets'
 end
 
+group :development do 
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  # gem 'meta_request'
+end
