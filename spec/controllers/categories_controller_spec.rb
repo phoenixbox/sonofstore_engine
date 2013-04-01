@@ -12,15 +12,6 @@ describe CategoriesController do
       get 'new'
       expect(response).to render_template :new
     end
-
-    it "populates an array of categories" do
-
-      category = Category.create(name: "Beards")
-
-      get :index
-
-      expect(assigns(:categories)).to match_array [category]
-    end
   end
 
   describe "POST 'create'" do

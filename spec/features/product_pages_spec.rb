@@ -41,7 +41,7 @@ describe "Product Pages" do
     before do
       category2 = Category.create(name: "wigs")
       category1 = Category.create(name: "beards")
-      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       ProductCategory.create(product_id: (product.id), category_id: (category1.id))
       ProductCategory.create(product_id: (product.id), category_id: (category2.id))
       visit product_path(product)
@@ -50,17 +50,12 @@ describe "Product Pages" do
     it "should show the page for an individual product" do
       expect( page ).to have_content "I mustache you a question."
     end
-
-    it "should show the categories associated with the product" do
-      expect( page ).to have_content "wigs"
-      expect( page ).to have_content "beards"
-    end
   end
 
   describe "product index page" do
     before do
-      Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
-      Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars_and_cents: 15.50)
+      Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
       visit products_path
     end
 
@@ -79,7 +74,7 @@ describe "Product Pages" do
     before do
       Category.create(name: "wigs")
       Category.create(name: "beards") 
-      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
+      @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       visit edit_product_path(@product)
       fill_in "Title", with: "bandana"
       fill_in "Description", with: "yummy"
@@ -113,7 +108,7 @@ describe "Product Pages" do
   end
   
   describe "destroying a product" do
-    let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)}
+    let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)}
 
     context "removing items from the product index" do
       it "deletes a product" do
@@ -124,7 +119,7 @@ describe "Product Pages" do
   end
 
   describe "Adding a product to the cart" do
-    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)}
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)}
 
     context "When clicking the 'Add to Cart' button" do
       it "creates a line item" do
@@ -141,7 +136,7 @@ describe "Product Pages" do
   end
   
   describe "Adding multiple items to a cart" do
-    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)}
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)}
 
     context "When adding multiple of the same item" do
       it "lists quantity without duplication of lines" do
@@ -155,7 +150,7 @@ describe "Product Pages" do
   end
 
   describe "Deleting items from a cart" do
-    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars_and_cents: 34.99)} 
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)} 
     
     it "shows an empty cart" do
       visit product_path(product)
