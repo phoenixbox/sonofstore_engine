@@ -11,14 +11,15 @@ body { padding-top: 60px; }
   }
 
 }
-
 body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
 
+.logo-banner {
+  border-bottom: 2px solid #333;
+}
 .nav-menus {
-  border-top: 2px solid #333;
   padding-top: 5px;
 }
 
@@ -42,7 +43,9 @@ body {
     color:#333; 
   }
 }
-
+.header-button {
+  margin-top: 12px;
+}
 .product_list li:nth-child(5n+5) {
   margin-left: 0px;
 }
@@ -57,6 +60,69 @@ body {
 }
 .logo {
   margin-top: 27px;
+}
+
+.tab_above .page-header {
+  margin-top: 0px;
+}
+.order_detail {
+  border-bottom: none;
+
+  .details {
+    p {
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 16px;
+
+      a {
+        margin-left: 10px;
+        font-weight: normal;
+      }
+
+      .cust_name, .cust_email {
+        font-weight: normal;
+      }
+    }
+      
+
+  }
+
+  .status {
+    p.state {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    span {
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
+}
+
+.container#admin {
+
+  .page-header {
+    border-bottom: none;
+  }
+
+  .status-panel {
+    border: 1px solid #ddd;
+  }
+
+  .filter-box {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .status-change {
+    font-weight: bold;
+    font-size: 16px;
+
+    span.transition {
+      margin-left: 10px;
+    }
+  }
 }
 
 .breadcrumb {
@@ -121,7 +187,6 @@ body {
 .cart_sidebar {
   @include product_detail_header;
 
-  
   ul {
     list-style-type: none; 
     margin-left: 0px;
@@ -178,8 +243,6 @@ form.bs-container {
   label {
     font-size: 14px;
   }
-         
-
 
   .redirect {
     margin-bottom: 20px;
@@ -207,3 +270,4 @@ form.bs-container {
     }
   }
 }
+
