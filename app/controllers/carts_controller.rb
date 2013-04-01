@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def show
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
 
     respond_to do |format| 
       format.html
@@ -20,8 +20,13 @@ class CartsController < ApplicationController
 
   def add_quantity_to_cart
     @cart = current_cart
-    item = @cart.line_items.find(params[:id])
-    item.quantity + 1
-    item.save
+    @cart.add_quantity(params[:id])
+    redirect_to :back
+  end
+
+  def decrease_quantity_from_cart
+    @cart = current_cart
+    @cart.decrease_quantity(params[:id])
+    redirect_to :back
   end
 end
