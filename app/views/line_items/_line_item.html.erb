@@ -5,7 +5,5 @@
 <% end %>
   <td><%= line_item.quantity %>&times;</td>
   <td><%= line_item.product.title %></td>
-  <%= button_to "+", add_quantity_to_cart_path(line_item.product_id), :method => :put %>
-  <%= button_to "-", decrease_quantity_from_cart_path(line_item.product_id), :method => :put %>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
 </tr>
