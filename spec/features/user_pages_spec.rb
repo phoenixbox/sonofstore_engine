@@ -6,7 +6,7 @@ describe "User pages" do
   
   describe "signup" do
     before { visit signup_path }
-    let(:submit) { "Create User" }
+    let(:submit) { "Register" }
 
     describe "with invalid information" do
         it "should not create a new user" do
@@ -41,7 +41,9 @@ describe "User pages" do
 
       it "should log in a user" do
         click_button submit
-        page.should have_content("s@s.com")
+        # page.should have_content("s@s.com")
+        expect(current_path).to eq "/"
+        expect(page).to have_link("Logout", href: logout_path)
       end
     end
     
@@ -53,7 +55,11 @@ describe "User pages" do
 
       it "should not log in a user" do
         click_button submit
-        page.should have_content("Sign Up or Log In")
+        
+        expect(page).to have_link("Log In", href: login_path)
+        within("div.alert") do
+          expect(page).to have_content("Wrong user email and/or password")
+        end
       end
     end
   end
