@@ -9,7 +9,8 @@
       <div class='nav-collapse'>
         <ul class='nav pull-right'>
           <% if current_user %>
-            <li><a>My Account</a></li>
+            <li><%= link_to "#{current_user.full_name + "'s Account"}", user_path(current_user) %></li>
+            <!-- <li><a>My Account</a></li> -->
             <li><%= link_to "Logout", logout_path %></li>
           <% else %>
             <li><%= link_to "Log In", login_path %></li>

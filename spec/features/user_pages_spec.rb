@@ -6,10 +6,10 @@ describe "User pages" do
   
   describe "signup" do
     before { visit signup_path }
-    let(:submit) { "Sign Up" }
+    let(:submit) { "Create User" }
 
     describe "with invalid information" do
-      it "should not create a new user" do
+        it "should not create a new user" do
         expect { click_button submit }.not_to change(User, :count)
       end
     end
