@@ -2,28 +2,15 @@
 <div class='row-fluid'>
   <div class='span6 offset3'>
     <h2 class='text-center'>Log In</h2>
-      <%# <%= link_to "Not registered? Sign up here", signup_path %1> %>
-      <%# <%= simple_form_for :sessions, :url => sessions_path, :html => {:class => 'bs-container'} do |f| %1> %>
-      <%#   <%= f.error_notification %1> %>
-      <%#   <%= f.input :email %1> %>
-      <%#   <%= f.input :password %1> %>
-      <%#   <%= f.button :submit, :value => "Log In", :class => "btn-primary"%> %>
-      <%#   <%= f.error :base %1> %>
+      <%= link_to "Not registered? Sign up here", signup_path %>
+      <%= simple_form_for :session, :url => sessions_path, :html => {:class => 'bs-container'} do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.button :submit, :value => "Log In", :class => "btn-primary"%>
+        <%= f.error :base %>
 
-      <%# <% end %1> %> 
-    <%# </div> %>
-  <%# </div> %>
-<%# </div> %>
-
-
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
+      <% end %> 
+    </div>
   </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>s
+</div>
