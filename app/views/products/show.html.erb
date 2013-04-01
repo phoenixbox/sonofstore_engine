@@ -1,6 +1,6 @@
 <p><%= @product.title %></p>
 <p><%= @product.description %></p>
-<p><%= @product.price/100.00 %></p>
+<p><%= number_to_currency(@product.price_in_dollars) %></p>
 <p><%= @product.active? %></p>
 <p>Categories:<br/>
   <%= @product.categories_list %>
@@ -18,4 +18,3 @@
 <p><%= link_to "Edit product", edit_product_path(@product) %></p>
 <p><%= link_to "Delete", product_path(@product), method: 'Delete', confirm: "Are you sure you want to delete?" %></p>
 <p><%= link_to "Back to all products", products_path %></p>
-
