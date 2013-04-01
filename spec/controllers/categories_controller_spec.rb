@@ -28,7 +28,6 @@ describe CategoriesController do
       post 'create', category: {name: "Jorge"}
 
       category = assigns(:category)
-      # expect(response).to be_success
       expect(response).to redirect_to category_path(category)
     end
   end
@@ -68,18 +67,14 @@ describe CategoriesController do
 
     end
 
-    # context "When sent invalid attributes" do
+    context "When sent invalid attributes" do
+      let!(:category) {Category.create(name: "category")}
 
-    #   let!(:category) {Category.create(name: "category")}
-
-    #   it "renders edit view" do
-    #     put :update, id: category, category: attributes_for(:category, name: "anything")
-    #     # category.reload
-    #     # expect(category.name).to eq("anything")
-    #     expect(response).to render_template :edit
-    #   end
-
-    # end
+      it "renders edit view" do
+        put :update, id: category, category: {name: nil}
+        expect(response).to render_template :edit
+      end
+    end
   end
 
   describe "DESTROY 'delete'" do
@@ -88,10 +83,6 @@ describe CategoriesController do
     it "deletes the category" do
       delete :destroy, id: category
       expect(response).to redirect_to categories_path
-      #expect{delete :destroy, id: category}.to change(Category, :count).by(-1)
     end
   end
-
-
-
 end

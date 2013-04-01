@@ -4,7 +4,7 @@
 # describe "Order pages" do
 #   describe "Redirecting a customer to checkout" do
 #     before do
-#       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars_and_cents: 5.99)
+#       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
 #       visit product_path(product)
 #     end
 

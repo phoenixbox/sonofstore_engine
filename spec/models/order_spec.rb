@@ -41,4 +41,5 @@ describe Order do
   #   order = Order.new
   #   expect(order.add_line_items(@cart).count).to eq 2
   # end
+  # undefined method `cart_id=' for 1:Fixnum
 end

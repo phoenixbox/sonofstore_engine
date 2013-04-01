@@ -5,5 +5,6 @@
 <% end %>
   <td><%= line_item.quantity %>&times;</td>
   <td><%= line_item.product.title %></td>
+  <%= button_to "+", {:controller => "carts", :action => "add_quantity_to_cart"}, :method => :put %>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
 </tr>

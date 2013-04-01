@@ -17,4 +17,11 @@ class CartsController < ApplicationController
       format.json {head :no_content}
     end
   end
+
+  def add_quantity_to_cart
+    @cart = current_cart
+    item = @cart.line_items.find(params[:id])
+    item.quantity + 1
+    item.save
+  end
 end

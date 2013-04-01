@@ -1,6 +1,6 @@
 <p><%= @product.title %></p>
 <p><%= @product.description %></p>
-<p><%= @product.price/100.00 %></p>
+<p><%= number_to_currency(@product.price_in_dollars) %></p>
 <p><%= @product.active? %></p>
 <p>Categories:<br/>
   <%= @product.categories_list %>

@@ -43,6 +43,15 @@ before_filter :signed_in?
     @order = Order.find(params[:id])
   end
 
+  def update
+    @order = Order.find(params[:id])
+    if @order.update_attributes params[:order]
+      redirect_to order_path(@order)
+    else
+      render :edit
+    end
+  end
+
 private
   def signed_in?
     redirect_to login_path, notice: "You must be logged in to checkout." unless current_user

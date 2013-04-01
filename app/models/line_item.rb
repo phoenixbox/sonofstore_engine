@@ -6,6 +6,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
 
   def total_price
-    product.price * quantity
+    product.price_in_dollars * quantity
   end
 end

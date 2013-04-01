@@ -1,4 +1,6 @@
 StoreEngine::Application.routes.draw do
+  
+  post '/add_quantity_to_cart/:product_id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
   resources :orders
 
 
