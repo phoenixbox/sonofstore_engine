@@ -55,7 +55,6 @@ describe "User pages" do
 
       it "should not log in a user" do
         click_button submit
-        
         expect(page).to have_link("Log In", href: login_path)
         within("div.alert") do
           expect(page).to have_content("Wrong user email and/or password")
