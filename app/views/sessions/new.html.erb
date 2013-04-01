@@ -12,3 +12,169 @@
   <div class="actions"><%= submit_tag "Log In" %></div>
 <% end %> -->
 
+<div class='row-fluid'>
+  <div class='span6 offset3'>
+    <h2 class='text-center'>Sign In</h2>
+      <a href='#'>
+        <p class='text-center'>Not registered? Sign up here</p>
+      </a>
+      
+      <%= form_tag sessions_path %>
+      
+        <%= label_tag :email %><br />
+        <%= text_field_tag :email, params[:email] %>
+
+        <%= label_tag :password %><br />
+        <%= password_field_tag :password %>
+
+        <div class="actions"><%= submit_tag "Log In" %></div>
+    
+    </div>
+  </div>
+
+<!DOCTYPE html>
+<!-- <html lang='en' xhmns='http://www.w3.org/1999/xhtml' xml:lang='en'>
+  <head>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
+    <link href='css/font-awesome.css' rel='stylesheet' type='text/css'>
+    <link href='css/application.css' rel='stylesheet' type='text/css'>
+    <title>Cloak &amp; Dagger</title>
+  </head>
+  <body>
+    <div class='navbar navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='btn btn-navbar' data-toggle='.nav-collapse'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </a>
+          <div class='nav-collapse'>
+            <ul class='nav pull-right'>
+              <li>
+                <a class='disabled'>
+                  My Account
+                </a>
+              </li>
+              <li>
+                <a class='active' href='#'>
+                  Sign In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='row-fluid'>
+        <div class='span6 logo'>
+          <h1>
+            <a href='#'></a>
+            Cloak &amp; Dagger
+          </h1>
+        </div>
+      </div>
+      <div class='row-fluid'>
+        <div class='span12 nav-menus'>
+          <ul class='nav nav-pills'></ul>
+        </div>
+      </div>
+      <div class='row-fluid'>
+        <div class='span6 offset3'>
+          <h2 class='text-center'>Sign In</h2>
+          <form class='form-horizontal bs-container'>
+            <a href='#'>
+              <p class='text-center'>Not registered? Sign up here</p>
+            </a>
+            <div class='control-group'>
+              <label class='control-label' for='inputUsername'>Username</label>
+              <input name='username' placeholder='Username' type='text'>
+            </div>
+            <div class='control-group'>
+              <label class='control-label' for='inputPassword'>Password</label>
+              <input id='inputPassword' name='password' placeholder='Password' type='password'>
+            </div>
+            <div class='control-group'>
+              <div class='controls'>
+                <button class='btn' type='submit'>Sign In</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr>
+      <div class='row-fluid footer'>
+        <div class='span4'>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <h3>Information</h3>
+          <ul>
+            <li>
+              <a href='#'>Contact</a>
+            </li>
+            <li>
+              <a href='#'>Delivery</a>
+            </li>
+            <li>
+              <a href='#'>FAQ</a>
+            </li>
+            <li>
+              <a href='#'>Terms and condition</a>
+            </li>
+          </ul>
+        </div>
+        <div class='span4'>
+          <h3>Stay in Touch</h3>
+          <ul>
+            <li>
+              <a href='#'>Facebook</a>
+            </li>
+            <li>
+              <a href='#'>Twitter</a>
+            </li>
+            <li>
+              <div class='control-group'>
+                <div class='controls'>
+                  <div class='input-prepend input-append'>
+                    <div class='span add-on'>
+                      <i class='icon-envelope'></i>
+                    </div>
+                    <input class='span6 appendedPrependedInput' placeholder='Enter your email' type='text'>
+                    <input class='btn' name='submit' type='submit' value='Subcribe'>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class='span4'>
+          <h3>Other stuff</h3>
+          <ul>
+            <li>
+              <a href='#'>Link</a>
+            </li>
+            <li>
+              <a href='#'>Link</a>
+            </li>
+            <li>
+              <a href='#'>Link</a>
+            </li>
+            <li>
+              <a href='#'>Link</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src='js/jquery-1.7.2.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script src='js/script.js'></script>
+  </body>
+</html> -->
