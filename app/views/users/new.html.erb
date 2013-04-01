@@ -1,41 +1,16 @@
-
-
 <div class='row-fluid'>
   <div class='span6 offset3'>
-    <h2 class='text-center'>Create an Account</h2>
+    <h2 class='text-center'>Create An Account</h2>
       <a href='#'>
         <p class='text-center'>Already registered? Sign In here</p>
       </a>
-      <%= simple_form_for @user, :html => { :class => 'form-horizontal bs-container' } do |f| %>
+      <%= simple_form_for @user, :html => { :class => 'bs-container' } do |f| %>
         <%= f.error_notification %>
         <%= f.input :full_name %>
         <%= f.input :email %>
         <%= f.input :password %>
         <%= f.input :password_confirmation %>
-        <%= f.button :submit %>
+        <%= f.button :submit, :value => "Register", :class => "btn-primary"%>
       <% end %>
   </div>
 </div>
-
-
-<!-- <div class='control-group'>
-        <label class='control-label'>Full Name</label>
-        <input name='full_name' type='text'>
-      </div>
-      <div class='control-group'>
-        <label class='control-label'>Email</label>
-        <input name='email' type='text'>
-      </div>
-      <div class='control-group'>
-        <label class='control-label'>Password</label>
-        <input id='inputPassword' name='password' type='password'>
-      </div>
-      <div class='control-group'>
-        <label class='control-label'>Password Confirmation</label>
-        <input id='inputPassword' name='confirm_password' type='password'>
-      </div>
-      <div class='control-group'>
-        <div class='controls'>
-          <button class='btn' type='submit'>Register</button>
-        </div>
-      </div> -->
