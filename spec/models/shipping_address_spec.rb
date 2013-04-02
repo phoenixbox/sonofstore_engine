@@ -32,5 +32,5 @@ describe ShippingAddress do
     it "should be valid" do
       expect(shipping_address).to be_valid
     end
-  end
+  end 
 end

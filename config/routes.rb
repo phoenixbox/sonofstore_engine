@@ -1,7 +1,7 @@
 StoreEngine::Application.routes.draw do
   resources :categories
-
-
+  resources :billing_address
+  resources :shipping_addresses
   resources :products
 
 
