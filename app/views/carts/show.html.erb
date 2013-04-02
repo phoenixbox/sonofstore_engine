@@ -49,10 +49,10 @@
                 <td>
                   <form class='form-inline'>
                     <span class='uneditable-input input-small' type='text'><%= line_item.quantity %></span>
-                      <%= link_to add_quantity_to_cart_path(line_item.product_id), :method => :put, :class => "btn btn-small" do %>
+                      <%= link_to add_quantity_to_cart_path(line_item.product_id), :method => :put, :class => "btn btn-small", :id => "+" do %>
                       <i class='icon-plus'></i>
                       <% end %>
-                      <%= link_to decrease_quantity_from_cart_path(line_item.product_id), :method => :put, :class => "btn btn-small" do %> 
+                      <%= link_to decrease_quantity_from_cart_path(line_item.product_id), :method => :put, :class => "btn btn-small", :id => "-" do %> 
                       <i class='icon-minus'></i>
                       <% end %>
                     </span>
