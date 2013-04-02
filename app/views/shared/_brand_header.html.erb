@@ -8,10 +8,7 @@
     </div>
     <div class='span6'>
       <div class='cart_link pull-right'>
-        <a href='cart_path'>
           <span>
-            <% current_cart_id = session[:cart_id] %>
-            <% current_cart = Cart.find(current_cart_id) %>
           <% if current_cart %>
             <% cart_count = [] %>
             <% current_cart.line_items.each do |li| %>
@@ -21,11 +18,15 @@
           <% end %>
           </span>
           <% if items_count == 1 %>
-            <p>1 item in cart</p>
+            <p><%= link_to "1 item in cart", cart_path(current_cart) %></p>
+          <% elsif current_cart.line_items.count == 0 %>
+            <p><%= link_to "0 items in cart", cart_path(current_cart) %></p>
           <% else %>
             <p><%= link_to "#{items_count} items in cart", cart_path(current_cart) %></p>
           <% end %>
+          <%= link_to cart_path(current_cart) do %>
           <i class='icon-shopping-cart icon-2x'></i>
+          <% end %>
         </a>
       </div>
     </div>

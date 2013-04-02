@@ -61,10 +61,6 @@
                 </div>
                 <div class='span2 pull-left'><%= line_item.quantity %></div>
                 <div class='span2 pull-left'><%= number_to_currency(line_item.total_price) %>
-                </div><br/>
-                <div class="btn-group">
-                  <button class="btn"><%= link_to "+", add_quantity_to_cart_path(line_item.product_id), :method => :put %></button>
-                  <button class="btn"><%= link_to "-", decrease_quantity_from_cart_path(line_item.product_id), :method => :put %></button>
                 </div>
                 <br/>
               </li>
@@ -80,7 +76,7 @@
                       Total Price
                     </strong>
                   </div>
-                  <div class='span4 pull-left'><%= number_to_currency(@cart.total_price) %></div>
+                  <div class='span3 pull-right'><strong><%= number_to_currency(@cart.total_price) %></strong></div><br/>
                 </li>
                 <li class='form-inline'>
                   <div class="span3 pull-left">

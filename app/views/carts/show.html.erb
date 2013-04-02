@@ -29,14 +29,15 @@
               </tr>
             </thead>
             <tbody>
-              <% @cart.line_items.each do |line_item| %>
+            <% @cart.line_items.each do |line_item| %>
+              <% if line_item.quantity > 0 %>
               <tr>
                 <td>
                   <%= image_tag "product14.png" %>
                 </td>
                 <td class='description'>
                   <span class='name'>
-                    <a href='#'><%= line_item.product.title %></a>
+                    <%= link_to line_item.product.title, product_path(line_item.product) %></a>
                   </span>
                   <p>
                    <%= line_item.product.description %>
@@ -62,7 +63,10 @@
                 </td>
               </tr>
             </tbody>
+            <% else %>
+              <% line_item.destroy %>
             <% end %>
+          <% end %>
           </table>
           <table class='table total table-bordered'>
             <tbody>
