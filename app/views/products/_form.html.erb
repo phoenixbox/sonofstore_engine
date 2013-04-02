@@ -1,0 +1,16 @@
+<%= simple_form_for @product, :html => {:class => ''} do |f| =%>
+  <%= f.error_notification %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :price_in_dollars %>
+  <%= f.input :active, as: :boolean %>
+
+  <%= f.association :categories, as: :check_boxes %>
+  <%= f.input :photo, as: :file %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger" %>
+  </div>
+  <%= f.error :base %>
+<% end %> 

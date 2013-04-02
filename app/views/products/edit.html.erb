@@ -1,36 +1,71 @@
-<h1>Update form for <%= @product.title %></h1>
+<%# <h1>Update form for <%= @product.title %1></h1> %>
 
-<%= form_for @product do |f| %>
-  <% if @product.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%# <%= form_for @product do |f| %1> %>
+<%#   <% if @product.errors.any? %1> %>
+<%#     <div class="error_messages"> %>
+<%#       <h2>Form is invalid</h2> %>
+<%#       <ul> %>
+<%#         <% @product.errors.full_messages.each do |message| %1> %>
+<%#           <li><%= message %1></li> %>
+<%#         <% end %1> %>
+<%#       </ul> %>
+<%#     </div> %>
+<%#   <% end %1> %>
+
+<%#   <div class="field"> %>
+<%#     <%= f.label :title %1><br /> %>
+<%#     <%= f.text_field :title %1> %>
+<%#   </div> %>
+<%#   <div class="field"> %>
+<%#     <%= f.label :description %1><br /> %>
+<%#     <%= f.text_area :description %1> %>
+<%#   </div> %>
+<%#   <div class="field"> %>
+<%#     Categories<br/> %>
+<%#     <%= hidden_field_tag "product[category_ids][]", nil %1> %>
+<%#     <% Category.all.each do |category| %1> %>
+<%#       <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %1> %>
+<%#       <%= label_tag dom_id(category), category.name %1><br/> %>
+<%#     <% end %1><br/> %>
+<%#   </div> %>
+<%#   <div class="field"> %>
+<%#     <%= f.label :price_in_dollars, "Price" %1><br /> %>
+<%#     <%= f.text_field :price_in_dollars %1> %>
+<%#   </div> %>
+<%#   <div class="actions"><%= f.submit "Update Product" %1></div> %>
+<%# <% end %1> %>
+<div class='row-fluid'>
+  <div class='span12'>
+    <div class='page-header'>
+      <h1>Administration Portal</h1>
     </div>
-  <% end %>
+  </div>
+</div>
+<div class='row-fluid'>
+  <div class='tabbable'>
+    <ul class='nav nav-tabs'>
+      <li>
+        <a data-toggle='tab' href='#'>Dashboard</a>
+      </li>
+      <li class='active'>
+        <a data-toggle='tab' href='#'>Manage Products</a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#'>Manage Categories</a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#'>Admin Profile</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+<div class='row-fluid'>
+  <div class='span12'>
+    <div class='span6'>
+      <h3>Edit Existing Product</h3>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    Categories<br/>
-    <%= hidden_field_tag "product[category_ids][]", nil %>
-    <% Category.all.each do |category| %>
-      <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %>
-      <%= label_tag dom_id(category), category.name %><br/>
-    <% end %><br/>
-  </div>
-  <div class="field">
-    <%= f.label :price_in_dollars, "Price" %><br />
-    <%= f.text_field :price_in_dollars %>
-  </div>
-  <div class="actions"><%= f.submit "Update Product" %></div>
-<% end %>
+</div>
+<%= render 'form' %>
+

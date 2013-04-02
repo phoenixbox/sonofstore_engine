@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :price_in_dollars, :active, :category_ids
+  attr_accessible :title, :description, :price_in_dollars, :active, :category_ids, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at
 
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price, :price_in_dollars
@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, through: :product_categories
   has_many :line_items
+  has_attached_file :photo
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

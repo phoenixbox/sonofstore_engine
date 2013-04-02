@@ -2,6 +2,8 @@
 <p><%= @product.description %></p>
 <p><%= number_to_currency(@product.price_in_dollars) %></p>
 <p><%= @product.active? %></p>
+<p><%= image_tag @product.photo.url %></p>
+
 <p>Categories:<br/>
   <%= @product.categories_list %>
 </p>
