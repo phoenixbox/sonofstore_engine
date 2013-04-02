@@ -80,7 +80,7 @@
                 </li>
                 <li class='form-inline'>
                   <div class="span3 pull-left">
-                    <%= button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left" %>
+                    <%= button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left", :id => "cart_link" %>
                   </div>
                   <div class="span3 pull-left">
                     <% if @cart.line_items.count >= 1 %>

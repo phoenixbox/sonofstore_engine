@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 before_filter :signed_in?
   
   def index
-    @orders = Order.all
+    @orders = Order.find_all_by_user_id(current_user)
   end
 
   def new
@@ -37,6 +37,12 @@ before_filter :signed_in?
 
   def show
     @order = Order.find(params[:id])
+
+    if @order.user == current_user
+      render "show"
+    else
+      redirect_to root_path, notice: "You are not authorized to view orders placed by another customer."
+    end
   end
 
   def edit

@@ -155,12 +155,41 @@ describe "Product Pages" do
     let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)} 
     
     it "shows an empty cart" do
-      pending
       visit product_path(product)
       click_button("Add to Cart")
-      expect{ click_button("Empty cart") }.to change(Cart, :count).by(-1)
+      expect{ click_button("Empty Cart") }.to change(LineItem, :count).by(-1)
     end
   end
 
-  describe "Deleting individual items from a cart"
+  describe "Deleting individual items from a cart" do
+    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)} 
+
+    it "deletes an individual item from the cart" do
+      visit product_path(product)
+      click_button("Add to Cart")
+      click_button("cart_link")
+      expect{ click_button("Delete item from cart") }.to change(LineItem, :count).by(-1)
+    end
+  end
+
+  describe "incrementing and decrementing cart quantity" do
+    before do 
+      product = Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)
+      visit product_path(product)
+      16.times do 
+        click_button("Add to Cart")
+      end
+      click_button("cart_link")
+    end
+
+    it "adds quantity to an item in the cart" do
+      click_link("+")
+      expect(page).to have_content(17)
+    end
+
+    it "decreases quantity of an item in the cart" do
+      click_link("-")
+      expect(page).to have_content(15)
+    end
+  end
 end

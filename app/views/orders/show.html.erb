@@ -36,7 +36,7 @@
                 <span>
                   <%= (@order.created_at).to_time.strftime("%I:%M %P") %>, GMT
                 </span>
-                <a href='#'>view all past orders</a>
+                <%= link_to "view all past orders", orders_path %>
               </p>
             </div>
             <div class='status'>
