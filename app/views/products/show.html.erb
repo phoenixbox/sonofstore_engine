@@ -97,28 +97,28 @@
 
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<p><%= @product.title %></p>
-<p><%= @product.description %></p>
-<p><%= number_to_currency(@product.price_in_dollars) %></p>
-<p><%= @product.active? %></p>
-<p>Categories:<br/>
-  <%= @product.categories_list %>
-</p>
-<br/>
+<%# <br/> %>
+<%# <br/> %>
+<%# <br/> %>
+<%# <br/> %>
+<%# <br/> %>
+<%# <p><%= @product.title %1></p> %>
+<%# <p><%= @product.description %1></p> %>
+<%# <p><%= number_to_currency(@product.price_in_dollars) %1></p> %>
+<%# <p><%= @product.active? %1></p> %>
+<%# <p>Categories:<br/> %>
+<%#   <%= @product.categories_list %1> %>
+<%# </p> %>
+<%# <br/> %>
 
-<div id="side">
- <div id="cart">
- <%= render @cart %>
- </div>
-</div>
+<%# <div id="side"> %>
+<%#  <div id="cart"> %>
+<%#  <%= render @cart %1> %>
+<%#  </div> %>
+<%# </div> %>
 
-<p><%= button_to "Add to Cart", line_items_path(product_id: @product) %></p>
+<%# <p><%= button_to "Add to Cart", line_items_path(product_id: @product) %1></p> %>
 
-<p><%= link_to "Edit product", edit_product_path(@product) %></p>
-<p><%= link_to "Delete", product_path(@product), method: 'Delete', confirm: "Are you sure you want to delete?" %></p>
-<p><%= link_to "Back to all products", products_path %></p>
+<%# <p><%= link_to "Edit product", edit_product_path(@product) %1></p> %>
+<%# <p><%= link_to "Delete", product_path(@product), method: 'Delete', confirm: "Are you sure you want to delete?" %1></p> %>
+<%# <p><%= link_to "Back to all products", products_path %1></p> %>
