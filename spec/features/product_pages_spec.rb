@@ -54,8 +54,8 @@ describe "Product Pages" do
 
   describe "product index page" do
     before do
-      Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
-      Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
+      @product_1 = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      @product_2 = Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
       visit products_path
     end
 
@@ -65,8 +65,8 @@ describe "Product Pages" do
     end
 
     it "has links to the individual products" do
-      expect( page ).to have_link "Mustache"
-      expect( page ).to have_link "Wig"
+      expect( page ).to have_link("edit", :href => edit_product_path(@product_1))
+      expect( page ).to have_link("edit", :href => edit_product_path(@product_2))
     end
   end
 
@@ -76,18 +76,15 @@ describe "Product Pages" do
       Category.create(name: "beards") 
       @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       visit edit_product_path(@product)
-      fill_in "Title", with: "bandana"
-      fill_in "Description", with: "yummy"
-      fill_in "Price", with: 5.99
     end
 
     context "with invalid information" do
       it "does not update the product" do
-        fill_in "Title", with: "bandana"
+        fill_in "Title", with: nil
         fill_in "Description", with: "yummy"
-        fill_in "Price", with: nil
+        fill_in "Price", with: 7.99
         click_button "Update Product"
-        page.should have_content("Update form for")
+        page.should have_content("An error occurred, please try again")
       end
     end
 

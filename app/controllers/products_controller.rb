@@ -30,6 +30,7 @@
     if @product.update_attributes params[:product]
       redirect_to product_path(@product)
     else
+      flash[:error] = "An error occurred, please try again"
       render :edit
     end
   end
