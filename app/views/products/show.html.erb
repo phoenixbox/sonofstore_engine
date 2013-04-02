@@ -1,4 +1,4 @@
-<ul class='breadcrumb'>
+      <ul class='breadcrumb'>
         <li>
           <%= link_to "Home", "/" %>
           <span class='divider'>/</span>
@@ -21,7 +21,7 @@
           <div class='detail_photo span3'>
             <div class='thumbnail'>
               <a href='#'>
-                <img alt='' src='img/product15.png'>
+                <%= image_tag "product14.png" %>
               </a>
             </div>
           </div>
@@ -31,7 +31,9 @@
               <p><%= @product.description %></p>
             </div>
             <strong>Categories:</strong><br/>
-            <%= @product.categories_list %>
+            <% @product.categories.each do |category| %>
+            <%= link_to category.name, category_path(category) %>
+            <% end %>
             <br/><br/>
             <div class='price'>
               <span class='price_label'><%= number_to_currency(@product.price_in_dollars) %></span>
@@ -54,16 +56,16 @@
             <ul>
             <% @cart.line_items.each do |line_item| %>
               <li>
-                <div class='span5 pull-left'>
+                <div class='span7 pull-left'>
                   <a data-original-title='See Detail' href='#' rel='tooltip'><%= line_item.product.title %></a>
                 </div>
                 <div class='span2 pull-left'><%= line_item.quantity %></div>
                 <div class='span2 pull-left'><%= number_to_currency(line_item.total_price) %>
+                </div><br/>
+                <div class="btn-group">
+                  <button class="btn"><%= link_to "+", add_quantity_to_cart_path(line_item.product_id), :method => :put %></button>
+                  <button class="btn"><%= link_to "-", decrease_quantity_from_cart_path(line_item.product_id), :method => :put %></button>
                 </div>
-                <div class='span3 pull-left'>
-                  <button class='close'>&times;</button>
-                </div>
-                <div class='form form-horizontal'><%= button_to "+", add_quantity_to_cart_path(line_item.product_id), :method => :put, :class => "btn" %><%= button_to "-", decrease_quantity_from_cart_path(line_item.product_id), :method => :put, :class => "btn" %></div>
                 <br/>
               </li>
               <% end %>
@@ -81,10 +83,14 @@
                   <div class='span4 pull-left'><%= number_to_currency(@cart.total_price) %></div>
                 </li>
                 <li class='form-inline'>
-                  <div class='span12'>
+                  <div class="span3 pull-left">
                     <%= button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left" %>
+                  </div>
+                  <div class="span3 pull-left">
                     <% if @cart.line_items.count >= 1 %>
                     <%= button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left" %>
+                  </div>
+                  <div class="span5 pull-right">
                     <%= button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse pull-right" %>
                     <% end %>
                   </div>
