@@ -77,6 +77,7 @@ describe ProductsController do
       end
     end
   end
+  
   describe "DELETE #destroy" do
     context "removing items from product index" do
       it "redirects after delete" do

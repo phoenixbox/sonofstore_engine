@@ -1,4 +1,11 @@
 StoreEngine::Application.routes.draw do
+  
+  put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
+  put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
+
+  resources :orders
+
+
   resources :carts
 
 

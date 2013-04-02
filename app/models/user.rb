@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
                   :password_confirmation
   validates_uniqueness_of :email
   validates_presence_of :full_name, :email, :password
+
+  has_many :orders
 end

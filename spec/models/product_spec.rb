@@ -62,4 +62,9 @@ describe Product do
     product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
     expect(product.active?).to eq("retired")
   end
+
+  it "renders the name in a readable format" do
+    product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
+    expect(product.to_s).to eq "mormon cheeseburgers"
+  end
 end
