@@ -34,9 +34,15 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @products = @category.products
+    @link = category_path()
 
-    respond_to do |format|
-      format.html
+    if @category
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to products_path
     end
   end
 
