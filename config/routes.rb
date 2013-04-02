@@ -1,10 +1,14 @@
 StoreEngine::Application.routes.draw do
+
+  namespace :admin do 
+    resources :orders, :only => [:index, :show]
+    resources :categories
+    resources :products, :except => :destroy
+    resource :dashboard, :only => :show
+  end
+
   resources :carts
-
-
   resources :categories
-
-
   resources :products
   resources :line_items
 
