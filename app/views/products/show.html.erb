@@ -1,3 +1,107 @@
+<ul class='breadcrumb'>
+        <li>
+          <%= link_to "Home", "/" %>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>
+          <%= @product.title.titleize %>
+        </li>
+      </ul>
+      <div class='row-fluid'>
+        <div class='span12'>
+          <div class='page-header'>
+            <h1>
+              <%= @product.title.titleize %>
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div class='row-fluid'>
+        <div class='detail_box'>
+          <div class='detail_photo span3'>
+            <div class='thumbnail'>
+              <a href='#'>
+                <img alt='' src='img/product15.png'>
+              </a>
+            </div>
+          </div>
+          <div class='prod_desc span5'>
+            <div class='desc'>
+              <h4>Description</h4>
+              <p><%= @product.description %></p>
+            </div>
+            <strong>Categories:</strong><br/>
+            <%= @product.categories_list %>
+            <br/><br/>
+            <div class='price'>
+              <span class='price_label'><%= number_to_currency(@product.price_in_dollars) %></span>
+              <span class='amount'></span>
+            </div>
+            <div class='form form-horizontal'>
+              <div class='form-actions'>
+                <%= button_to "Add to Cart", line_items_path(product_id: @product), :class => "btn" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='cart_sidebar span4'>
+          <div class='row-fluid'>
+            <div class='span12'>
+              <h4>Your Cart</h4>
+            </div>
+          </div>
+          <div class='row-fluid'>
+            <ul>
+            <% @cart.line_items.each do |line_item| %>
+              <li>
+                <div class='span5 pull-left'>
+                  <a data-original-title='See Detail' href='#' rel='tooltip'><%= line_item.product.title %></a>
+                </div>
+                <div class='span2 pull-left'><%= line_item.quantity %></div>
+                <div class='span2 pull-left'><%= number_to_currency(line_item.total_price) %>
+                </div>
+                <div class='span3 pull-left'>
+                  <button class='close'>&times;</button>
+                </div>
+                <div class='form form-horizontal'><%= button_to "+", add_quantity_to_cart_path(line_item.product_id), :method => :put, :class => "btn" %><%= button_to "-", decrease_quantity_from_cart_path(line_item.product_id), :method => :put, :class => "btn" %></div>
+                <br/>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class='row-fluid'>
+            <div class='span12 total-price'>
+              <ul>
+                <li>
+                  <div class='span7 pull-left'>
+                    <strong>
+                      Total Price
+                    </strong>
+                  </div>
+                  <div class='span4 pull-left'><%= number_to_currency(@cart.total_price) %></div>
+                </li>
+                <li class='form-inline'>
+                  <div class='span12'>
+                    <%= button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left" %>
+                    <% if @cart.line_items.count >= 1 %>
+                    <%= button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left" %>
+                    <%= button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse pull-right" %>
+                    <% end %>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <p><%= @product.title %></p>
 <p><%= @product.description %></p>
 <p><%= number_to_currency(@product.price_in_dollars) %></p>
