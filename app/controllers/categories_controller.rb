@@ -1,21 +1,11 @@
 class CategoriesController < ApplicationController
   
   def index
-
     @categories = Category.all
-
-    respond_to do |format|
-      format.html
-    end
-
   end
 
   def new
     @category = Category.new
-
-    respond_to do |format|
-      format.html
-    end
   end
 
   def create

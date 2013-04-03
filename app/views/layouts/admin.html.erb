@@ -13,9 +13,9 @@
 
     <div class='container'>
       <%= render :partial => "shared/brand_header" %>
-      <%= render :partial => "shared/sub_menu", :locals => {:categories =>  @categories} %>
       <%= render :partial => "shared/flash_messages", :locals => {:flash => flash} %>
 
+      <%= render :partial => "shared/admin_menu" %>
       <%= yield %>
 
       <%= render :partial => "shared/footer" %>
@@ -23,5 +23,3 @@
 
   </body>
 </html>
-
-

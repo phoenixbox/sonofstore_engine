@@ -106,28 +106,29 @@ body {
   }
 }
 
-.container#admin {
+#admin {
 
   .page-header {
     border-bottom: none;
   }
 
-  .status-panel {
-    border: 1px solid #ddd;
-  }
+}
 
-  .filter-box {
-    margin-top: 10px;
-    border: 1px solid #ddd;
-  }
+.status-panel {
+  border: 1px solid #ddd;
+}
 
-  .status-change {
-    font-weight: bold;
-    font-size: 16px;
+.filter-box {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
 
-    span.transition {
-      margin-left: 10px;
-    }
+.status-change {
+  font-weight: bold;
+  font-size: 16px;
+
+  span.transition {
+    margin-left: 10px;
   }
 }
 
