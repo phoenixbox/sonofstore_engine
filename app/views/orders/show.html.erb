@@ -45,8 +45,8 @@
             </div>
             <div class='status'>
               <p class='state'>
-                <%= @order.status %>
-                <% if @order.status != "pending" %>
+                <%= @order.current_status %>
+                <% if @order.current_status != "pending" %>
                 <span class='date'>
                   <%= @order.updated_at %>
                 </span>
