@@ -33,7 +33,7 @@ describe Order do
     before do
       cart = Cart.create
       @line_item = LineItem.create(product_id: 10, cart_id: cart.id, quantity: 3)
-      @order = Order.create(status: "pending", user_id: 1)
+      @order = Order.create(user_id: 1)
       @order.line_items = []
       @order.line_items << @line_item
     end
