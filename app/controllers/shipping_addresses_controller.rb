@@ -9,6 +9,7 @@ class ShippingAddressesController < ApplicationController
   end
 
   def create
+    binding.pry
     @shipping_address = ShippingAddress.new(params[:shipping_address])
     if @shipping_address.save
       redirect_to shipping_address_path(@shipping_address), notice: "Shipping Address Added!"

@@ -13,7 +13,14 @@ class Order < ActiveRecord::Base
   end
 
   def total_price_from_cart(cart)
-    total_price = cart.total_price
+    self.total_price = cart.total_price
     total_price
+  end
+
+  def from_cart(cart)
+    add_line_items(cart)
+    total_price_from_cart(cart)
+    self.status = "pending"
+    self
   end
 end
