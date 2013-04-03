@@ -91,32 +91,9 @@ describe "Product Pages" do
       end
     end
 
-    context "with valid information" do
-      it "updates the product" do
-        pending
-        fill_in "Title", with: "bandana"
-        fill_in "Description", with: "yummy"
-        fill_in "Price", with: 5.99
-        click_button "Update Product"
-        page.should have_content("bandana")
-      end
-    end
-
     it "should have checkboxes for categories" do
       expect( page ).to have_content "wigs"
       expect( page ).to have_content "beards"
-    end
-  end
-  
-  describe "destroying a product" do
-    let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)}
-
-    context "removing items from the product index" do
-      it "deletes a product" do
-        pending
-        visit product_path(product)
-        expect{ click_link "Delete" }.to change(Product, :count).by(-1)
-      end
     end
   end
 

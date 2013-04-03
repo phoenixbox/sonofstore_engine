@@ -31,15 +31,8 @@ describe Order do
   end
 
   it "extrapolates the total price from the cart" do
-    @cart.stub(:total_price).and_return(45)
+    cart = stub(:total_price => 45)
     order = Order.new
-    expect(order.total_price_from_cart(@cart)).to eq 45
+    expect(order.total_price_from_cart(cart)).to eq 45
   end
-
-  # it "extrapolates the line items from the cart" do
-  #   @cart.stub(:line_items).and_return([1, 2, 3])
-  #   order = Order.new
-  #   expect(order.add_line_items(@cart).count).to eq 2
-  # end
-  # undefined method `cart_id=' for 1:Fixnum
 end
