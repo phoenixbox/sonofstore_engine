@@ -17,18 +17,6 @@ class Order < ActiveRecord::Base
     total_price
   end
 
-  def from_cart(cart)
-    
-    # add_line_items(cart).each do |li|
-    #   line_items << li
-    # end
-
-    # self.line_items << add_line_items(cart)
-    total_price_from_cart(cart)
-    self.status = "pending"
-    self
-  end
-
   def add_quantity(line_item)
     current_item = line_items.find(line_item)
     current_item.quantity += 1

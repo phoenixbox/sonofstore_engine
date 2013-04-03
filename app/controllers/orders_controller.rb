@@ -21,9 +21,6 @@ class OrdersController < ApplicationController
     @address.user_id = session[:user_id]
 
     @cart = current_cart
-    # @order = Order.new.from_cart(@cart)
-
-    # @order.user = current_user
 
     @order = Order.new(params[:order])
     @order.add_line_items(current_cart)
@@ -38,16 +35,7 @@ class OrdersController < ApplicationController
       session[:cart_id] = nil
     else
       render "new"
-    end
-
-    # if @order.save
-    #   redirect_to order_path(@order)
-    #   @cart = current_cart
-    #   @cart.destroy
-    #   session[:cart_id] = nil
-    # else
-    #   render "new"
-    # end
+   end
   end
 
   def show
