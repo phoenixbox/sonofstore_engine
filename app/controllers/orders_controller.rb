@@ -6,17 +6,14 @@ before_filter :signed_in?
   end
 
   def new
-    @cart = current_cart
-    if @cart.line_items.empty?
+    if current_cart.empty?
       redirect_to products_path, notice: "Your cart is currently empty."
       return
     end
+    
+    @cart = current_cart
 
     @order = Order.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @order }
-    end
   end
 
   def create

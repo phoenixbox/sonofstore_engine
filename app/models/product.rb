@@ -10,12 +10,8 @@ class Product < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  def active?
-    if self.active == false
-      "retired"
-    else
-      "active"
-    end
+  def status
+    active ? "active" : "retired"
   end
 
   def to_s

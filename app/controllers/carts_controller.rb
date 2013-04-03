@@ -20,7 +20,7 @@ class CartsController < ApplicationController
 
   def add_quantity_to_cart
     @cart = current_cart
-    @cart.add_quantity(params[:id])
+    @cart.increase_quantity(params[:id])
     redirect_to :back
   end
 
@@ -29,4 +29,5 @@ class CartsController < ApplicationController
     @cart.decrease_quantity(params[:id])
     redirect_to :back
   end
+
 end

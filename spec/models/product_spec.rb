@@ -60,7 +60,7 @@ describe Product do
 
   it "returns whether or not a product is active" do
     product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
-    expect(product.active?).to eq("retired")
+    expect(product.status).to eq("retired")
   end
 
   it "renders the name in a readable format" do
