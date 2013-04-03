@@ -10,8 +10,7 @@ gem 'cancan'
 gem 'paperclip', '~> 3.0'
 gem 'simple_form'
 gem 'font-awesome-rails'
-gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.6'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
