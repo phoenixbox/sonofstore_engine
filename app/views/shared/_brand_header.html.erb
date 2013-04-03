@@ -6,15 +6,19 @@
         Cloak &amp; Dagger
       </h1>
     </div>
-    <div class='span6'>
-      <div class='cart_link pull-right'>
-        <a href='#'>
-          <span>1</span>
-          <p>item in cart</p>
-          <i class='icon-shopping-cart icon-2x'></i>
-        </a>
+
+    <% if !admin_user %>
+      <div class='span6'>
+        <div class='cart_link pull-right'>
+          <a href='#'>
+            <span>1</span>
+            <p>item in cart</p>
+            <i class='icon-shopping-cart icon-2x'></i>
+          </a>
+        </div>
       </div>
-    </div>
+    <% end %>
+
   </div>
 </div>
 
