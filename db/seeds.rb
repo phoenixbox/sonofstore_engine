@@ -13,7 +13,7 @@ product4 = Product.create(title: "These Glasses Are Over",
 product5 = Product.create(title: "Wire Aviator Glasses",
                description: "Flying over the high seas with John Travolta? Look the part with our Wire Aviator Glasses.",
                price_in_dollars: 21.00)
-product6 = Product.create(title: "European Professor Glasses",
+product6 = Product.create(title: "Professor Glasses",
                description: "Do you want to carry around books and look really important? Then these glasses are for you!",
                price_in_dollars: 30.00)
 product7 = Product.create(title: "Bruno Bowler",
