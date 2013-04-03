@@ -45,8 +45,8 @@
             </div>
             <div class='status'>
               <p class='state'>
-                <%= @order.status %>
-                <% if @order.status == "shipped" || @order.status == "cancelled" %>
+                <%= @order.current_status %>
+                <% if @order.current_status != "pending" %>
                 <span class='date'>
                   <%= "on #{(@order.updated_at).to_date.strftime("%B %-d %Y")}" %>
                 </span>

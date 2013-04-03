@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.add_line_items(current_cart)
     @order.total_price = @order.total_price_from_cart(current_cart)
-    @order.status = "pending"
     @order.user = current_user
 
     if @address.save

@@ -38,7 +38,7 @@
       </div>
       <div class='status'>
         <p class='state'>
-          <%= @order.status %>
+          <%= @order.current_status %>
           <span class='date'>
             <%= (@order.updated_at).to_date.strftime("%B %-d, %Y") %>
           </span>
