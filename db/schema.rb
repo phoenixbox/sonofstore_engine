@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403004817) do
-
+ActiveRecord::Schema.define(:version => 20130403231604) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -47,12 +46,20 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
   add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
   add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
 
+  create_table "order_events", :force => true do |t|
+    t.string   "status"
+    t.integer  "order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "order_events", ["order_id"], :name => "index_order_events_on_order_id"
+
   create_table "orders", :force => true do |t|
-    t.integer  "total_price",                        :null => false
-    t.string   "status",      :default => "pending", :null => false
-    t.integer  "user_id",                            :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.integer  "total_price", :null => false
+    t.integer  "user_id",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "product_categories", :force => true do |t|
@@ -80,16 +87,6 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
-
-  create_table "shipping_addresses", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zipcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "shipping_addresses", :force => true do |t|
     t.integer  "user_id"
