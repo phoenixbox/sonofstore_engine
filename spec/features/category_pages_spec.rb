@@ -75,14 +75,4 @@ describe "Category pages" do
   #   let!(:category){Category.create(name: "Capybara")}
 
   #   before { visit categories_path }
-    
-
-    it "successfully deletes the category" do
-      expect{ click_link('delete category') }.to change(Category, :count).by(-1)
-      # page.click_link('delete category') 
-      # expect(Category, :count).to change_by(-1)
-    end
-  end
-
-  
 end
