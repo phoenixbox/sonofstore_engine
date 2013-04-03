@@ -13,7 +13,27 @@ class Order < ActiveRecord::Base
   end
 
   def total_price_from_cart(cart)
-    total_price = cart.total_price
+    self.total_price = cart.total_price
     total_price
+  end
+
+  def from_cart(cart)
+    # self.line_items = cart.line_items.each do |li|
+    #   li.cart_id = nil
+    #   self.line_items << li
+    # end
+    orderline = []
+    cart.line_items.each do |li|
+      orderline << li
+    end
+    return orderline
+
+    total_price_from_cart(cart)
+    self.status = "pending"
+    self
+  end
+
+  def user
+    current_user
   end
 end
