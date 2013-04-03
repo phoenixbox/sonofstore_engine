@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
   add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
 
   create_table "orders", :force => true do |t|
-    t.integer  "total_price"
-    t.string   "status"
-    t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "total_price",                        :null => false
+    t.string   "status",      :default => "pending", :null => false
+    t.integer  "user_id",                            :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "product_categories", :force => true do |t|
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "shipping_addresses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false
     t.string   "display_name"
@@ -101,5 +111,7 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
   end
+
+  add_index "users", ["id"], :name => "index_users_on_id"
 
 end
