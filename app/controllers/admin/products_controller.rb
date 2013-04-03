@@ -25,7 +25,7 @@ class Admin::ProductsController < Admin::BaseController
     if @product.update_attributes params[:product]
       redirect_to admin_products_path, notice: "Product Updated!"
     else
-      flash[:error] = "An error occurred, please try again"
+      # flash[:error] = "An error occurred, please try again"
       render :edit
     end
   end
@@ -35,7 +35,7 @@ class Admin::ProductsController < Admin::BaseController
     if @product.save
       redirect_to admin_products_path, notice: "Product Added!"
     else
-      render "new"
+      render :new
     end
   end
 end
