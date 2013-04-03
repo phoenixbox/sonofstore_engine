@@ -2,31 +2,7 @@
       <div class="row-fluid">
         <div class="span12 nav-menus">
           <ul class="nav nav-pills">
-            <li>
-              <a>All Products</a>
-            </li>
-            <li>
-              <a>Category 1</a>
-            </li>
-            <li>
-              <a>Category 2</a>
-            </li>
-            <li>
-              <a>Category 3</a>
-            </li>
-            <li>
-              <a>Category 4</a>
-            </li>
-            <li>
-              <a>Category 5</a>
-            </li>
-            <li>
-              <a>{:href =>"#"} Category 6</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
+
 
       <ul class="breadcrumb">
         <li>
@@ -37,11 +13,7 @@
         </li>
       </ul>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- <html>{:xhmns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
-  <head>
-    <meta />{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}<link />{:href => "css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}<link />{:href => "css/font-awesome.css", :rel => "stylesheet", :type => "text/css"}<link />{:href => "css/application.css", :rel => "stylesheet", :type => "text/css"}<title>Cloak &amp; Dagger</title>
-  </head> -->
+
   <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -67,8 +39,6 @@
       </div>
     </div>
       
-      <%= will_paginate @products%>
-
       <div class="row-fluid">
         <div class="span12">
           <div class="page-header">
@@ -85,7 +55,7 @@
                 <%= image_tag "product2.jpg" %>
                 <div class="caption">
                   <h5><%= link_to product.title, product_path(product) %></h5>
-                  <p><%= "$" %><%= product.price / 100     %></p>
+                  <p><%= number_to_currency(product.price_in_dollars) %></p>
                 </div>
               </div>
             </li>
@@ -93,32 +63,6 @@
         </div>
       </div>
       
-
-      <div class="pagination pagination-centered">
-        <ul>
-          <li class="disabled">
-            <a>{:href => "#"} &laquo;</a>
-          </li>
-          <li class="active">
-            <a>{:href => "#"} 1</a>
-          </li>
-          <li>
-            <a>{:href => "#"} 2</a>
-          </li>
-          <li>
-            <a>{:href => "#"} 3</a>
-          </li>
-          <li>
-            <a>{:href => "#"} 4</a>
-          </li>
-          <li>
-            <a>{:href => "#"} 5</a>
-          </li>
-          <li class="disabled">
-            <a>{:href => "#"} &raquo;</a>
-          </li>
-        </ul>
-      </div>
       <hr />
       <div class="row-fluid footer">
         <div class="span4">
@@ -139,7 +83,7 @@
           </ul>
         </div>
 
-       <%= will_paginate @products %>
+
 
         <div class="span4">
           <h3>Stay in Touch</h3>

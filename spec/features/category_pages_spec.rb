@@ -83,8 +83,9 @@ describe "Category pages" do
     before { visit categories_path }
     
     it "successfully deletes the category" do
-      page.click_link(href: category_path(category)) 
-      page.should_not have_link("Delete", href: category_path(category))
+      expect{ click_link('delete category') }.to change(Category, :count).by(-1)
+      # page.click_link('delete category') 
+      # expect(Category, :count).to change_by(-1)
     end
   end
   
