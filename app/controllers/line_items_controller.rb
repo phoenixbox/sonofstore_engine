@@ -18,4 +18,10 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def destroy
+    line_item = LineItem.find(params[:id])
+    line_item.destroy
+    flash[:notice] = "Item has been deleted!"
+    redirect_to :back
+  end
 end

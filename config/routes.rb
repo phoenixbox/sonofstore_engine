@@ -1,6 +1,6 @@
 StoreEngine::Application.routes.draw do
 
-  namespace :admin do 
+  namespace :admin do
     resources :orders, :only => [:index, :show]
     resources :categories
     resources :products, :except => :destroy
@@ -10,14 +10,22 @@ StoreEngine::Application.routes.draw do
   resources :carts
   resources :categories, :only => [:index, :show]
   resources :products, :only => [:index, :show]
-  resources :line_items
 
-  # get "sessions/new"
+  put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
+  put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
+
+  resources :orders
+
+
+
+  resources :billing_address
+  resources :shipping_addresses
+  resources :line_items
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  
+
   resources :users
   resources :sessions
 

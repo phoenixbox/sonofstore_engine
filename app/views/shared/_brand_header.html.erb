@@ -16,9 +16,30 @@
             <i class='icon-shopping-cart icon-2x'></i>
           </a>
         </div>
+    <div class='span6'>
+      <div class='cart_link pull-right'>
+          <span>
+          <% if current_cart %>
+            <% cart_count = [] %>
+            <% current_cart.line_items.each do |li| %>
+            <% cart_count << li.quantity %>
+            <% end %>
+            <% items_count = cart_count.inject(:+) %>
+          <% end %>
+          </span>
+          <% if items_count == 1 %>
+            <p><%= link_to "1 item in cart", cart_path(current_cart) %></p>
+          <% elsif current_cart.line_items.count == 0 %>
+            <p><%= link_to "0 items in cart", cart_path(current_cart) %></p>
+          <% else %>
+            <p><%= link_to "#{items_count} items in cart", cart_path(current_cart) %></p>
+          <% end %>
+          <%= link_to cart_path(current_cart) do %>
+          <i class='icon-shopping-cart icon-2x'></i>
+          <% end %>
+        </a>
       </div>
     <% end %>
 
   </div>
 </div>
-

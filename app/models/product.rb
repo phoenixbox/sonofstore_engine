@@ -26,6 +26,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def to_s
+    title
+  end
+
   def price_in_dollars
     price.to_d / 100 if price
   end

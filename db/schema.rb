@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20130402012138) do
 
+  create_table "billing_addresses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -65,6 +75,16 @@ ActiveRecord::Schema.define(:version => 20130402012138) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "shipping_addresses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

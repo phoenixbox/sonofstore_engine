@@ -1,0 +1,122 @@
+      <ul class='breadcrumb'>
+        <li>
+          <%= link_to "Home", "/" %>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>
+          My Account
+        </li>
+      </ul>
+      <div class='row-fluid'>
+        <div class='tabbable'>
+          <ul class='nav nav-tabs'>
+            <li>
+              <a data-toggle='tab' href='#'>Profile</a>
+            </li>
+            <li class='active'>
+              <a data-toggle='tab' href='#'>Past Orders</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='row-fluid'>
+        <div class='span12 tab_above'>
+          <div class='page-header order_detail'>
+            <h1>
+              Order number: 
+              <%= @order.id %>
+            </h1>
+            <div class='details'>
+              <p class='date'>
+                Order Placed on
+                <span class='date'>
+                  <%= (@order.created_at).to_date.strftime("%B %-d, %Y") %>
+                </span>
+                at
+                <span>
+                  <%= (@order.created_at).to_time.strftime("%I:%M %P") %>, GMT
+                </span>
+                <%= link_to "view all past orders", orders_path %>
+              </p>
+            </div>
+            <div class='status'>
+              <p class='state'>
+                <%= @order.status %>
+                <% if @order.status != "pending" %>
+                <span class='date'>
+                  <%= @order.updated_at %>
+                </span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row-fluid'>
+        <div class='span12'>
+          <table class='table table-striped table-bordered cart-detail'>
+            <thead>
+              <tr>
+                <th class='span1'>Product</th>
+                <th class='span5'>Description</th>
+                <th class='span2'>Quantity</th>
+                <th class='span2'>Price</th>
+                <th class='span2'>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.line_items.each do |line_item| %>
+              <tr>
+                <td>
+                  <%= image_tag "product14.png" %>
+                </td>
+                <td class='description'>
+                  <span class='name'>
+                    <%= link_to line_item.product.title, product_path(line_item.product) %>
+                  </span>
+                  <p>
+                    <%= line_item.product.description %>
+                  </p>
+                </td>
+                <td>
+                  <%= line_item.quantity %>
+                </td>
+                <td>
+                  <%= number_to_currency(line_item.product.price_in_dollars) %>
+                </td>
+                <td>
+                  <%= number_to_currency(line_item.total_price) %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <table class='table total table-bordered'>
+            <tbody>
+              <tr>
+                <td class='span8'></td>
+                <td class='span2'>Shipping</td>
+                <td class='span2'>$0.00</td>
+              </tr>
+              <tr class='total'>
+                <td class='span8'></td>
+                <td class='span2'>Total</td>
+                <td class='span2'><%= number_to_currency(@order.total_price) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
+<%#
+<% @order.line_items.each do |li| %>
+ <%# <p><%= link_to li.product, product_path(li.product) %> <%#<%= "quantity: #{li.quantity}, subtotal: #{li.total_price}" %>
+<%#<p><%= "Total order price: #{@order.total_price}" %>
+<%#<p><%= "Order submitted: #{@order.created_at}" %>
+<%#<p><%= "Current order status #{@order.status}" %>
+
+  
