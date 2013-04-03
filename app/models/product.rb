@@ -1,4 +1,7 @@
 class Product < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   attr_accessible :title, :description, :price_in_dollars, :active, :category_ids
 
   validates_uniqueness_of :title
