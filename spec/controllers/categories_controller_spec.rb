@@ -2,36 +2,6 @@ require 'spec_helper'
 
 describe CategoriesController do
 
-  describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
-    end
-
-    it 'renders the new template' do
-      get 'new'
-      expect(response).to render_template :new
-    end
-  end
-
-  describe "POST 'create'" do
-    it "creates a new Jorge category" do
-      post 'create', category: {name: "Jorge"}
-
-      category = assigns(:category)
-      expect(response).to redirect_to category_path(category)
-    end
-  end
-
-  describe "GET 'edit'" do
-    let(:category) { Category.create(name: "category")  }
-
-    it "brings you to the edit page" do
-      get 'edit', {id: category.id}
-      expect(response).to render_template :edit
-    end
-  end
-
   describe "GET 'show'" do
     let(:category){Category.create name: "category"}
 
@@ -45,35 +15,5 @@ describe CategoriesController do
       expect(response).to render_template :show
     end
 
-  end
-
-  describe "PUT 'update'" do
-    let(:category) {Category.create(name: "category") }
-
-    context "When sent valid attributes" do
-      it "redirects to the index view" do
-        put 'update', {id: category.id}
-        expect(response).to redirect_to categories_path
-      end
-
-    end
-
-    context "When sent invalid attributes" do
-      let!(:category) {Category.create(name: "category")}
-
-      it "renders edit view" do
-        put :update, id: category, category: {name: nil}
-        expect(response).to render_template :edit
-      end
-    end
-  end
-
-  describe "DESTROY 'delete'" do
-    let!(:category) {Category.create(name: "Abdul")}
-
-    it "deletes the category" do
-      delete :destroy, id: category
-      expect(response).to redirect_to categories_path
-    end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Order do
-  
+
   context "is a valid order" do
     let!(:order){Order.create(status: "pending", total_price: 45, user_id: 1)}
     it "is valid" do

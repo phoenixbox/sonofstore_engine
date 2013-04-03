@@ -1,36 +1,7 @@
-<h1>Create a new product!</h1>
-
-<%= form_for @product do |f| %>
-  <% if @product.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class='row-fluid'> <div class='span12'>
+    <div class='span6'>
+      <h3>Add New Product</h3>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    Categories<br/>
-    <%= hidden_field_tag "product[category_ids][]", nil %>
-    <% Category.all.each do |category| %>
-      <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %>
-      <%= label_tag dom_id(category), category.name %><br/>
-    <% end %><br/>
-  </div>
-  <div class="field">
-    <%= f.label :price_in_dollars, 'Price' %><br />
-    <%= f.text_field :price_in_dollars %>
-  </div>
-  <div class="actions"><%= f.submit "Create Product" %></div>
-<% end %>
+</div>
+<%= render 'form' %>

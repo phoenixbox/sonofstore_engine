@@ -1,26 +1,31 @@
 StoreEngine::Application.routes.draw do
-  
+
+  namespace :admin do
+    resources :orders, :only => [:index, :show]
+    resources :categories
+    resources :products, :except => :destroy
+    resource :dashboard, :only => :show
+  end
+
+  resources :carts
+  resources :categories, :only => [:index, :show]
+  resources :products, :only => [:index, :show]
+
   put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
   put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
 
   resources :orders
 
 
-  resources :carts
 
-
-  resources :categories
   resources :billing_address
   resources :shipping_addresses
-  resources :products
   resources :line_items
-
-  # get "sessions/new"
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  
+
   resources :users
   resources :sessions
 

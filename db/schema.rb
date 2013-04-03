@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401233053) do
+ActiveRecord::Schema.define(:version => 20130402012138) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -65,12 +65,16 @@ ActiveRecord::Schema.define(:version => 20130401233053) do
   add_index "product_categories", ["product_id"], :name => "index_product_categories_on_product_id"
 
   create_table "products", :force => true do |t|
-    t.string   "title",                         :null => false
-    t.text     "description",                   :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "active",      :default => true
-    t.integer  "price",                         :null => false
+    t.string   "title",                                :null => false
+    t.text     "description",                          :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "active",             :default => true
+    t.integer  "price",                                :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "shipping_addresses", :force => true do |t|
