@@ -13,8 +13,7 @@ describe "Product Pages" do
       ProductCategory.create(product_id: (product.id), category_id: (category2.id))
       visit product_path(product)
     end
-
-    it "should show the page for an individual product" do
+it "should show the page for an individual product" do
       expect( page ).to have_content "I mustache you a question."
     end
   end
@@ -31,10 +30,6 @@ describe "Product Pages" do
       expect( page ).to have_content "Wig"
     end
 
-    it "has links to the individual products" do
-      expect( page ).to have_link("edit", :href => edit_product_path(@product_1))
-      expect( page ).to have_link("edit", :href => edit_product_path(@product_2))
-    end
   end
 
 

@@ -8,8 +8,8 @@ StoreEngine::Application.routes.draw do
   end
 
   resources :carts
-  resources :categories
-  resources :products
+  resources :categories, :only => [:index, :show]
+  resources :products, :only => [:index, :show]
   resources :line_items
 
   # get "sessions/new"

@@ -30,7 +30,6 @@
     </div>
     <div class='span6 header-button'>
       <%# <button class='btn pull-right' href='#'>Add New Product</button> %>
-      <%= button_to "Add New Product", new_product_path, method: :get, :class => "btn pull-right" %>
     </div>
   </div>
 </div>
@@ -53,7 +52,6 @@
         <td><%= product.title %></td>
         <td><%= product.description %></td>
         <td><%= number_to_currency(product.price_in_dollars) %></td>
-        <td><%= link_to "edit", edit_product_path(product) %></td>
       </tr>
     <% end %>
     </tbody>

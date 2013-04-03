@@ -41,11 +41,6 @@ describe "Category pages" do
     describe "content on index page" do
       it "should have delete links for each category listed" do
         page.should have_content("Beards")
-        page.should have_link("Delete", href: category_path(category))
-      end
-
-      it "should have an edit link on the page" do
-        page.should have_link("Edit", href: edit_category_path(category))
       end
     end
   end
