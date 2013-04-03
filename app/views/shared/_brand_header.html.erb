@@ -7,19 +7,10 @@
       </h1>
     </div>
 
-    <% if !admin_user %>
-      <div class='span6'>
-        <div class='cart_link pull-right'>
-          <a href='#'>
-            <span>1</span>
-            <p>item in cart</p>
-            <i class='icon-shopping-cart icon-2x'></i>
-          </a>
-        </div>
     <div class='span6'>
       <div class='cart_link pull-right'>
           <span>
-          <% if current_cart %>
+          <% if current_cart && !admin_user %>
             <% cart_count = [] %>
             <% current_cart.line_items.each do |li| %>
             <% cart_count << li.quantity %>
@@ -39,7 +30,5 @@
           <% end %>
         </a>
       </div>
-    <% end %>
-
+    </div>
   </div>
-</div>
