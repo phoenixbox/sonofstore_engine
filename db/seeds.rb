@@ -2,10 +2,10 @@ product1 = Product.create(title: "Pencil-Thin Mustache",
                description: "Adhesive, mystery-solving facial hair that is sure to fool anyone and everyone.",
                price_in_dollars: 10.00)
 product2 =Product.create(title: "Grandma's Glasses",
-               description: "Do you want to break up the gang of Tea Shop bandits? Look 84 in these beauaties.",
+               description: "Do you want to break up the gang of Tea Shop bandits? Look 84 in these beauties.",
                price_in_dollars: 35.00)
 product3 = Product.create(title: "Jolly Gold Frames",
-               description: "Trying to take down malevolent elves in Santa's workshop? Try our Oval-Shaped Gold Frames.",
+               description: "Trying to take down malevolent elves in Santa's workshop? Try our oval-shaped gold frames.",
                price_in_dollars: 25.00)
 product4 = Product.create(title: "These Glasses Are Over",
                description: "Hipster or librarian? You decide.",
@@ -56,19 +56,34 @@ product19 = Product.create(title: "Metal Beard",
                description: "The case of the slayer from the Slayer concert will be solved easily with this handy, devilish beard!",
                price_in_dollars: 45)
 product20 = Product.create(title: "Stoner Sideburns",
-               description: "Tie Dye Thievery is an intense offense! Spark up a doobie and glue these on your face. No one will see your trickery! Not that they would notice anyway...",
+               description: "Tie Dye thievery is an intense offense! Spark up a doobie and glue these on your face. No one will see your trickery! Not that they would notice anyway...",
                price_in_dollars: 18.00)
+product21 = Product.create(title: "Osama Beard",
+               description: "Are you trying to find the next Osama Bin Laden? Strap this beard to your face and beware of car bombs!",
+               price_in_dollars: 40.00)
+product22 = Product.create(title: "Trucker Sideburns",
+               description: "You've got your sideburns, now all you need is a sweet rig and a Big Gulp! These burns will even make Salt Lake City seem more exciting!",
+               price_in_dollars: 25.00)
+product23 = Product.create(title: "Amish Beard",
+               description: "Someone has been secretly watching HBO in a tool shed! Bring them to justice with the Amish Beard disguise.",
+               price_in_dollars: 40.00)
+product24 = Product.create(title: "Saloon Stache",
+               description: "Command respect with this stache when you are kicking angry cowboys out of your saloon.",
+               price_in_dollars: 70.00)
+product25 = Product.create(title: "Cletus Mullet",
+               description: "Going to a monster truck rally later? Look the part with the Cletus Mullet!"
+               price_in_dollars: 400.00)
 
 # Order.create() #need 10
-category1 = Category.create(name: "hats")
-category2 = Category.create(name: "wigs")
-category3 = Category.create(name: "glasses")
-category4 = Category.create(name: "mustaches")
-category5 = Category.create(name: "mouths (teeth and lips)")
-category6 = Category.create(name: "hair")
-category7 = Category.create(name: "sideburns")
-category8 = Category.create(name: "beards")
-category9 = Category.create(name: "facial hair")
+category1 = Category.create(name: "Hats")
+category2 = Category.create(name: "Wigs")
+category3 = Category.create(name: "Glasses")
+category4 = Category.create(name: "Mustaches")
+category5 = Category.create(name: "Teeth & Lips")
+category6 = Category.create(name: "Hair")
+category7 = Category.create(name: "Sideburns")
+category8 = Category.create(name: "Beards")
+category9 = Category.create(name: "Facial Hair")
 User.create(full_name: "Tony Stark", email: "admin@example.com", password: "password")
 User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
 User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
@@ -115,4 +130,18 @@ ProductCategory.create(product_id: (product19.id), category_id: (category6.id))
 ProductCategory.create(product_id: (product20.id), category_id: (category7.id))
 ProductCategory.create(product_id: (product20.id), category_id: (category9.id))
 ProductCategory.create(product_id: (product20.id), category_id: (category6.id))
+ProductCategory.create(product_id: (product21.id), category_id: (category8.id))
+ProductCategory.create(product_id: (product21.id), category_id: (category9.id))
+ProductCategory.create(product_id: (product21.id), category_id: (category6.id))
+ProductCategory.create(product_id: (product22.id), category_id: (category7.id))
+ProductCategory.create(product_id: (product22.id), category_id: (category9.id))
+ProductCategory.create(product_id: (product22.id), category_id: (category6.id))
+ProductCategory.create(product_id: (product23.id), category_id: (category8.id))
+ProductCategory.create(product_id: (product23.id), category_id: (category9.id))
+ProductCategory.create(product_id: (product23.id), category_id: (category6.id))
+ProductCategory.create(product_id: (product24.id), category_id: (category4.id))
+ProductCategory.create(product_id: (product24.id), category_id: (category6.id))
+ProductCategory.create(product_id: (product24.id), category_id: (category8.id))
+ProductCategory.create(product_id: (product25.id), category_id: (category2.id))
+ProductCategory.create(product_id: (product25.id), category_id: (category6.id))
 
