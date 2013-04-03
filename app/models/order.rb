@@ -18,7 +18,11 @@ class Order < ActiveRecord::Base
   end
 
   def from_cart(cart)
-    add_line_items(cart)
+    self.line_items = cart.line_items.each do |li|
+      li.cart_id = nil
+      self.line_items << li
+    end
+
     total_price_from_cart(cart)
     self.status = "pending"
     self

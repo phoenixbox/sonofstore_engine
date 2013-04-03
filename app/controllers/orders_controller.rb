@@ -24,10 +24,6 @@ before_filter :signed_in?
 
     @order.user = current_user
 
-    binding.pry
-
-
-
     if @address.save
       @order.save
       redirect_to order_path(@order)
