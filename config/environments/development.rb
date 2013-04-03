@@ -34,4 +34,13 @@ StoreEngine::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :access_key_id => "AKIAJNDOB5RRWUNJHV6Q",
+      :secret_access_key => "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"
+    },
+    :bucket => "store-engine"
+  }
 end

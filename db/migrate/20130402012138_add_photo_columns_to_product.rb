@@ -5,7 +5,7 @@ class AddPhotoColumnsToProduct < ActiveRecord::Migration
     add_column :products, :photo_file_size, :integer
     add_column :products, :photo_updated_at, :datetime
   end
-  
+
   def self.down
     remove_column :products, :photo_file_name
     remove_column :products, :photo_content_type
