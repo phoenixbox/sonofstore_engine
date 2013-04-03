@@ -19,15 +19,17 @@
         <div class="thumbnails product_list">
 
           <% @products.each do |product| %>
-            <li class="span3">
-              <div class="thumbnail">
-                <%= image_tag "product2.jpg" %>
-                <div class="caption">
-                  <h5><%= link_to product.title, product_path(product) %></h5>
-                  <p><%= number_to_currency(product.price_in_dollars) %></p>
+            <% if product.active %>
+              <li class="span3">
+                <div class="thumbnail">
+                  <%= image_tag "product2.jpg" %>
+                  <div class="caption">
+                    <h5><%= link_to product.title, product_path(product) %></h5>
+                    <p><%= number_to_currency(product.price_in_dollars) %></p>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            <% end %>
           <% end %>
           
         </div>
