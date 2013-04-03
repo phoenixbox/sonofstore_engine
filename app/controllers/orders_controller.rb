@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-before_filter :signed_in?
-  
+  before_filter :signed_in?
+
   def index
     @orders = Order.find_all_by_user_id(current_user)
   end
@@ -39,7 +39,7 @@ before_filter :signed_in?
     else
       render "new"
     end
-   
+
     # if @order.save
     #   redirect_to order_path(@order)
     #   @cart = current_cart
