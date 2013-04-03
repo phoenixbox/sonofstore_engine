@@ -59,11 +59,6 @@ describe "Product Pages" do
       visit products_path
     end
 
-    it "lists all products" do
-      expect( page ).to have_content "Mustache"
-      expect( page ).to have_content "Wig"
-    end
-
     it "has links to the individual products" do
       expect( page ).to have_link "Mustache"  
       expect( page ).to have_link "Wig"
