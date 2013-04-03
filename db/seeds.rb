@@ -69,6 +69,7 @@ category6 = Category.create(name: "hair")
 category7 = Category.create(name: "sideburns")
 category8 = Category.create(name: "beards")
 category9 = Category.create(name: "facial hair")
+User.create(full_name: "Tony Stark", email: "admin@example.com", password: "admin", admin: true)
 User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
             password: "password", password_confirmation: "password")
 User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
