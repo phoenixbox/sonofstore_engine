@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130403004817) do
 
-
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
     t.string   "street"
@@ -77,20 +76,9 @@ ActiveRecord::Schema.define(:version => 20130403004817) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "slug"
-
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
-
-  create_table "shipping_addresses", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zipcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "shipping_addresses", :force => true do |t|
     t.integer  "user_id"
