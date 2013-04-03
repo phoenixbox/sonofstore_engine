@@ -9,13 +9,6 @@ describe Order do
     end
   end
 
-  context "is missing status" do
-    let!(:order){Order.create(total_price: 45, user_id: 1)}
-    it "is not valid" do
-      expect(order).to be_invalid
-    end
-  end
-
   context "is missing total price" do
     let!(:order){Order.create(status: "pending", user_id: 1)}
     it "is not valid" do
