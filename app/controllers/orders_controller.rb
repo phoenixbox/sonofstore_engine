@@ -13,26 +13,41 @@ before_filter :signed_in?
     end
 
     @order = Order.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @order }
-    end
+    @address = ShippingAddress.new
   end
 
   def create
+    @address = ShippingAddress.new(params[:address])
+    @address.user_id = session[:user_id]
+
+    @cart = current_cart
+    # @order = Order.new.from_cart(@cart)
+
+    # @order.user = current_user
+
     @order = Order.new(params[:order])
     @order.add_line_items(current_cart)
     @order.total_price = @order.total_price_from_cart(current_cart)
     @order.status = "pending"
     @order.user = current_user
-    if @order.save
+
+    if @address.save
+      @order.save
       redirect_to order_path(@order)
-      @cart = current_cart
       @cart.destroy
       session[:cart_id] = nil
     else
       render "new"
     end
+   
+    # if @order.save
+    #   redirect_to order_path(@order)
+    #   @cart = current_cart
+    #   @cart.destroy
+    #   session[:cart_id] = nil
+    # else
+    #   render "new"
+    # end
   end
 
   def show

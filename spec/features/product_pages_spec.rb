@@ -34,7 +34,6 @@ describe "Product Pages" do
   end
 
 
-
   describe "Adding a product to the cart" do
     let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)}
 
