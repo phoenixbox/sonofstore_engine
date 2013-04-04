@@ -9,28 +9,18 @@ describe Admin::OrdersController do
     session[:user_id] = @user.id
   end
 
+  describe 'GET #index' do
+    it 'assigns the requested order to @order' do
+      get :index
+      response.should be_success
+    end
+  end
 
-  # describe 'GET #show' do
-  #   it 'assigns the requested order to @order' do
-  #     get :show, id: @order
-  #     expect(assigns(:order)).to eq @order
-  #   end
-  # end
-
-  # describe 'GET #show' do
-  #   it "returns http success" do
-  #     get 'show'
-  #     response.should be_success
-  #   end
-  # end
-
-
-
-#   describe "GET 'index'" do
-#     it "returns http success" do
-#       get 'index'
-#       response.should be_success
-#     end
-#   end
-
+  describe "GET #show" do
+    it "shows the order" do
+      order = Order.create(total_price: 200, user_id: @user.id)
+      get 'show', id: order.id
+      response.should be_success
+    end
+  end
 end

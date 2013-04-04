@@ -62,12 +62,36 @@ describe "Order pages" do
 
   describe "Redirecting a non-logged in user to log in before checkout" do
     let!(:product){ Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99) }
-    
+
     it "does not let the user proceed to the checkout page" do
       visit product_path(product)
       click_button("Add to Cart")
       click_button("Checkout")
       expect(page).to have_content("You must be logged in")
+    end
+  end
+
+  describe "a valid processed order" do
+    before do
+      user = User.create(full_name: "Erin", email: "e@e.com", password: "yes", password_confirmation: "yes")
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      user2 = User.create(full_name: "Brock", email: "b@b.com", password: "yes", password_confirmation: "yes")
+      @product2 = Product.create(title: "Stache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      visit login_path
+      fill_in "Email", with: "e@e.com"
+      fill_in "Password", with: "yes"
+      click_button "Log In"
+      visit product_path(product)
+    end
+
+    it "processes the order" do
+      click_button("Add to Cart")
+      click_button("Checkout")
+      fill_in "Credit Card Number", with: 4242424242424242
+      fill_in "Security Code on Card (CVV)", with: 111
+      page.select("7 - July", :from => "Card Expiration")
+      click_button "Create Order"
+      expect(page).to have_content("Erin")
     end
   end
 end

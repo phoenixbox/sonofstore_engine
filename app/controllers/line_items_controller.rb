@@ -6,14 +6,10 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_product(product.id)
     @line_item.product = product
 
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to product_path(product) }
-        format.js   { @current_item = @line_item }
-      else
-        format.html { redirect_to product_path(product),
-          notice: 'An error occurred, please try again' }
-      end
+    if @line_item.save
+      redirect_to product_path(product)
+    else
+      flash[:error] = 'An error occurred, please try again'
     end
   end
 

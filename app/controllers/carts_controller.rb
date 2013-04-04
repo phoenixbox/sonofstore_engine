@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   def decrease_quantity_from_cart
     @cart = current_cart
     @cart.decrease_quantity(params[:id])
-    if @cart.line_items.count == 1
+    if @cart.line_items.count == 0
       flash[:error] = "Your cart is currently empty."
       redirect_to :back
     else
