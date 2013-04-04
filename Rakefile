@@ -14,7 +14,10 @@ begin
   RSpec::Core::RakeTask.new("spec:acceptance") do |t|
     t.rspec_opts = "--tag acceptance"
   end
+rescue LoadError
 end
+
+
 
 namespace :sanitation do
   desc "Check line lengths & whitespace with Cane"
