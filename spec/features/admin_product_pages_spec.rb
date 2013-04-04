@@ -6,11 +6,11 @@ describe "Product Pages" do
   describe "creating products" do
     before do
       Category.create(name: "wigs")
-      Category.create(name: "beards") 
+      Category.create(name: "beards")
       visit new_admin_product_path
     end
     let(:submit) { "Create Product" }
-    
+
 
     context "with invalid information" do
       it "should not create a new product" do
@@ -52,7 +52,7 @@ describe "Product Pages" do
       expect( page ).to have_content "I mustache you a question."
     end
   end
-  
+
   describe "product index page" do
     before do
       @product_1 = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
@@ -70,18 +70,18 @@ describe "Product Pages" do
       expect( page ).to have_link("edit", :href => edit_admin_product_path(@product_2))
     end
   end
-  
+
   describe "editing a product" do
     before do
       Category.create(name: "wigs")
-      Category.create(name: "beards") 
+      Category.create(name: "beards")
       @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       visit edit_admin_product_path(@product)
     end
 
     context "with invalid information" do
       it "does not update the product" do
-        pending 
+        pending
         fill_in "Title", with: nil
         fill_in "Description", with: "yummy"
         fill_in "Price", with: 7.99
@@ -146,7 +146,6 @@ describe "Product Pages" do
     end
 
     it "should be able to change a paid order to shipped" do
-      save_and_open_page
       click_link "Mark as shipped"
       expect( page ).to have_content "shipped"
     end
