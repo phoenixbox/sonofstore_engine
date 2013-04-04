@@ -171,16 +171,6 @@ order10.line_items << line_item25
 order10.line_items << line_item26
 order10.line_items << line_item27
 
-category1 = Category.create(name: "hats")
-category2 = Category.create(name: "wigs")
-category3 = Category.create(name: "glasses")
-category4 = Category.create(name: "mustaches")
-category5 = Category.create(name: "mouths (teeth and lips)")
-category6 = Category.create(name: "hair")
-category7 = Category.create(name: "sideburns")
-category8 = Category.create(name: "beards")
-category9 = Category.create(name: "facial hair")
-
 # Order.create() #need 10
 category1 = Category.create(name: "Hats")
 category2 = Category.create(name: "Wigs")

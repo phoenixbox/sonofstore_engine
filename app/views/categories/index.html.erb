@@ -1,26 +1,9 @@
 <h1> Categories </h1>
 
-<div class="row-fluid">
-  <div class="span12">
-    <div class="page-header">
-      <h1>
-        <%= @category.name.capitalize %>
-      </h1>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="thumbnails product_list">
-      <% @category.products.each do |product| %>
-      <li class="span3">
-        <div class="thumbnail">
-          <% product.title %> 
-          <div class="caption">
-            <p><%= link_to product.title, product_path(product) %></p>
-            <p><%= number_to_currency(product.price_in_dollars)%></p>
-          </div>
+
+      <h1><% @categories.each do |c| %></h1>
+        <div>
+        <%= link_to c.name, category_path(c) %>
         </div>
-      </li>
-      <% end %>
-    </div>
-  </div>
-</div>
+        <% end %>
+  
