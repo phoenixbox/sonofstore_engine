@@ -32,11 +32,11 @@ class Product < ActiveRecord::Base
   end
 
   def price_in_dollars
-    price.to_d / 100 if price
+    price.to_f / 100 if price
   end
 
   def price_in_dollars=(dollars)
-    self.price = dollars.to_d * 100.0
+    self.price = dollars.to_f * 100.0
   end
 
   def categories_list
