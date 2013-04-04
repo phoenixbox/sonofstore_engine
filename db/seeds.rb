@@ -191,18 +191,17 @@ category6 = Category.create(name: "Hair")
 category7 = Category.create(name: "Sideburns")
 category8 = Category.create(name: "Beards")
 category9 = Category.create(name: "Facial Hair")
-User.create(full_name: "Tony Stark", email: "admin@example.com", password: "password")
-User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
 
+User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
 User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
             password: "password", password_confirmation: "password")
 User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "j3")
 User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "SkrilleX")
-
 admin = User.create(full_name: "Tony Stark", email: "admin@example.com", password: "password")
 admin.admin = true
+admin.save
 
 ProductCategory.create(product_id: (product1.id), category_id: (category4.id))
 ProductCategory.create(product_id: (product1.id), category_id: (category6.id))

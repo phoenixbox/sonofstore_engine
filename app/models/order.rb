@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
   end
 
   STATUSES = %w[pending cancelled paid shipped returned]
-  delegate :pending?, :cancelled?, :paid?, :shipped?, :returned?, 
+  delegate :pending?, :cancelled?, :paid?, :shipped?, :returned?,
   to: :current_status
 
   def self.pending_orders
@@ -64,9 +64,5 @@ class Order < ActiveRecord::Base
 
   def ship
     events.create! status: "shipped" if paid?
-  end
-
-  def user
-    current_user
   end
 end

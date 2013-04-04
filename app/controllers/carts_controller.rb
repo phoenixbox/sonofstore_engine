@@ -20,6 +20,7 @@ class CartsController < ApplicationController
   def decrease_quantity_from_cart
     @cart = current_cart
     @cart.decrease_quantity(params[:id])
+    if @cart.line_items
     redirect_to :back
   end
 end

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  
+
   def index
     @categories = Category.all
     @products = Product.all
@@ -7,13 +7,13 @@ class CategoriesController < ApplicationController
 
 #     respond_to do |format|
 #       if @category.save
-#         format.html { redirect_to @category, 
+#         format.html { redirect_to @category,
 #         notice: 'Category was successfully created.'}
-#         format.json { render json: @category, status: :created, 
+#         format.json { render json: @category, status: :created,
           #location: @category }
 #       else
 #         format.html { render action: "new" }
-#         format.json { render json: @category.errors, 
+#         format.json { render json: @category.errors,
           #status: :unprocessable_entity }
 #       end
 #     end
@@ -41,6 +41,4 @@ class CategoriesController < ApplicationController
     #   @products_by_category[cat] = Product.find(params[cat.to_sym]).limit(4)
     # end
   end
-
-
 end

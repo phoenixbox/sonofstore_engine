@@ -29,6 +29,7 @@
 </div>
 <div class='row-fluid'>
   <% @featured.each do |product| %>
+  <% if product.active %>
     <li class='span3'>
       <div class='thumbnail'>
         <%= link_to product_path(product) do %>
@@ -41,7 +42,8 @@
       </div>
     </li>
     <% end %>
+    <% end %>
 </div>
-  
+
 </div>
 
