@@ -21,7 +21,7 @@
           <% @products.each do |product| %>
             <li class="span3">
               <div class="thumbnail">
-                <%= image_tag "product2.jpg" %>
+                <%= image_tag product.photo.url %>
                 <div class="caption">
                   <h5><%= link_to product.title, product_path(product) %></h5>
                   <p><%= number_to_currency(product.price_in_dollars) %></p>

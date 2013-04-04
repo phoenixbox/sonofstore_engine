@@ -1,14 +1,26 @@
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
+<h1> Categories </h1>
 
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.name %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
+<div class="row-fluid">
+  <div class="span12">
+    <div class="page-header">
+      <h1>
+        <%= @category.name.capitalize %>
+      </h1>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="thumbnails product_list">
+      <% @category.products.each do |product| %>
+      <li class="span3">
+        <div class="thumbnail">
+          <% product.title %> 
+          <div class="caption">
+            <p><%= link_to product.title, product_path(product) %></p>
+            <p><%= number_to_currency(product.price_in_dollars)%></p>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </div>
+  </div>
+</div>

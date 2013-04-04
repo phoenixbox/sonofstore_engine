@@ -33,7 +33,7 @@
               <% if line_item.quantity > 0 %>
               <tr>
                 <td>
-                  <%= image_tag "product14.png" %>
+                  <%= image_tag line_item.product.photo.url %>
                 </td>
                 <td class='description'>
                   <span class='name'>

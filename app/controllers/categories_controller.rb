@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   
   def index
     @categories = Category.all
+    @products = Product.all
   end
 
   def new
@@ -34,6 +35,11 @@ class CategoriesController < ApplicationController
     else
       redirect_to products_path
     end
+
+    # @products_by_category = {}
+    # categories.each do |cat|
+    #   @products_by_category[cat] = Product.find(params[cat.to_sym]).limit(4)
+    # end
   end
 
 
