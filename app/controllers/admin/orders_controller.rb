@@ -7,7 +7,19 @@ class Admin::OrdersController < Admin::BaseController
     @orders = Order.all
   end
 
-   def add_quantity_to_order
+  def update
+    @order = Order.find(params[:id])
+    if @order.current_status == "pending"
+      @order.cancel
+    elsif @order.current_status == "shipped"
+      @order.return
+    elsif @order.current_status == "paid"
+      @order.ship
+    end
+    redirect_to :back
+  end
+
+  def add_quantity_to_order
     order = LineItem.find(params[:id]).order
     order.add_quantity(params[:id])
     redirect_to :back
@@ -18,4 +30,8 @@ class Admin::OrdersController < Admin::BaseController
     order.decrease_quantity(params[:id])
     redirect_to :back
   end
+
+  # def status_transition(current_status)
+  #   if current_status == 
+  # end
 end

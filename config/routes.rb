@@ -1,7 +1,7 @@
 StoreEngine::Application.routes.draw do
 
   namespace :admin do
-    resources :orders, :only => [:index, :show]
+    resources :orders, :only => [:index, :show, :update]
     resources :categories
     resources :products, :except => :destroy
     resource :dashboard, :only => :show
