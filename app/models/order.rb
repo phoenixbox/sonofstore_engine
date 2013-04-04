@@ -14,25 +14,25 @@ class Order < ActiveRecord::Base
   # scope :shipped, where(:current_status => "shipped")
   # scope :returned, where(:current_status => "returned")
 
-  # def self.pending
-  #   Order.all.select{|o| o.pending?}
-  # end
+  def self.pending
+    Order.all.select{|o| o.pending?}
+  end
 
-  # def self.cancelled
-  #   Order.all.select{|o| o.cancelled?}
-  # end
+  def self.cancelled
+    Order.all.select{|o| o.cancelled?}
+  end
 
-  # def self.paid
-  #   Order.all.select{|o| o.paid?}
-  # end
+  def self.paid
+    Order.all.select{|o| o.paid?}
+  end
 
-  # def self.shipped
-  #   Order.all.select{|o| o.shipped?}
-  # end
+  def self.shipped
+    Order.all.select{|o| o.shipped?}
+  end
 
-  # def self.returned
-  #   Order.all.select{|o| o.returned?}
-  # end
+  def self.returned
+    Order.all.select{|o| o.returned?}
+  end
 
   def add_line_items(cart)
     cart.line_items.each do |li|
