@@ -5,19 +5,19 @@ class CategoriesController < ApplicationController
     @products = Product.all
   end
 
-  def new
-    @category = Category.new
-  end
-
-  def create
-    @category = Category.new(params[:category])
-
-    if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
-    else
-      render action: "new" 
-    end
-  end
+#     respond_to do |format|
+#       if @category.save
+#         format.html { redirect_to @category, 
+#         notice: 'Category was successfully created.'}
+#         format.json { render json: @category, status: :created, 
+          #location: @category }
+#       else
+#         format.html { render action: "new" }
+#         format.json { render json: @category.errors, 
+          #status: :unprocessable_entity }
+#       end
+#     end
+#   end
 
   def show
     @categories = Category.all

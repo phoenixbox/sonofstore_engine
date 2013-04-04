@@ -30,6 +30,7 @@
   helper_method :admin_user
 
   def require_admin_user
-    redirect_to login_path, alert: "Not authorized to access admin section" if !admin_user
+    redirect_to login_path, 
+    alert: "Not authorized to access admin section" if !admin_user
   end
 end

@@ -11,7 +11,8 @@ class BillingAddressController < ApplicationController
   def create
     @billing_address = BillingAddress.new(params[:billing_address])
     if @billing_address.save
-      redirect_to billing_address_path(@billing_address), notice: "Billing Address Added!"
+      redirect_to billing_address_path(@billing_address), 
+      notice: "Billing Address Added!"
     else
       render "new"
     end
