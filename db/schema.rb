@@ -107,4 +107,5 @@ ActiveRecord::Schema.define(:version => 20130403231604) do
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
   end
+
 end
