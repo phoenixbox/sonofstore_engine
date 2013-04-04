@@ -12,9 +12,7 @@ product4 = Product.create(title: "These Glasses Are Over",
                price_in_dollars: 39.00, photo_file_name: "Sized4.png", photo_content_type: "image/png", photo_file_size: 18473, photo_updated_at: "2013-04-03 19:39:09")
 product5 = Product.create(title: "Wire Aviator Glasses",
                description: "Flying over the high seas with John Travolta? Look the part with our Wire Aviator Glasses.",
-               price_in_dollars: 21.00)
-product6 = Product.create(title: "Professor Glasses",
-               price_in_dollars: 21.00, photo_file_name: "Sized5.png", photo_content_type: "image/png", photo_file_size: 13108, photo_updated_at: "2013-04-03 19:39:25")
+               price_in_dollars: 21.00, photo_file_name: "Sized5.png", photo_content_type: "image/png", photo_file_size: 13108, photo_updated_at: "2013-04-04 02:49:24")
 product6 = Product.create(title: "Professor Glasses",
                description: "Do you want to carry around books and look really important? Then these glasses are for you!",
                price_in_dollars: 30.00, photo_file_name: "Sized6.png", photo_content_type: "image/png", photo_file_size: 16346, photo_updated_at: "2013-04-03 19:39:46")
@@ -76,7 +74,6 @@ product25 = Product.create(title: "Cletus Mullet",
                description: "Going to a monster truck rally later? Look the part with the Cletus Mullet!",
                price_in_dollars: 400.00, photo_file_name: "Sized25.png", photo_content_type: "image/png", photo_file_size: 73249, photo_updated_at: "2013-04-03 19:53:57")
 
-<<<<<<< HEAD
 cart1 = Cart.create
 line_item1 = LineItem.create(product_id: 1, cart_id: cart1.id)
 order1 = Order.create(total_price: line_item1.total_price, status: "shipped", user_id: 1)
@@ -171,17 +168,6 @@ order10.line_items << line_item25
 order10.line_items << line_item26
 order10.line_items << line_item27
 
-category1 = Category.create(name: "hats")
-category2 = Category.create(name: "wigs")
-category3 = Category.create(name: "glasses")
-category4 = Category.create(name: "mustaches")
-category5 = Category.create(name: "mouths (teeth and lips)")
-category6 = Category.create(name: "hair")
-category7 = Category.create(name: "sideburns")
-category8 = Category.create(name: "beards")
-category9 = Category.create(name: "facial hair")
-
-# Order.create() #need 10
 category1 = Category.create(name: "Hats")
 category2 = Category.create(name: "Wigs")
 category3 = Category.create(name: "Glasses")
