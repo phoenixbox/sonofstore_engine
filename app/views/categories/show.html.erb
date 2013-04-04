@@ -25,7 +25,9 @@
       <% @category.products.each do |product| %>
       <li class="span3">
         <div class="thumbnail">
+          <%= link_to product_path(product) do %>
           <%= image_tag product.photo.url %> 
+          <% end %>
           <div class="caption">
             <p><%= link_to product.title, product_path(product) %></p>
             <p><%= number_to_currency(product.price_in_dollars)%></p>

@@ -20,19 +20,21 @@
 
           <% @products.each do |product| %>
             <% if product.active %>
-                  </div>
             <li class="span3">
               <div class="thumbnail">
+                <%= link_to product_path(product) do %>
                 <%= image_tag product.photo.url %>
+                <% end %>
                 <div class="caption">
                   <h5><%= link_to product.title, product_path(product) %></h5>
                   <p><%= number_to_currency(product.price_in_dollars) %></p>
                 </div>
-              </li>
+              </div>
+            </li>
             <% end %>
           <% end %>
           
         </div>
 
-                      <%= paginate @products %>
+  <%= paginate @products %>
 
