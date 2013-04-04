@@ -26,7 +26,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def decrease_quantity_from_order
-    line_item = LineItem.find(params[:id]).order
+    order = LineItem.find(params[:id]).order
     order.decrease_quantity(params[:id])
     redirect_to :back
   end

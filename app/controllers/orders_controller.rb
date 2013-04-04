@@ -47,25 +47,11 @@ class OrdersController < ApplicationController
     if @order.user == current_user
       render "show"
     else
-      redirect_to root_path,
-      notice: "You are not authorized to view orders for another customer."
       flash[:error] ="You are not authorized to view another customer's orders."
       redirect_to root_path
     end
   end
 
-  # def edit
-  #   @order = Order.find(params[:id])
-  # end
-
-  # def update
-  #   @order = Order.find(params[:id])
-  #   if @order.update_attributes params[:order]
-  #     redirect_to order_path(@order)
-  #   else
-  #     render :edit
-  #   end
-  # end
 
 private
   def signed_in?
