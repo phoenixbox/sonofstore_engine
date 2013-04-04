@@ -13,7 +13,10 @@ class OrdersController < ApplicationController
       return
     end
 
+    @cart = current_cart
+
     @order = Order.new
+
     @address = ShippingAddress.new
   end
 
@@ -44,27 +47,17 @@ class OrdersController < ApplicationController
     if @order.user == current_user
       render "show"
     else
-      flash[:error] = "You are not authorized to view orders placed by another customer."
+      flash[:error] ="You are not authorized to view another customer's orders."
       redirect_to root_path
     end
   end
 
-  # def edit
-  #   @order = Order.find(params[:id])
-  # end
-
-  # def update
-  #   @order = Order.find(params[:id])
-  #   if @order.update_attributes params[:order]
-  #     redirect_to order_path(@order)
-  #   else
-  #     render :edit
-  #   end
-  # end
 
 private
   def signed_in?
-    flash[:error] = "You must be logged in to checkout."
-    redirect_to login_path unless current_user
+    if !current_user
+      flash[:error] = "You must be logged in to checkout."
+      redirect_to login_path
+    end
   end
 end

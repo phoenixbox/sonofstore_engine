@@ -5,8 +5,13 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
-      session[:user_id] = @user.id
-      redirect_to root_url, notice: "Logged in!"
+      if @user.admin
+        session[:user_id] = @user.id
+        redirect_to admin_dashboard_path, notice: "Logged in!"
+      elsif @user.admin == false
+        session[:user_id] = @user.id
+        redirect_to root_url, notice: "Logged in!"
+      end
     else
       flash.now[:error] = "Wrong user email and/or password"
       render "new"

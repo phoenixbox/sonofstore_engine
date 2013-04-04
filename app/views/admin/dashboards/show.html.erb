@@ -17,7 +17,7 @@
         <%= pending.count %>
       </h1>
       <p class='text-center'>
-        Pending
+        <%= link_to "Pending", admin_dashboard_path %>
       </p>
     </div>
     <div class='stat span2 pull-left'>
@@ -31,7 +31,7 @@
         <%= shipped.count %>
       </h1>
       <p class='text-center'>
-        Shipped
+        <%= link_to "Shipped", admin_orders_path %>
       </p>
     </div>
     <div class='stat span3 pull-left'>
@@ -42,10 +42,10 @@
             <% paid << order %>
           <% end %>
         <% end %>
-        <%= paid.count %>      
+        <%= paid.count %>
       </h1>
       <p class='text-center'>
-        Paid
+        <%= link_to "Paid", admin_orders_path %>
       </p>
     </div>
     <div class='stat span2 pull-left'>
@@ -59,7 +59,7 @@
         <%= cancelled.count %>
       </h1>
       <p class='text-center'>
-        Cancelled
+        <%= link_to "Cancelled", admin_orders_path %>
       </p>
     </div>
     <div class='stat span2 pull-left'>
@@ -73,7 +73,7 @@
         <%= returned.count %>
       </h1>
       <p class='text-center'>
-        Returned
+        <%= link_to "Returned", admin_orders_path %>
       </p>
     </div>
   </div>

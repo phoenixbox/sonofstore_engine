@@ -15,10 +15,10 @@
         <div class='tabbable'>
           <ul class='nav nav-tabs'>
             <li>
-              <a data-toggle='tab' href='#'>Profile</a>
+              <%= link_to "Profile", user_path(current_user) %>
             </li>
             <li class='active'>
-              <a data-toggle='tab' href='#'>Past Orders</a>
+              <%= link_to "Past Orders", orders_path %>
             </li>
           </ul>
         </div>
@@ -27,7 +27,7 @@
         <div class='span12 tab_above'>
           <div class='page-header order_detail'>
             <h1>
-              Order number: 
+              Order number:
               <%= @order.id %>
             </h1>
             <div class='details'>
@@ -49,6 +49,9 @@
                 <% if @order.current_status != "pending" %>
                 <span class='date'>
                   <%= "on #{(@order.updated_at).to_date.strftime("%B %-d %Y")}" %>
+                  <% if @order.current_status == "cancelled" || @order.current_status == "shipped" %>
+                    <%= "at #{(@order.created_at).to_time.strftime("%I:%M %P")}, GMT" %>
+                  <% end %>
                 </span>
                 <% end %>
               </p>
@@ -72,7 +75,7 @@
               <% @order.line_items.each do |line_item| %>
               <tr>
                 <td>
-                  <%= image_tag "product14.png" %>
+                  <%= image_tag line_item.product.photo.url %>
                 </td>
                 <td class='description'>
                   <span class='name'>
@@ -123,4 +126,4 @@
 <%#<p><%= "Order submitted: #{@order.created_at}" %>
 <%#<p><%= "Current order status #{@order.status}" %>
 
-  
+

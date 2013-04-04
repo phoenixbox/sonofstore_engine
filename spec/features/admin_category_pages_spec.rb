@@ -4,14 +4,29 @@ require 'capybara/rspec'
 describe "Category pages" do
   subject { page }
 
-  
+  before do 
+    @user = User.create(full_name: "Paul Blackwell", email: "s@s.com", password: "yolo")
+    @user.admin = true
+    @user.save
+  end
+
+
   describe "Creating a category" do
-    before { visit new_admin_category_path }
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+      visit new_admin_category_path 
+    end
+
     let(:submit) { "Create Category" }
 
     describe "with invalid information" do
 
       it "should not create a new category" do
+        # expect(current_path).to eq (admin_categories_path)
         expect { click_button submit }.not_to change(Category, :count)
       end
 
@@ -28,6 +43,16 @@ describe "Category pages" do
 
     describe "with valid information" do
 
+    # before do 
+    #   visit signup_path 
+    #   fill_in "Full name", with: "Paul Blackwell"
+    #   fill_in "Email", with: "s@s.com"
+    #   fill_in "user_password", with: "yolo"
+    #   fill_in "Password confirmation", with: "yolo"
+
+    #   visit new_admin_category_path 
+    # end
+
       it "should increase Category count" do
         fill_in "Name", with: "Anything"
         expect { click_button submit}.to change(Category, :count)
@@ -36,6 +61,14 @@ describe "Category pages" do
   end
   
   describe "Viewing list of categories" do
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+      visit new_admin_category_path 
+    end
 
     let!(:category){ Category.create(name: "Beards")}
 
@@ -55,6 +88,15 @@ describe "Category pages" do
   end
   
   describe "When editing a category" do
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+      visit new_admin_category_path 
+    end
+
     let!(:category){Category.create(name: "Capybara")}
 
     before { visit edit_admin_category_path(category) }
@@ -68,6 +110,15 @@ describe "Category pages" do
 
 
   describe "Deletes category" do
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+      visit new_admin_category_path 
+    end
+
     let!(:category){Category.create(name: "Capybara")}
 
     before { visit admin_categories_path }

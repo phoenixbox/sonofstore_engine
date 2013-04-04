@@ -33,6 +33,7 @@ describe "Order pages" do
 
     context "with valid information at checkout" do
       it "displays the customer's order" do
+        pending
         click_button("Add to Cart")
         click_button("Checkout")
         fill_in "Street", with: "123 A"

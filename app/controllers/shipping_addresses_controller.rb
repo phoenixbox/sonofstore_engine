@@ -1,5 +1,5 @@
 class ShippingAddressesController < ApplicationController
-  
+
   def index
     @shipping_addresses = ShippingAddress.all
   end
@@ -11,7 +11,8 @@ class ShippingAddressesController < ApplicationController
   def create
     @shipping_address = ShippingAddress.new(params[:shipping_address])
     if @shipping_address.save
-      redirect_to shipping_address_path(@shipping_address), notice: "Shipping Address Added!"
+      redirect_to shipping_address_path(@shipping_address),
+      notice: "Shipping Address Added!"
     else
       render "new"
     end

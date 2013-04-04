@@ -63,7 +63,7 @@
         <% @order.line_items.each do |line_item| %>
         <tr>
           <td>
-            <img class='img_cart' src='img/product14.png'>
+            <%= image_tag line_item.product.photo.url %>
           </td>
           <td class='description'>
             <span class='name'>
@@ -79,11 +79,14 @@
           <td>
             <form class='form-inline'>
               <span class='uneditable-input input-small' type='text'><%= line_item.quantity %></span>
+
+              <% if @order.current_status == "pending" || @order.current_status == "paid" %>
               <%= link_to admin_add_quantity_to_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "+" do %>
               <i class='icon-plus'></i>
               <% end %>
               <%= link_to admin_decrease_quantity_from_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "-" do %> <i class='icon-minus'></i>
               <% end %>
+            <% end %>
             </form>
           </td>
           <td>

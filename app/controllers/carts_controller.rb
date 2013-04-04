@@ -7,18 +7,24 @@ class CartsController < ApplicationController
     @cart = current_cart
     @cart.destroy
     session[:cart_id] = nil
+    flash[:error] = "Your cart is currently empty."
     redirect_to :back
   end
 
   def add_quantity_to_cart
     @cart = current_cart
-    @cart.add_quantity(params[:id])
+    @cart.increase_quantity(params[:id])
     redirect_to :back
   end
 
   def decrease_quantity_from_cart
     @cart = current_cart
     @cart.decrease_quantity(params[:id])
-    redirect_to :back
+    if @cart.line_items.count == 1
+      flash[:error] = "Your cart is currently empty."
+      redirect_to :back
+    else
+      redirect_to :back
+    end
   end
 end
