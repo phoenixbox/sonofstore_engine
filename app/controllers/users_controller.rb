@@ -13,23 +13,8 @@ class UsersController < ApplicationController
     end
   end
 
-
   def show
     @user = User.find(params[:id])
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-
-    if @user.update_attributes(params[:user])
-      redirect_to @user, notice: 'User information was successfully updated'
-    else
-      flash[:error] = "There was a problem saving your record"
-      render :edit
-    end
-  end
 end
