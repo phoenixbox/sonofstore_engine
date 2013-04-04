@@ -5,13 +5,13 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
     @line_item.product = product
-      
+
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to product_path(product) }
         format.js   { @current_item = @line_item }
       else
-        format.html { redirect_to product_path(product), 
+        format.html { redirect_to product_path(product),
           notice: 'An error occurred, please try again' }
       end
     end
