@@ -14,7 +14,10 @@
   <div class='span12'>
     <div class='page-header'>
       <h1>
-        <%= @product.title.titleize %> <span class="label label-important">Product Retired!</span>
+        <%= @product.title.titleize %> 
+        <% if @product.active == false %>
+        <span class="label label-important">Product Retired!</span>
+        <% end %>
       </h1>
     </div>
   </div>
@@ -33,11 +36,6 @@
         <h4>Description</h4>
         <p><%= @product.description %></p>
       </div>
-      <div>
-        <% if @product.active == false %>
-        <%= "This product has been retired from our catalogue." %>
-        <% end %>
-      </div><br/>
       <strong>Categories:</strong><br/>
       <% @product.categories.each do |category| %>
       <%= link_to category.name, category_path(category) %>
