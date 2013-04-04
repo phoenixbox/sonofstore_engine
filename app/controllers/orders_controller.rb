@@ -21,19 +21,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # @address = ShippingAddress.new(params[:address])
-    # @address.user_id = session[:user_id]
-
-    @cart = current_cart
+    # @cart = current_cart
     @order = Order.new(params[:order])
-    @order.add_line_items(current_cart)
-    @order.total_price = @order.total_price_from_cart(current_cart)
-    @order.user = current_user
+    # @order.add_line_items(current_cart)
+    # @order.total_price = @order.total_price_from_cart(current_cart)
+    # @order.user = current_user
+    process_order
 
     if @order.save_with_payment #@address.save
-      @cart.destroy
+      current_cart.destroy
       session[:cart_id] = nil
-      redirect_to order_path(@order), notice: "Your payment was successfully submitted!"
+      flash[:notice] = "Your payment was successfully submitted!"
+      redirect_to order_path(@order)
     else
       render "new"
     end
@@ -57,5 +56,11 @@ private
       flash[:error] = "You must be logged in to checkout."
       redirect_to login_path
     end
+  end
+
+  def process_order
+    @order.add_line_items(current_cart)
+    @order.total_price = @order.total_price_from_cart(current_cart)
+    @order.user = current_user
   end
 end
