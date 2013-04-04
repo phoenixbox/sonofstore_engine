@@ -1,11 +1,56 @@
-<div>
-  <%= simple_form_for :address, :url => url_for(:action => 'create', :controller => 'orders'), :html => {:class => "bs-container"} do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :street %>
-  <%= f.input :city %>
-  <%= f.input :state %>
-  <%= f.input :zipcode %>
-  <%= f.button :submit, :value => "Place Order", :class => "btn-primary" %>
-  <%= f.error :base %>
+<%# <div> %>
+<%#   <%= simple_form_for :address, :url => url_for(:action => 'create', :controller => 'orders'), :html => {:class => "bs-container"} do |f| %1> %>
+<%#   <%= f.error_notification %1> %>
+<%#   <%= f.input :street %1> %>
+<%#   <%= f.input :city %1> %>
+<%#   <%= f.input :state %1> %>
+<%#   <%= f.input :zipcode %1> %>
+<%#   <%= f.button :submit, :value => "Place Order", :class => "btn-primary" %1> %>
+<%#   <%= f.error :base %1> %>
+<%#   <% end %1> %>
+<%# </div> %>
+
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this charge from processing:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  <%= f.hidden_field :stripe_card_token %>
+
+  <%# <% if @order.stripe_card_token.present? %1> %>
+  <%# Credit card has been provided. %>
+<%# <% else %1> %>
+
+  <div class="field">
+    <%= label_tag :card_number, "Credit Card Number" %>
+    <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  </div>
+<%# <% end %1> %>
+
+<div id="stripe_error">
+  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 </div>
+  <div class="field">
+    <%= f.hidden_field :status, value: "paid" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

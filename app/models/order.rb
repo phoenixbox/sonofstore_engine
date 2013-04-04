@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :total_price, :user_id
+  attr_accessor :stripe_card_token
 
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
