@@ -6,13 +6,13 @@ class CategoriesController < ApplicationController
   end
 
 #     respond_to do |format|
-#       if @category.save
+#if @category.save
 #         format.html { redirect_to @category,
 #         notice: 'Category was successfully created.'}
 #         format.json { render json: @category, status: :created,
           #location: @category }
 #       else
-#         format.html { render action: "new" }
+# format.html { render action: "new" }
 #         format.json { render json: @category.errors,
           #status: :unprocessable_entity }
 #       end

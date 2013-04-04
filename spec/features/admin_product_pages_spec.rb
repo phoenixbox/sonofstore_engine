@@ -3,12 +3,25 @@ require 'capybara/rspec'
 
 describe "Product Pages" do
 
+  before do 
+    @user = User.create(full_name: "Paul Blackwell", email: "s@s.com", password: "yolo")
+    @user.admin = true
+    @user.save
+  end
+
   describe "creating products" do
-    before do
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+    
       Category.create(name: "wigs")
       Category.create(name: "beards") 
       visit new_admin_product_path
     end
+
     let(:submit) { "Create Product" }
     
 
@@ -39,12 +52,19 @@ describe "Product Pages" do
   describe "individual product page" do
 
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       category2 = Category.create(name: "wigs")
       category1 = Category.create(name: "beards")
       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       ProductCategory.create(product_id: (product.id), category_id: (category1.id))
       ProductCategory.create(product_id: (product.id), category_id: (category2.id))
-      visit product_path(product)
+
+      visit admin_product_path(product)
     end
 
     it "should show the page for an individual product" do
@@ -55,6 +75,12 @@ describe "Product Pages" do
   
   describe "product index page" do
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       @product_1 = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       @product_2 = Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
       visit admin_products_path
@@ -73,6 +99,12 @@ describe "Product Pages" do
   
   describe "editing a product" do
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       Category.create(name: "wigs")
       Category.create(name: "beards") 
       @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
@@ -108,6 +140,12 @@ describe "Product Pages" do
 
   describe "updating order status" do
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       @order = Order.create(total_price: 10, user_id: user.id)
@@ -122,6 +160,12 @@ describe "Product Pages" do
 
   describe "updating order status" do
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       @order = Order.create(total_price: 10, user_id: user.id)
@@ -138,20 +182,37 @@ describe "Product Pages" do
 
   describe "updating order status" do
     before do
+
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+
       user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
+      
       product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
       @order2 = Order.create(total_price: 10, user_id: user.id)
       @order2.paid
+     
       visit admin_dashboard_path
     end
 
     it "should be able to change a paid order to shipped" do
+      expect(current_path).to eq (admin_dashboard_path)
       click_link "Mark as shipped"
       expect( page ).to have_content "shipped"
     end
   end
 
   describe "destroying a product" do
+
+    before do 
+      visit login_path 
+      fill_in "Email", with: "s@s.com"
+      fill_in "Password", with: "yolo"
+      click_button "Log In"
+    end
+
     let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)}
 
     context "removing items from the product index" do

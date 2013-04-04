@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Admin::ProductsController do
 
+  before :each do
+    @user = User.create(full_name: 'Michael J', email: 'mj@mj.com', password: 'password')
+    @user.admin = true
+    @user.save
+    session[:user_id] = @user.id
+  end
+  
+
   describe "GET #index" do
 
     it "populates an array of messages" do
@@ -17,10 +25,13 @@ describe Admin::ProductsController do
     end
   end
 
+
   describe 'GET #show' do 
+
     before do 
       @product = Product.create(title: "Yes", description: "No", price_in_dollars: 7.00)
     end
+
     it "assigns the requested product to @product" do 
       get :show, id: @product
       expect(assigns(:product)).to eq @product
