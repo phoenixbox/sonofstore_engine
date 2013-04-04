@@ -30,8 +30,4 @@ class Admin::OrdersController < Admin::BaseController
     order.decrease_quantity(params[:id])
     redirect_to :back
   end
-
-  # def status_transition(current_status)
-  #   if current_status == 
-  # end
 end

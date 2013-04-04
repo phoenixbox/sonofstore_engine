@@ -72,6 +72,7 @@ order2 = Order.create(total_price: (line_item2.total_price + line_item3.total_pr
 order2.line_items = []
 order2.line_items << line_item2
 order2.line_items << line_item3
+order2.paid
 
 cart3 = Cart.create
 line_item4 = LineItem.create(product_id: 4, cart_id: cart3.id, quantity: 2)
@@ -82,6 +83,8 @@ order3.line_items = []
 order3.line_items << line_item4
 order3.line_items << line_item5
 order3.line_items << line_item6
+order3.paid
+order3.ship
 
 cart4 = Cart.create
 line_item7 = LineItem.create(product_id: 7, cart_id: cart4.id, quantity: 2)
@@ -92,6 +95,9 @@ order4.line_items = []
 order4.line_items << line_item7
 order4.line_items << line_item8
 order4.line_items << line_item9
+order4.paid
+order4.ship
+order4.return
 
 cart5 = Cart.create
 line_item10 = LineItem.create(product_id: 10, cart_id: cart5.id)
@@ -100,6 +106,7 @@ order5 = Order.create(total_price: (line_item10.total_price + line_item11.total_
 order5.line_items = []
 order5.line_items << line_item10
 order5.line_items << line_item11
+order5.cancel
 
 cart6 = Cart.create
 line_item12 = LineItem.create(product_id: 12, cart_id: cart6.id)
@@ -118,6 +125,7 @@ order7.line_items = []
 order7.line_items << line_item14
 order7.line_items << line_item15
 order7.line_items << line_item16
+order7.paid
 
 cart8 = Cart.create
 line_item17 = LineItem.create(product_id: 17, cart_id: cart8.id)
@@ -126,6 +134,8 @@ order8 = Order.create(total_price: (line_item17.total_price + line_item18.total_
 order8.line_items = []
 order8.line_items << line_item17
 order8.line_items << line_item18
+order8.paid
+order8.ship
 
 cart9 = Cart.create
 line_item19 = LineItem.create(product_id: 19, cart_id: cart9.id)
@@ -136,6 +146,9 @@ order9.line_items = []
 order9.line_items << line_item19
 order9.line_items << line_item20
 order9.line_items << line_item21
+order9.paid
+order9.ship
+order9.return
 
 cart10 = Cart.create
 line_item22 = LineItem.create(product_id: 2, cart_id: cart10.id, quantity: 2)
@@ -152,6 +165,7 @@ order10.line_items << line_item24
 order10.line_items << line_item25
 order10.line_items << line_item26
 order10.line_items << line_item27
+order10.cancel
 
 category1 = Category.create(name: "hats")
 category2 = Category.create(name: "wigs")
