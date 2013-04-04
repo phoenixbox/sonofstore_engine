@@ -14,9 +14,17 @@ describe UsersController do
     end
   end
 
+  describe "GET 'show'" do
+    it "returns http success" do
+      user = User.create(full_name: "Paul", email: "s@s.com", password: "yolo", password_confirmation: "yolo")
+      get "show", id: user.id
+      response.should be_success
+    end
+  end
+
   describe "POST '#create'" do
     context "user logs in with invalid information" do
-      it "with passwords that do not match" do 
+      it "with passwords that do not match" do
         post :create, user: {full_name: "Walter White", email: "breaking@bad.com", password: "meth", password_confirmation: "bob"}
         expect(response).to render_template :new
       end

@@ -47,5 +47,13 @@ describe Order do
       @order.decrease_quantity(@line_item)
       expect(@order.line_items.find(@line_item).quantity).to eq 2
     end
+
+    it "increases quantity" do
+      expect(@order.add_quantity(@line_item)).to be
+    end
+
+    it "decreases quantity" do
+      expect(@order.decrease_quantity(@line_item)).to be
+    end
   end
 end

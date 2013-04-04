@@ -29,9 +29,7 @@ class CategoriesController < ApplicationController
     end
 
     if @category
-      respond_to do |format|
-        format.html
-      end
+      render "show"
     else
       redirect_to products_path
     end

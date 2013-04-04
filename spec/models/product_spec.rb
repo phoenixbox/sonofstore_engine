@@ -24,7 +24,7 @@ describe Product do
       expect(product).to have(1).errors_on(:description)
     end
   end
-  
+
   context "missing price" do
     let(:product){Product.new title: "cheeseburgers", description: "I love cheesburgers"}
 
@@ -66,5 +66,14 @@ describe Product do
   it "renders the name in a readable format" do
     product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
     expect(product.to_s).to eq "mormon cheeseburgers"
+  end
+
+  it "joins categories" do
+    product = Product.create(title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13)
+    category1 = Category.create(name: "cheeseburger")
+    category2 = Category.create(name: "yum")
+    pc1 = ProductCategory.create(product_id: product.id, category_id: category1.id)
+    pc2 = ProductCategory.create(product_id: product.id, category_id: category2.id)
+    expect(product.categories_list).to eq("cheeseburger, yum")
   end
 end
