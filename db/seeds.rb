@@ -146,7 +146,7 @@ cart9 = Cart.create
 line_item19 = LineItem.create(product_id: 19, cart_id: cart9.id)
 line_item20 = LineItem.create(product_id: 20, cart_id: cart9.id)
 line_item21 = LineItem.create(product_id: 1, cart_id: cart9.id)
-order9 = Order.create(total_price: (line_item19.total_price + line_item20.total_price + line_item21.total_price), status: "returned", user_id: 3)
+# order9 = Order.create(total_price: (line_item19.total_price + line_item20.total_price + line_item21.total_price), status: "returned", user_id: 3)
 order9.line_items = []
 order9.line_items << line_item19
 order9.line_items << line_item20
