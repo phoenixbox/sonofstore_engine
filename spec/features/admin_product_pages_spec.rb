@@ -146,7 +146,6 @@ describe "Product Pages" do
     end
 
     it "should be able to change a paid order to shipped" do
-      save_and_open_page
       click_link "Mark as shipped"
       expect( page ).to have_content "shipped"
     end
