@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe Admin::CategoriesController do
 
+  before :each do
+    @user = User.create(full_name: 'Michael J', email: 'mj@mj.com', password: 'password')
+    @user.admin = true
+    @user.save
+    session[:user_id] = @user.id
+  end
+
   describe "GET #index" do 
     it "populates an array of categories" do 
       category = Category.create(name: "Football")
