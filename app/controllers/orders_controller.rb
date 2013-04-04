@@ -44,13 +44,10 @@ class OrdersController < ApplicationController
     if @order.user == current_user
       render "show"
     else
-<<<<<<< HEAD
       redirect_to root_path, 
       notice: "You are not authorized to view orders for another customer."
-=======
-      flash[:error] = "You are not authorized to view orders placed by another customer."
+      flash[:error] ="You are not authorized to view another customer's orders."
       redirect_to root_path
->>>>>>> 5cf432d8933e947653ab722ee716896544ef11be
     end
   end
 
@@ -69,12 +66,9 @@ class OrdersController < ApplicationController
 
 private
   def signed_in?
-<<<<<<< HEAD
     redirect_to login_path, 
     notice: "You must be logged in to checkout." unless current_user
-=======
     flash[:error] = "You must be logged in to checkout."
     redirect_to login_path unless current_user
->>>>>>> 5cf432d8933e947653ab722ee716896544ef11be
   end
 end
