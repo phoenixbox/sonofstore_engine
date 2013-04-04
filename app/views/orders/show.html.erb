@@ -15,10 +15,10 @@
         <div class='tabbable'>
           <ul class='nav nav-tabs'>
             <li>
-              <a data-toggle='tab' href='#'>Profile</a>
+              <%= link_to "Profile", user_path(current_user) %>
             </li>
             <li class='active'>
-              <a data-toggle='tab' href='#'>Past Orders</a>
+              <%= link_to "Past Orders", orders_path %>
             </li>
           </ul>
         </div>
