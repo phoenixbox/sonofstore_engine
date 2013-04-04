@@ -43,7 +43,8 @@ class OrdersController < ApplicationController
     if @order.user == current_user
       render "show"
     else
-      redirect_to root_path, notice: "You are not authorized to view orders placed by another customer."
+      redirect_to root_path, 
+      notice: "You are not authorized to view orders for another customer."
     end
   end
 
@@ -62,6 +63,7 @@ class OrdersController < ApplicationController
 
 private
   def signed_in?
-    redirect_to login_path, notice: "You must be logged in to checkout." unless current_user
+    redirect_to login_path, 
+    notice: "You must be logged in to checkout." unless current_user
   end
 end

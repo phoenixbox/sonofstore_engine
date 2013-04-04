@@ -32,7 +32,8 @@ class Order < ActiveRecord::Base
   end
 
   STATUSES = %w[pending cancelled paid shipped returned]
-  delegate :pending?, :cancelled?, :paid?, :shipped?, :returned?, to: :current_status
+  delegate :pending?, :cancelled?, :paid?, :shipped?, :returned?, 
+  to: :current_status
 
   def self.pending_orders
     joins(:events).merge OrderEvent.with_last_status("pending")

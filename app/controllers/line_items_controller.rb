@@ -11,7 +11,8 @@ class LineItemsController < ApplicationController
         format.html { redirect_to product_path(product) }
         format.js   { @current_item = @line_item }
       else
-        format.html { redirect_to product_path(product), notice: 'An error occurred, please try again' }
+        format.html { redirect_to product_path(product), 
+          notice: 'An error occurred, please try again' }
       end
     end
   end
