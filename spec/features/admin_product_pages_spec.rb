@@ -106,6 +106,51 @@ describe "Product Pages" do
     end
   end
 
+  describe "updating order status" do
+    before do
+      user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      @order = Order.create(total_price: 10, user_id: user.id)
+      visit admin_dashboard_path
+    end
+
+    it "should be able to change a pending order to cancelled" do
+      click_link "Cancel"
+      expect( page ).to have_content "cancelled"
+    end
+  end
+
+  describe "updating order status" do
+    before do
+      user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      @order = Order.create(total_price: 10, user_id: user.id)
+      @order.paid
+      @order.ship
+      visit admin_dashboard_path
+    end
+
+    it "should be able to change a shipped order to returned" do
+      click_link "Mark as returned"
+      expect( page ).to have_content "returned"
+    end
+  end
+
+  describe "updating order status" do
+    before do
+      user = User.create(full_name: "E", email: "e@e.com", password: "y", password_confirmation: "y")
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      @order2 = Order.create(total_price: 10, user_id: user.id)
+      @order2.paid
+      visit admin_dashboard_path
+    end
+
+    it "should be able to change a paid order to shipped" do
+      click_link "Mark as shipped"
+      expect( page ).to have_content "shipped"
+    end
+  end
+
   describe "destroying a product" do
     let!(:product){Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)}
 

@@ -8,7 +8,13 @@
   <div class='status-panel pull-left span12'>
     <div class='stat span2'>
       <h1 class='text-center' id='pending'>
-        <%= Order.find_all_by_status("pending").count %>
+        <% pending = [] %>
+        <% @orders.each do |order| %>
+          <% if order.current_status == "pending" %>
+            <% pending << order %>
+          <% end %>
+        <% end %>
+        <%= pending.count %>
       </h1>
       <p class='text-center'>
         Pending
@@ -16,7 +22,13 @@
     </div>
     <div class='stat span2 pull-left'>
       <h1 class='text-center' id='shipped'>
-        <%= Order.find_all_by_status("shipped").count %>
+        <% shipped = [] %>
+        <% @orders.each do |order| %>
+          <% if order.current_status == "shipped" %>
+            <% shipped << order %>
+          <% end %>
+        <% end %>
+        <%= shipped.count %>
       </h1>
       <p class='text-center'>
         Shipped
@@ -24,7 +36,13 @@
     </div>
     <div class='stat span3 pull-left'>
       <h1 class='text-center' id='paid'>
-        <%= Order.find_all_by_status("paid").count %>
+        <% paid = [] %>
+        <% @orders.each do |order| %>
+          <% if order.current_status == "paid" %>
+            <% paid << order %>
+          <% end %>
+        <% end %>
+        <%= paid.count %>      
       </h1>
       <p class='text-center'>
         Paid
@@ -32,7 +50,13 @@
     </div>
     <div class='stat span2 pull-left'>
       <h1 class='text-center' id='cancelled'>
-        <%= Order.find_all_by_status("cancelled").count %>
+        <% cancelled = [] %>
+        <% @orders.each do |order| %>
+          <% if order.current_status == "cancelled" %>
+            <% cancelled << order %>
+          <% end %>
+        <% end %>
+        <%= cancelled.count %>
       </h1>
       <p class='text-center'>
         Cancelled
@@ -40,7 +64,13 @@
     </div>
     <div class='stat span2 pull-left'>
       <h1 class='text-center' id='returned'>
-        <%= Order.find_all_by_status("returned").count %>
+        <% returned = [] %>
+        <% @orders.each do |order| %>
+          <% if order.current_status == "returned" %>
+            <% returned << order %>
+          <% end %>
+        <% end %>
+        <%= returned.count %>
       </h1>
       <p class='text-center'>
         Returned
@@ -65,13 +95,21 @@
         <% @orders.each do |order| %>
         <tr>
           <td>
-            <%= link_to order.id, order_path(order) %>
+            <%= link_to order.id, admin_order_path(order) %>
           </td>
           <td><%= (order.created_at).to_date.strftime("%B %-d, %Y") %></td>
           <td><%= number_to_currency(order.total_price) %></td>
-          <td><%= order.status %></td>
+          <td><%= order.current_status %></td>
           <td>
-            <a href='#'>Shipped - hard code</a>
+            <% if order.current_status == "pending" %>
+              <%= link_to "Cancel", admin_order_path(order), :method => :put %>
+            <% elsif order.current_status == "shipped" %>
+              <%= link_to "Mark as returned", admin_order_path(order), :method => :put %>
+            <% elsif order.current_status == "paid" %>
+              <%= link_to "Mark as shipped", admin_order_path(order), :method => :put %>
+            <% else %>
+              <%= "N/A" %>
+            <% end %>
           </td>
         </tr>
         <% end %>

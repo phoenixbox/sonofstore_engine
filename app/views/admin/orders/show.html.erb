@@ -115,13 +115,20 @@
 <div class='row-fluid'>
   <div class='span12'>
     <div class='well status-change'>
+      <span class='transition inline'>
+      <% if @order.current_status == "pending" || @order.current_status == "shipped" || @order.current_status == "paid" %>
       <span>
         Change Order Status To:
       </span>
-      <span class='transition'>
-        <a href='#'>
-          Cancelled - hard code
-        </a>
+      <% end %>
+      <span>
+        <% if @order.current_status == "pending" %>
+          <%= link_to "Cancel", admin_order_path(@order), :method => :put, :class => "btn btn-inverse" %>
+        <% elsif @order.current_status == "shipped" %>
+          <%= link_to "Mark as returned", admin_order_path(@order), :method => :put, :class => "btn btn-inverse" %>
+        <% elsif @order.current_status == "paid" %>
+          <%= link_to "Mark as shipped", admin_order_path(@order), :method => :put, :class => "btn btn-inverse" %>
+        <% end %>
       </span>
     </div>
   </div>
