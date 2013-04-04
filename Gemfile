@@ -10,12 +10,10 @@ gem 'cancan'
 gem 'paperclip', '~> 3.0'
 gem 'simple_form'
 gem 'font-awesome-rails'
-# gem 'aws-s3'
 gem 'aws-sdk'
 gem 'friendly_id'
 gem 'kaminari'
 gem 'stripe'
-gem 'twilio-ruby'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -30,7 +28,6 @@ end
 
 group :development, :test do
   gem 'fabrication'
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   # gem 'guard'
@@ -39,6 +36,11 @@ group :development, :test do
   gem 'pry'
   gem 'heroku'
   gem 'simplecov'
+end
+
+group :test do 
+  gem 'rspec-rails'
+  gem 'rspec-core'
 end
 
 group :development do 

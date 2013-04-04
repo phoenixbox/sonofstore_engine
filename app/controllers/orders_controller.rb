@@ -17,18 +17,14 @@ class OrdersController < ApplicationController
 
     @order = Order.new
 
-    # @address = ShippingAddress.new
   end
 
   def create
-    # @cart = current_cart
-    @order = Order.new(params[:order])
-    # @order.add_line_items(current_cart)
-    # @order.total_price = @order.total_price_from_cart(current_cart)
-    # @order.user = current_user
-    process_order
 
-    if @order.save_with_payment #@address.save
+   @order = Order.create_from_cart(current_cart, params[:order], current_user)
+
+    if @order.id
+
       current_cart.destroy
       session[:cart_id] = nil
       flash[:notice] = "Your payment was successfully submitted!"
@@ -58,9 +54,4 @@ private
     end
   end
 
-  def process_order
-    @order.add_line_items(current_cart)
-    @order.total_price = @order.total_price_from_cart(current_cart)
-    @order.user = current_user
-  end
 end

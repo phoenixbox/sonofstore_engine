@@ -8,7 +8,19 @@ class Order < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :total_price, :user_id
 
+def self.create_from_cart(cart, order_details, user)
 
+    order = new(order_details)
+    order.add_line_items(cart)
+    order.total_price = order.total_price_from_cart(cart)
+    order.user = user
+
+    if order.save_with_payment
+      order
+    else
+      nil
+    end
+end
   def save_with_payment
     if valid?
 
