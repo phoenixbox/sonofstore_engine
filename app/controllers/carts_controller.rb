@@ -1,10 +1,6 @@
 class CartsController < ApplicationController
   def show
     @cart = current_cart
-
-    respond_to do |format| 
-      format.html
-    end
   end
 
   def destroy
@@ -12,10 +8,8 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
 
-    respond_to do |format|
-      format.html {redirect_to products_path, notice: 'Your cart is currently empty' }
-      format.json {head :no_content}
-    end
+    redirect_to products_path, notice: 'Your cart is currently empty' 
+    
   end
 
   def add_quantity_to_cart
