@@ -64,4 +64,8 @@ class Order < ActiveRecord::Base
   def ship
     events.create! status: "shipped" if paid?
   end
+
+  def user
+    current_user
+  end
 end

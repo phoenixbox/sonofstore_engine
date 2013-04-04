@@ -16,7 +16,7 @@ class Cart < ActiveRecord::Base
     line_items.to_a.sum { |item| item.total_price }
   end
 
-  def add_quantity(product_id)
+  def increase_quantity(product_id)
     current_item = line_items.find_by_product_id(product_id)
     current_item.quantity += 1
     current_item.save
@@ -26,5 +26,9 @@ class Cart < ActiveRecord::Base
     current_item = line_items.find_by_product_id(product_id)
     current_item.quantity -= 1
     current_item.save
+  end
+
+  def empty?
+    line_items.empty?
   end
 end

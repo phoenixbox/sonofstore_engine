@@ -12,8 +12,11 @@ class OrdersController < ApplicationController
       redirect_to products_path
       return
     end
+    
+    @cart = current_cart
 
     @order = Order.new
+
     @address = ShippingAddress.new
   end
 

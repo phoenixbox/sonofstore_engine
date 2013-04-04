@@ -1,14 +1,9 @@
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
+<h1> Categories </h1>
 
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.name %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
+      <h1><% @categories.each do |c| %></h1>
+        <div>
+        <%= link_to c.name, category_path(c) %>
+        </div>
+        <% end %>
+  

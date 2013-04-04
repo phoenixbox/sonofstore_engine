@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price, :price_in_dollars
   validates :price, :numericality => {:greater_than => 001, :message => "price must be greater than zero"}
@@ -21,12 +20,8 @@ class Product < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  def active?
-    if self.active == false
-      "retired"
-    else
-      "active"
-    end
+  def status
+    active ? "active" : "retired"
   end
 
   def to_s
