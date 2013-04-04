@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :user_id
+  attr_accessible :total_price, :user_id, :stripe_card_token
   attr_accessor :stripe_card_token
 
   has_many :line_items
@@ -8,11 +8,20 @@ class Order < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :total_price, :user_id
 
-  # scope :pending, where(:current_status => "pending")
-  # scope :cancelled, where(:current_status => "cancelled")
-  # scope :paid, where(:current_status => "paid")
-  # scope :shipped, where(:current_status => "shipped")
-  # scope :returned, where(:current_status => "returned")
+
+  def save_with_payment
+    if valid?
+
+      Stripe::Charge.create(amount: self.total_price * 100, currency: "usd",
+        card: stripe_card_token, description: self.user.email)
+      save!
+      self.paid
+    end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
+  end
 
   def self.pending
     Order.all.select{|o| o.pending?}

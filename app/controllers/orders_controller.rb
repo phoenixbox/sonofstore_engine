@@ -17,28 +17,26 @@ class OrdersController < ApplicationController
 
     @order = Order.new
 
-    @address = ShippingAddress.new
+    # @address = ShippingAddress.new
   end
 
   def create
-    @address = ShippingAddress.new(params[:address])
-    @address.user_id = session[:user_id]
+    # @address = ShippingAddress.new(params[:address])
+    # @address.user_id = session[:user_id]
 
     @cart = current_cart
-
     @order = Order.new(params[:order])
     @order.add_line_items(current_cart)
     @order.total_price = @order.total_price_from_cart(current_cart)
     @order.user = current_user
 
-    if @address.save
-      @order.save
-      redirect_to order_path(@order)
+    if @order.save_with_payment #@address.save
       @cart.destroy
       session[:cart_id] = nil
+      redirect_to order_path(@order), notice: "Your payment was successfully submitted!"
     else
       render "new"
-   end
+    end
   end
 
   def show

@@ -10,6 +10,9 @@
 <%#   <% end %1> %>
 <%# </div> %>
 
+<h3>Order Total:</h3>
+<h3><%= number_to_currency @cart.total_price %></h3> 
+
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -28,6 +31,7 @@
   <%# <% if @order.stripe_card_token.present? %1> %>
   <%# Credit card has been provided. %>
 <%# <% else %1> %>
+  
 
   <div class="field">
     <%= label_tag :card_number, "Credit Card Number" %>
@@ -47,9 +51,6 @@
 <div id="stripe_error">
   <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 </div>
-  <div class="field">
-    <%= f.hidden_field :status, value: "paid" %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
