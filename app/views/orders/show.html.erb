@@ -27,7 +27,7 @@
         <div class='span12 tab_above'>
           <div class='page-header order_detail'>
             <h1>
-              Order number: 
+              Order number:
               <%= @order.id %>
             </h1>
             <div class='details'>
@@ -49,6 +49,9 @@
                 <% if @order.current_status != "pending" %>
                 <span class='date'>
                   <%= "on #{(@order.updated_at).to_date.strftime("%B %-d %Y")}" %>
+                  <% if @order.current_status == "cancelled" || @order.current_status == "shipped" %>
+                    <%= "at #{(@order.created_at).to_time.strftime("%I:%M %P")}, GMT" %>
+                  <% end %>
                 </span>
                 <% end %>
               </p>
@@ -123,4 +126,4 @@
 <%#<p><%= "Order submitted: #{@order.created_at}" %>
 <%#<p><%= "Current order status #{@order.status}" %>
 
-  
+
