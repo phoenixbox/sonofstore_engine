@@ -26,21 +26,18 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.0'
 end
 
-group :development, :test do
-  gem 'fabrication'
+group :development, :test do 
+  gem 'rspec-rails'
   gem 'capybara'
+  gem 'unicorn'
+  gem 'heroku'
+  gem 'pry'
+  gem 'simplecov'
+  gem 'capybara'
+  gem 'fabrication'
   gem 'launchy'
-  # gem 'guard'
   gem 'cane'
   gem 'reek'
-  gem 'pry'
-  gem 'heroku'
-  gem 'simplecov'
-end
-
-group :test do 
-  gem 'rspec-rails'
-  gem 'rspec-core'
 end
 
 group :development do 
@@ -49,3 +46,5 @@ group :development do
   gem 'binding_of_caller'
   # gem 'meta_request'
 end
+
+

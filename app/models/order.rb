@@ -15,11 +15,8 @@ def self.create_from_cart(cart, order_details, user)
     order.total_price = order.total_price_from_cart(cart)
     order.user = user
 
-    if order.save_with_payment
+     order.save_with_payment
       order
-    else
-      nil
-    end
 end
   def save_with_payment
     if valid?
