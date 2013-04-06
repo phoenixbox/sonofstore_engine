@@ -1,5 +1,7 @@
 StoreEngine::Application.routes.draw do
 
+
+
   namespace :admin do
     resources :orders, :only => [:index, :show, :update]
     resources :categories
@@ -26,7 +28,10 @@ StoreEngine::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, :except => [:index, :destroy, :edit, :update]
+  resources :users, :except => [:index, :destroy, :edit, :update] do
+    resources :phone_numbers
+  end
+
   resources :sessions
 
 

@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
     :maximum => 32 }, :allow_blank => true
 
   has_many :orders
+  has_one :phone_number
+
+  def phone
+    self.phone_number.phone
+  end
 end

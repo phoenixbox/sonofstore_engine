@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   def create
 
-   @order = Order.create_from_cart(current_cart, params[:order], current_user)
+    @order = Order.create_from_cart(current_cart, params[:order], current_user)
 
     if @order.id
 

@@ -13,17 +13,17 @@
   <div class='tabbable'>
     <ul class='nav nav-tabs'>
       <li class='active'>
-        <%# <a data-toggle='tab' href='#'>Profile</a> %>
-        <%= link_to "Profile", user_path(@user) %>
+        <%= link_to "Update Information", user_path(@user) %>
       </li>
       <li >
-        <%# <a data-toggle='tab' href='#'>Past Orders</a> %>
         <%= link_to "Past Orders", orders_path %>
+      </li>
+      <li >
+        <%= link_to "Update Phone Number", new_user_phone_number_path(@user) %>
       </li>
     </ul>
   </div>
 </div>
-<%# <%= render 'form' %1> %>
 
 <p> Full Name </p>
 <p><%= @user.full_name %></p>
@@ -35,3 +35,7 @@
   
 <p> User Display Name </p>
 <p><%= @user.display %></p>
+
+</br>
+<p> Phone Number </p>
+<p><%= @user.phone_number.phone %></p>

@@ -15,6 +15,7 @@ class Admin::OrdersController < Admin::BaseController
     elsif @order.current_status == "shipped"
       @order.return
     elsif @order.current_status == "paid"
+      @order.send_text_message
       @order.ship
     end
     redirect_to :back

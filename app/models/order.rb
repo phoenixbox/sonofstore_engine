@@ -8,19 +8,19 @@ class Order < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :total_price, :user_id
 
-def self.create_from_cart(cart, order_details, user)
+  def self.create_from_cart(cart, order_details, user)
 
     order = new(order_details)
     order.add_line_items(cart)
     order.total_price = order.total_price_from_cart(cart)
     order.user = user
 
-     order.save_with_payment
-      order
-end
+    order.save_with_payment
+    order
+  end
+
   def save_with_payment
     if valid?
-
       Stripe::Charge.create(amount: self.total_price * 100, currency: "usd",
         card: stripe_card_token, description: self.user.email)
       save!
@@ -57,6 +57,23 @@ end
       li.cart_id = nil
       line_items << li
     end
+  end
+
+  def send_text_message
+    number_to_send_to = self.user.phone #params[:number_to_send_to]
+
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    twilio_phone_number = "12402930574"
+
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    @twilio_client.account.sms.messages.create(
+      :from => "+1#{twilio_phone_number}",
+      :to => number_to_send_to,
+      :body => "Your order has been shipped! and will be,
+        delivered on Monday, April 7th, 2013"
+    )
   end
 
   def total_price_from_cart(cart)

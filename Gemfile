@@ -14,6 +14,8 @@ gem 'aws-sdk'
 gem 'friendly_id'
 gem 'kaminari'
 gem 'stripe'
+gem 'figaro'
+gem 'twilio-ruby'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
