@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
                   :email,
                   :full_name,
                   :password,
-                  :password_confirmation
+                  :password_confirmation,
+                  :phone_number_attributes
+
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
   validates_uniqueness_of :email
   validates_presence_of :full_name, :email, :password
   validates :display_name, :length => { :minimum => 2,
@@ -12,8 +16,9 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_one :phone_number
+  accepts_nested_attributes_for :phone_number
 
-  def phone
+  def a_phone
     self.phone_number.phone
   end
 end

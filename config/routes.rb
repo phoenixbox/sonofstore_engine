@@ -28,11 +28,10 @@ StoreEngine::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users, :except => [:index, :destroy, :edit, :update] do
-    resources :phone_numbers
-  end
+  resources :users, :except => [:index, :destroy]
 
   resources :sessions
+  resources :phone_numbers
 
 
   root :to => 'store#index'

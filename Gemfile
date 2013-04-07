@@ -28,7 +28,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.0'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'unicorn'
@@ -46,6 +46,7 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rails-footnotes', '>= 3.7.9'
   # gem 'meta_request'
 end
 

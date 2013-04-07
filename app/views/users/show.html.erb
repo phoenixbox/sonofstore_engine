@@ -13,29 +13,44 @@
   <div class='tabbable'>
     <ul class='nav nav-tabs'>
       <li class='active'>
-        <%= link_to "Update Information", user_path(@user) %>
+        <%= link_to "Profile", user_path(@user) %>
       </li>
       <li >
         <%= link_to "Past Orders", orders_path %>
       </li>
-      <li >
-        <%= link_to "Update Phone Number", new_user_phone_number_path(@user) %>
-      </li>
     </ul>
   </div>
 </div>
-
-<p> Full Name </p>
-<p><%= @user.full_name %></p>
-</br>
-
-<p> Email </p>
-<p><%= @user.email %></p>
-</br>
-  
-<p> User Display Name </p>
-<p><%= @user.display %></p>
-
-</br>
-<p> Phone Number </p>
-<p><%= @user.phone_number.phone %></p>
+<div class="row-fluid">
+  <ul class="profile">
+    <li>
+      <div class="span8"> 
+        <p class="span3 header"> Full Name </p>
+        <p class="span5"><%= @user.full_name %></p>
+      </div>
+    </li>
+    <li>
+      <div class="span8"> 
+        <p class="span3 header"> Email </p>
+        <p class="span5"><%= @user.email %></p>
+      </div>
+    </li>
+    <li>
+      <div class="span8"> 
+        <p class="span3 header"> Phone </p>
+        <p class="span5"><%= @user.phone_number.try(:phone) %></p>
+      </div>
+    </li>
+    <li>
+      <div class="span8"> 
+        <p class="span3 header"> Receive SMS Alerts </p>
+        <p class="span5"><%= @user.phone_number.receive_sms %></p>
+      </div>
+    </li>
+    <li>
+      <div class="span8">
+        <%= link_to "Update Profile", edit_user_path(@user) %>
+      </div>
+    </li>
+  </ul>
+</div>
