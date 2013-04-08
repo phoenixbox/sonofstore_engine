@@ -74,7 +74,7 @@ StoreEngine::Application.configure do
     :bucket => "store-engine"
   }
 
-  config.action_mail.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :address => "smtp.mandrillapp.com",
     :port => 25,
     :user_name => ENV["MANDRILL_USERNAME"],
