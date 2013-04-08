@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
-    @user.build.phone_numbers
+    @user.build_phone_number
   end
 
   def create
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @user.build_phone_number unless @user.phone_number
   end
 
   def update

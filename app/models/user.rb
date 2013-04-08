@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
                   :email,
                   :full_name,
                   :password,
-                  :password_confirmation
+                  :password_confirmation,
+                  :phone_number_attributes
 
   # validates :password, presence: true, length: { minimum: 6 }
   # validates :password_confirmation, presence: true
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
     :maximum => 32 }, :allow_blank => true
 
   has_many :orders
-  has_many :phone_number
+  has_one :phone_number
   accepts_nested_attributes_for :phone_number
 
   def phone
