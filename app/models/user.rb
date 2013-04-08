@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
                   :phone_number_attributes
 
   validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  # validates :password_confirmation, presence: true
   validates_uniqueness_of :email
   validates_presence_of :full_name, :email, :password
   validates :display_name, :length => { :minimum => 2,
