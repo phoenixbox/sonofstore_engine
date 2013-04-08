@@ -60,20 +60,21 @@ class Order < ActiveRecord::Base
   end
 
   def send_text_message
-    number_to_send_to = self.user.phone #params[:number_to_send_to]
 
-    twilio_sid = ENV["TWILIO_SID"]
-    twilio_token = ENV["TWILIO_TOKEN"]
-    twilio_phone_number = "12402930574"
+    if user.can_receive_messages?
+      number_to_send_to = self.user.phone #params[:number_to_send_to]
 
-    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+      twilio_sid = ENV["TWILIO_SID"]
+      twilio_token = ENV["TWILIO_TOKEN"]
+      twilio_phone_number = "12402930574"
 
-    @twilio_client.account.sms.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => number_to_send_to,
-      :body => "Your order has been shipped! and will be,
-        delivered on Monday, April 7th, 2013"
-    )
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+      @twilio_client.account.sms.messages.create(
+        :from => "+1#{twilio_phone_number}",
+        :to => number_to_send_to,
+        :body => "Your order has been shipped and will be delivered on Monday April 7th, 2013. Thank you!!!")
+    end
   end
 
   def total_price_from_cart(cart)
@@ -92,6 +93,7 @@ class Order < ActiveRecord::Base
     current_item.quantity -= 1
     current_item.save
   end
+
 
   STATUSES = %w[pending cancelled paid shipped returned]
   delegate :pending?, :cancelled?, :paid?, :shipped?, :returned?,

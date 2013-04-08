@@ -18,7 +18,15 @@ class User < ActiveRecord::Base
   has_one :phone_number
   accepts_nested_attributes_for :phone_number
 
-  def a_phone
+  def phone
     self.phone_number.phone
+  end
+
+  def receive_sms?
+    self.phone_number.receive_sms
+  end
+
+  def can_receive_messages?
+    phone.present? && receive_sms?
   end
 end
