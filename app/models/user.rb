@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                   :password_confirmation,
                   :phone_number_attributes
 
-  validates :password, presence: true, length: { minimum: 6 }
+  # validates :password, presence: true, length: { minimum: 6 }
   # validates :password_confirmation, presence: true
   validates_uniqueness_of :email
   validates_presence_of :full_name, :email, :password
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :phone_number
 
   def phone
-    self.phone_number.phone
+    self.phone_number ? self.phone_number.phone : nil
   end
 
   def receive_sms?
