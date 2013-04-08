@@ -4,14 +4,12 @@ describe UsersController do
 
   describe "GET 'new'" do
     it "assigns a new User to @user" do
-      pending
       get :new
       expect(assigns(:user)).to be_a_new(User)
       # response.should be_success
     end
 
     it 'renders the new template' do
-      pending
       get 'new'
       expect(response).to render_template :new
     end
