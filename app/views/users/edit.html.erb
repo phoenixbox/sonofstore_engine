@@ -21,24 +21,23 @@
     </ul>
   </div>
 </div>
-      <%= simple_form_for @user do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :full_name %>
-        <%= f.input :email %>
-        <%= f.input :display_name %>
+<%= simple_form_for @user do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :full_name %>
+  <%= f.input :email %>
+  <%= f.input :display_name %>
 
-        <%= f.simple_fields_for :phone_number do |p| %>
-          <%= p.input :phone %>
-          <%= p.input :receive_sms, label: "Recieve SMS?", as: :radio_buttons, :item_wrapper_class => 'inline' %>
-        <% end %>
-        <br/>
+  <%= f.simple_fields_for :phone_number do |p| %>
+    <%= p.input :phone %>
+    <%= p.input :receive_sms, label: "Recieve SMS?", as: :radio_buttons, :item_wrapper_class => 'inline' %>
+  <% end %>
 
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
-        <%= f.error :base %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.error :base %>
 
-        <div> 
-          <%= f.button :submit, :value => "Update Profile", :class => "btn-primary"%>
-        </div>
+  <div> 
+    <%= f.button :submit, :value => "Update Profile", :class => "btn-primary"%>
+  </div>
 
-      <% end %>
+<% end %>
