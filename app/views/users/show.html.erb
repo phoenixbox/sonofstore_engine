@@ -38,13 +38,13 @@
     <li>
       <div class="span8"> 
         <p class="span3 header"> Phone </p>
-        <p class="span5"><%= @user.phone_number.try(:phone) %></p>
+        <p class="span5"><%= @user.try(:phone) %></p>
       </div>
     </li>
     <li>
       <div class="span8"> 
         <p class="span3 header"> Receive SMS Alerts </p>
-        <p class="span5"><%= @user.phone_number.receive_sms %></p>
+        <p class="span5"><%= @user.try(:receive_sms?) %></p>
       </div>
     </li>
     <li>
