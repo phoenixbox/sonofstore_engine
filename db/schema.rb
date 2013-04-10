@@ -116,4 +116,6 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.string   "full_name",                          :null => false
   end
 
+  add_index "users", ["id"], :name => "index_users_on_id"
+
 end

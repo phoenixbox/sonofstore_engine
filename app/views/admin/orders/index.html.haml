@@ -1,0 +1,23 @@
+- provide(:title, 'Admin Order List')
+.row-fluid
+  .span12
+    .span6
+      %h3 Orders
+    .span6.header-button
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span4 Order Number
+          %th.span3 Date Ordered
+          %th.span2 Order Total
+          %th.span3 Status
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td
+              = link_to order.id, admin_order_path(order)
+            %td= (order.created_at).to_date.strftime("%B %-d, %Y")
+            %td= number_to_currency(order.total_price)
+            %td= order.current_status

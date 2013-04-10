@@ -1,0 +1,103 @@
+- provide(:title, 'Admin Order Detail')
+.row-fluid
+  .span12.tab_above
+    .page-header.order_detail
+      %h1
+        Order Number: 2345
+      .details
+        %p.date
+          Order Placed on
+          %span.date
+            March 27, 2013
+          at
+          %span
+            3:30pm
+          %a{:href => "#"} view all orders
+      .details
+        %p.customer
+          Customer:
+          %span.cust_name
+            Kevin Durant
+      .details
+        %p.customer
+          Email:
+          %span.cust_email
+            kevin@okcthunder.com
+      .status
+        %p.state
+          Pending
+          %span.date
+            on March 31, 2013
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span1 Product
+          %th.span4 Description
+          %th.span3 Quantity
+          %th.span2 Price
+          %th.span2 Subtotal
+      %tbody
+        %tr
+          %td
+            %img.img_cart{:src => "img/product14.png"}/
+          %td.description
+            %span.name
+              %a{:href => "#"} Product name
+            %p
+              lorem ipsum lorem ipsum lorem ipsum...
+            .remove_product
+              %a{:href => "#"}
+                Delete
+          %td
+            %form.form-inline
+              %span.uneditable-input.input-small{:type => "text"} 1
+              %a.btn.btn-small{:href => "#"}
+                %i.icon-plus
+              %a.btn.btn-small{:href => "#"}
+                %i.icon-minus
+          %td
+            $54.00
+          %td
+            $54.00
+        %tr
+          %td
+            %img.img_cart{:src => "img/product15.png"}/
+          %td.description
+            %span.name
+              %a{:href => "#"} Product name
+            %p
+              lorem ipsum lorem ipsum lorem ipsum...
+            .remove_product
+              %a{:href => "#"}
+                Delete
+          %td
+            %form.form-inline
+              %span.uneditable-input.input-small{:type => "text"} 1
+              %a.btn.btn-small{:href => "#"}
+                %i.icon-plus
+              %a.btn.btn-small{:href => "#"}
+                %i.icon-minus
+          %td
+            $16.00
+          %td
+            $16.00
+    %table.table.total.table-bordered
+      %tbody
+        %tr
+          %td.span8
+          %td.span2 Shipping
+          %td.span2 $0.00
+        %tr.total
+          %td.span8
+          %td.span2 Total
+          %td.span2 $70.00
+.row-fluid
+  .span12
+    .well.status-change
+      %span
+        Change Order Status To:
+      %span.transition
+        %a{:href => "#"}
+          Cancelled

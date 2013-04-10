@@ -69,6 +69,10 @@ GEM
     coffee-script-source (1.6.2)
     debug_inspector (0.0.2)
     diff-lcs (1.2.1)
+    erb2haml (0.1.4)
+      haml
+      hpricot
+      ruby_parser
     erubis (2.7.0)
     excon (0.20.1)
     execjs (1.4.0)
@@ -81,6 +85,13 @@ GEM
     font-awesome-rails (3.0.2.0)
       railties (>= 3.1)
     friendly_id (4.0.9)
+    haml (4.0.2)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     heroku (2.37.0)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
@@ -90,6 +101,12 @@ GEM
     heroku-api (0.3.9)
       excon (~> 0.20.1)
     hike (1.2.1)
+    hpricot (0.8.6)
+    html2haml (1.0.1)
+      erubis (~> 2.7.0)
+      haml (>= 4.0.0.rc.1)
+      hpricot (~> 0.8.6)
+      ruby_parser (~> 3.1.1)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -241,11 +258,14 @@ DEPENDENCIES
   cane
   capybara
   coffee-rails (~> 3.2.1)
+  erb2haml
   fabrication
   figaro
   font-awesome-rails
   friendly_id
+  haml-rails
   heroku
+  html2haml
   jquery-rails
   kaminari
   launchy
