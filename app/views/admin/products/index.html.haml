@@ -1,0 +1,25 @@
+- provide(:title, 'Admin Product List')
+.row-fluid
+  .span12
+    .span6
+      %h3 Products
+    .span6.header-button
+      = button_to "Add New Product", new_admin_product_path, method: :get, :class => "btn pull-right"
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span1 Product
+          %th.span3 Title
+          %th.span4 Description
+          %th.span2 Price
+          %th.span2 Action
+      %tbody
+        - @products.each do |product|
+          %tr
+            %td= image_tag product.photo.url
+            %td= product.title
+            %td= product.description
+            %td= number_to_currency(product.price_in_dollars)
+            %td= link_to "edit", edit_admin_product_path(product)
