@@ -6,6 +6,7 @@
       = simple_form_for @store do |f|
         = f.error_notification
         = f.input :name, :label => "Store Name"
+        = f.input :path
         =f.simple_fields_for :users do |u|
           = u.input :full_name
           = u.input :email

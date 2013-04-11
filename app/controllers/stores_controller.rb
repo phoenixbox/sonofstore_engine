@@ -10,7 +10,7 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
     if @store.save
       flash[:notice] = "Cheeers"
-      redirect_to root_path
+      redirect_to admin_dashboard_path(@store.path)
     else
       flash[:notice] = "Fuck"
       render "new"
