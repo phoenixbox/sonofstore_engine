@@ -58,6 +58,6 @@
           %td.span2= number_to_currency(@cart.total_price)
     .span20.form-actions
       .span5.pull-left
-        = button_to "Continue Shopping", products_path(@current_store), :method => :get, :class => "btn"
+        = button_to "Continue Shopping", products_path(current_store), :method => :get, :class => "btn"
       .span2.pull-right
         = button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse"

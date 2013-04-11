@@ -1,4 +1,5 @@
 class Cart < ActiveRecord::Base
+  attr_accessible :store_id
   has_many :line_items, dependent: :destroy
   has_many :products
 
