@@ -66,6 +66,8 @@ StoreEngine::Application.routes.draw do
       get 'logout', to: 'user_sessions#destroy', as: 'logout'
       
       match "/" => "dashboards#show"
+      put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
+      put '/decrease_quantity_from_order/:id' => 'orders#decrease_quantity_from_order', :as => 'decrease_quantity_from_order'
     end
 
   end

@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :user_id, :stripe_card_token
+  attr_accessible :total_price, :user_id, :stripe_card_token, :store
   attr_accessor :stripe_card_token
 
   has_many :line_items

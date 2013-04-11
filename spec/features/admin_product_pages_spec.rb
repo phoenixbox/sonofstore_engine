@@ -64,7 +64,7 @@ describe "Product Pages" do
       ProductCategory.create(product_id: (product.id), category_id: (category1.id))
       ProductCategory.create(product_id: (product.id), category_id: (category2.id))
 
-      visit admin_product_path(product)
+      visit admin_product_path(product.store, product)
     end
 
     it "should show the page for an individual product" do
@@ -92,8 +92,8 @@ describe "Product Pages" do
     end
 
     it "has links to the individual products" do
-      expect( page ).to have_link("edit", :href => edit_admin_product_path(@product_1))
-      expect( page ).to have_link("edit", :href => edit_admin_product_path(@product_2))
+      expect( page ).to have_link("edit", :href => edit_admin_product_path(@product.store, @product_1))
+      expect( page ).to have_link("edit", :href => edit_admin_product_path(@product.store, @product_2))
     end
   end
 
@@ -108,7 +108,7 @@ describe "Product Pages" do
       Category.create(name: "wigs")
       Category.create(name: "beards")
       @product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
-      visit edit_admin_product_path(@product)
+      visit edit_admin_product_path(@product.store, @product)
     end
 
     context "with invalid information" do
