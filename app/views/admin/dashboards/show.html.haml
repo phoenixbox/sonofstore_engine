@@ -1,0 +1,79 @@
+- provide(:title, 'Admin Dashboard')
+.row-fluid
+  .span12
+    %h4 Total Orders by Status
+.row-fluid
+  .status-panel.pull-left.span12
+    .stat.span2
+      %h1#pending.text-center
+        - pending = []
+        - @orders.each do |order|
+          - if order.current_status == "pending"
+            - pending << order
+        = pending.count
+      %p.text-center
+        = link_to "Pending", admin_dashboard_path(status: "pending")
+    .stat.span2.pull-left
+      %h1#shipped.text-center
+        - shipped = []
+        - @orders.each do |order|
+          - if order.current_status == "shipped"
+            - shipped << order
+        = shipped.count
+      %p.text-center
+        = link_to "Shipped", admin_dashboard_path(status: "shipped")
+    .stat.span3.pull-left
+      %h1#paid.text-center
+        - paid = []
+        - @orders.each do |order|
+          - if order.current_status == "paid"
+            - paid << order
+        = paid.count
+      %p.text-center
+        = link_to "Paid", admin_dashboard_path(status: "paid")
+    .stat.span2.pull-left
+      %h1#cancelled.text-center
+        - cancelled = []
+        - @orders.each do |order|
+          - if order.current_status == "cancelled"
+            - cancelled << order
+        = cancelled.count
+      %p.text-center
+        = link_to "Cancelled", admin_dashboard_path(status: "cancelled")
+    .stat.span2.pull-left
+      %h1#returned.text-center
+        - returned = []
+        - @orders.each do |order|
+          - if order.current_status == "returned"
+            - returned << order
+        = returned.count
+      %p.text-center
+        = link_to "Returned", admin_dashboard_path(status: "returned")
+%br/
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span2 Order Number
+          %th.span3 Date Ordered
+          %th.span2 Order Total
+          %th.span2 Status
+          %th.span3 Change Status To:
+      %tbody
+        - @orders.each do |order|
+          %tr
+            %td
+              = link_to order.id, admin_order_path(order)
+            %td= (order.created_at).to_date.strftime("%B %-d, %Y")
+            %td= number_to_currency(order.total_price)
+            %td= order.current_status
+            %td
+              - if order.current_status == "pending"
+                = link_to "Cancel", admin_order_path(order), :method => :put
+              - elsif order.current_status == "shipped"
+                = link_to "Mark as returned", admin_order_path(order), :method => :put
+              - elsif order.current_status == "paid"
+                = link_to "Mark as shipped", admin_order_path(order), :method => :put
+              - else
+                = "N/A"

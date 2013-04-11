@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410204755) do
+ActiveRecord::Schema.define(:version => 20130410231930) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20130410204755) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "full_name"
+    t.string   "email"
+    t.string   "display_name"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "line_items", :force => true do |t|
@@ -92,9 +101,11 @@ ActiveRecord::Schema.define(:version => 20130410204755) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "slug"
+    t.integer  "tenant_id"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
+  add_index "products", ["tenant_id"], :name => "index_products_on_tenant_id"
 
   create_table "shipping_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -121,8 +132,10 @@ ActiveRecord::Schema.define(:version => 20130410204755) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
+    t.integer  "tenant_id"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
+  add_index "users", ["tenant_id"], :name => "index_users_on_tenant_id"
 
 end

@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
                   :full_name,
                   :password,
                   :password_confirmation,
-                  :phone_number_attributes
+                  :phone_number_attributes,
+                  :tenant_id
 
   # validates :password, presence: true, length: { minimum: 6 }
   # validates :password_confirmation, presence: true
@@ -16,7 +17,12 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_one :phone_number
+  belongs_to :tenant
+  
   accepts_nested_attributes_for :phone_number
+
+  # default_scope { where(tenant_id: Tenant.current_id) }
+
 
   def phone
     phone_number ? phone_number.phone : nil

@@ -1,0 +1,11 @@
+= simple_form_for @tenant, :html => { :class => 'bs-container' } do |f|
+  = f.error_notification
+  = f.input :name
+  = f.simple_fields_for :user_attributes, @tenant.user do |u|
+    = u.input :full_name
+    = u.input :email
+    = u.input :display_name
+    = u.input :password
+    = u.input :password_confirmation
+  = f.button :submit, :value => "Register", :class => "btn-primary"
+  = f.error :base

@@ -16,6 +16,9 @@ gem 'kaminari'
 gem 'stripe'
 gem 'figaro'
 gem 'twilio-ruby'
+gem 'haml-rails'
+
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -40,6 +43,9 @@ group :development, :test do
   gem 'launchy'
   gem 'cane'
   gem 'reek'
+  gem 'erb2haml'
+  gem 'html2haml'
+  gem 'pry-remote'
 end
 
 group :development do 

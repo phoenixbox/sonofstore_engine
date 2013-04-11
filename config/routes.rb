@@ -1,15 +1,27 @@
 StoreEngine::Application.routes.draw do
 
+  resources :tenants
 
+  resources :customers
+
+  resources :static_pages, :only => :index
 
   namespace :admin do
     resources :orders, :only => [:index, :show, :update]
     resources :categories
     resources :products, :except => :destroy
     resource :dashboard, :only => :show
+    resources :user_sessions
+    resources :users #, :except => [:index, :destroy]
     put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
     put '/decrease_quantity_from_order/:id' => 'orders#decrease_quantity_from_order', :as => 'decrease_quantity_from_order'
+    get '/', to: 'user_sessions#new'
+
+    get 'signup', to: 'users#new', as: 'signup'
+    get 'login', to: 'user_sessions#new', as: 'login'
+    get 'logout', to: 'user_sessions#destroy', as: 'logout'
   end
+
 
   resources :carts
   resources :categories, :only => [:index, :show]
@@ -24,17 +36,15 @@ StoreEngine::Application.routes.draw do
   resources :shipping_addresses
   resources :line_items
 
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'signup', to: 'customers#new', as: 'signup'
+  get 'login', to: 'customer_sessions#new', as: 'login'
+  get 'logout', to: 'customer_sessions#destroy', as: 'logout'
 
-  resources :users, :except => [:index, :destroy]
-
-  resources :sessions
+  resources :customer_sessions
   resources :phone_numbers
 
 
-  root :to => 'store#index'
+  root :to => 'static_pages#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

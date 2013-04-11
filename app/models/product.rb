@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, through: :product_categories
   has_many :line_items
+  belongs_to :tenant
   has_attached_file :photo #,
     # :storage => :s3,
     # :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
@@ -19,7 +20,7 @@ class Product < ActiveRecord::Base
     # :bucket => "store-engine"
 
 
-
+  #default_scope { where(tenant_id: Tenant.current_id) }
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
