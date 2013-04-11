@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :phone_number
 
-  after_create :create_store
+  # after_create :create_store
 
 
   def phone
@@ -39,18 +39,18 @@ class User < ActiveRecord::Base
     phone.present? && receive_sms?
   end
 
-  private
+  # private
 
-  def create_store
-    if self.store.nil?
-      t = Store.create(name: self.store_name)
-      if t.save
-        self.store_id = t.id
-        self.save
-      end
-    end
-  rescue ArgumentError
-    errors.add "you fucked up!!1"
-  end
+  # def create_store
+  #   if self.store.nil?
+  #     t = Store.create(name: self.store_name)
+  #     if t.save
+  #       self.store_id = t.id
+  #       self.save
+  #     end
+  #   end
+  # rescue ArgumentError
+  #   errors.add "you fucked up!!1"
+  # end
 
 end

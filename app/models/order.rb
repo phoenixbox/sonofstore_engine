@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   has_many :events, class_name: "OrderEvent"
 
   belongs_to :user
-  belongs_to :tenant
+  belongs_to :store
   validates_presence_of :total_price, :user_id
 
   def self.create_from_cart(cart, order_details, user)

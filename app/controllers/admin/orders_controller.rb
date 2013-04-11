@@ -5,7 +5,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def index
     # @orders = Order.all
-    @orders = current_tenant.orders
+    @orders = current_store.orders
   end
 
   def update

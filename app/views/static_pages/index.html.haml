@@ -1,7 +1,7 @@
 %h1 Welcome to StaticPages Index
 %p Check out one of the stores on our platform
-- @tenants.each do |tenant|
+- @stores.each do |store|
   %li
-    = link_to tenant.name, "#{tenant.path}/products"
+    = link_to store.name, "#{store.path}/products"
 
 / = render 'form'

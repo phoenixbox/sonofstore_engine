@@ -1,7 +1,7 @@
 class Admin::DashboardsController < Admin::BaseController
   
   def show
-    @orders = current_tenant.orders
+    @orders = current_store.orders
 
     # receieve status from params[:status]
     # selected_orders = Order.all

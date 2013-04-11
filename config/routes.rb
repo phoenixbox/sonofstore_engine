@@ -52,6 +52,7 @@ StoreEngine::Application.routes.draw do
     match "/" => "products#index", :as => :home
 
     resources :products
+    
     namespace :admin do
       resource :dashboard, :only => :show
       resources :products, :except => :destroy
@@ -63,7 +64,7 @@ StoreEngine::Application.routes.draw do
   end
 
 
-  end
+
 
 
 

@@ -22,4 +22,4 @@
             %td= product.title
             %td= product.description
             %td= number_to_currency(product.price_in_dollars)
-            %td= link_to "edit", edit_admin_product_path(product)
+            %td= link_to "edit", edit_admin_product_path(product.store, product)

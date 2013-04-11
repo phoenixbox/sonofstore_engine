@@ -1,15 +1,5 @@
 class StoreController < ApplicationController
 
-  # def current_tenant
-  #   @tenant ||= Tenant.find(params[:tenant_id])
-  # end
-
-  # helper_method :current_tenant
-
-  # def index
-  #   @products = current_tenant.products
-  # end
-
   def new
     @store = Store.new
   end

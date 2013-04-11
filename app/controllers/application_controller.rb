@@ -9,14 +9,6 @@
 
   private
 
-
-  # def scope_current_tenant
-  #   Tenant.current_id = current_tenant.id
-  #   yield
-  # ensure
-  #   Tenant.current_id = nil
-  # end
-
   def current_cart
     Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound

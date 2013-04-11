@@ -1,7 +1,7 @@
 class Admin::ProductsController < Admin::BaseController
 
   def index
-    @products = current_tenant.products
+    @products = current_store.products
     # @products = Product.all
   end
 

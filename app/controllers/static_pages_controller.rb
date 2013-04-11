@@ -2,8 +2,7 @@ class StaticPagesController < ApplicationController
   layout 'static_layout'
 
   def index
-    # @tenant = Tenant.new 
-    @stores = Stores.all  
+    @stores = Store.all  
   end
 
 end
