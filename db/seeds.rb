@@ -1,30 +1,34 @@
+tenant1 = Tenant.create(name: "Mustaches", path: "mustaches")
+tenant2 = Tenant.create(name: "Hats", path: "hats")
+tenant3 = Tenant.create(name: "Glasses", path: "glasses")
+
 product1 = Product.create(title: "Pencil-Thin Mustache",
                description: "Adhesive, mystery-solving facial hair that is sure to fool anyone and everyone.",
-               price_in_dollars: 10.00, photo_file_name: "Sized1.png", photo_content_type: "image/png", photo_file_size: 43155, photo_updated_at: "2013-04-03 18:12:06")
+               price_in_dollars: 10.00, photo_file_name: "Sized1.png", photo_content_type: "image/png", photo_file_size: 43155, photo_updated_at: "2013-04-03 18:12:06", tenant: tenant1)
 product2 =Product.create(title: "Grandma's Glasses",
                description: "Do you want to break up the gang of Tea Shop bandits? Look 84 in these beauties.",
-               price_in_dollars: 35.00, photo_file_name: "Sized2.png", photo_content_type: "image/png", photo_file_size: 13225, photo_updated_at: "2013-04-03 19:37:04")
+               price_in_dollars: 35.00, photo_file_name: "Sized2.png", photo_content_type: "image/png", photo_file_size: 13225, photo_updated_at: "2013-04-03 19:37:04", tenant: tenant3)
 product3 = Product.create(title: "Jolly Gold Frames",
                description: "Trying to take down malevolent elves in Santa's workshop? Try our oval-shaped gold frames.",
-               price_in_dollars: 25.00, photo_file_name: "Sized3.png", photo_content_type: "image/png", photo_file_size: 13481, photo_updated_at: "2013-04-03 19:38:54")
+               price_in_dollars: 25.00, photo_file_name: "Sized3.png", photo_content_type: "image/png", photo_file_size: 13481, photo_updated_at: "2013-04-03 19:38:54", tenant: tenant3)
 product4 = Product.create(title: "These Glasses Are Over",
                description: "Hipster or librarian? You decide.",
-               price_in_dollars: 39.00, photo_file_name: "Sized4.png", photo_content_type: "image/png", photo_file_size: 18473, photo_updated_at: "2013-04-03 19:39:09")
+               price_in_dollars: 39.00, photo_file_name: "Sized4.png", photo_content_type: "image/png", photo_file_size: 18473, photo_updated_at: "2013-04-03 19:39:09", tenant: tenant3)
 product5 = Product.create(title: "Wire Aviator Glasses",
                description: "Flying over the high seas with John Travolta? Look the part with our Wire Aviator Glasses.",
-               price_in_dollars: 21.00, photo_file_name: "Sized5.png", photo_content_type: "image/png", photo_file_size: 13108, photo_updated_at: "2013-04-04 02:49:24")
+               price_in_dollars: 21.00, photo_file_name: "Sized5.png", photo_content_type: "image/png", photo_file_size: 13108, photo_updated_at: "2013-04-04 02:49:24", tenant: tenant3)
 product6 = Product.create(title: "Professor Glasses",
                description: "Do you want to carry around books and look really important? Then these glasses are for you!",
-               price_in_dollars: 30.00, photo_file_name: "Sized6.png", photo_content_type: "image/png", photo_file_size: 16346, photo_updated_at: "2013-04-03 19:39:46")
+               price_in_dollars: 30.00, photo_file_name: "Sized6.png", photo_content_type: "image/png", photo_file_size: 16346, photo_updated_at: "2013-04-03 19:39:46", tenant: tenant3)
 product7 = Product.create(title: "Bruno Bowler",
                description: "Looking to infiltrate an unruly band of steam punks? The Bruno Bowler will help you fit right in.",
-               price_in_dollars: 70.00, photo_file_name: "Sized7.png", photo_content_type: "image/png", photo_file_size: 42508, photo_updated_at: "2013-04-03 19:40:02")
+               price_in_dollars: 70.00, photo_file_name: "Sized7.png", photo_content_type: "image/png", photo_file_size: 42508, photo_updated_at: "2013-04-03 19:40:02", tenant: tenant2)
 product8 = Product.create(title: "Lincoln Top Hat",
                description: "Are you trying to take down civil war re-enactors? Maybe there is mayhem at the local dinner theater performing 'A Christmas Carol'. Either way, this top hat will camouflage you any day.",
-               price_in_dollars: 100.00, photo_file_name: "Sized8.png", photo_content_type: "image/png", photo_file_size: 36942, photo_updated_at: "2013-04-03 19:40:14")
+               price_in_dollars: 100.00, photo_file_name: "Sized8.png", photo_content_type: "image/png", photo_file_size: 36942, photo_updated_at: "2013-04-03 19:40:14", tenant: tenant2)
 product9 = Product.create(title: "Mobster Hat",
                description: "Those pesky mobsters at Carmine's Dry Cleaning will never see you coming!",
-               price_in_dollars: 115.00, photo_file_name: "Sized9.png", photo_content_type: "image/png", photo_file_size: 47857, photo_updated_at: "2013-04-03 19:40:28")
+               price_in_dollars: 115.00, photo_file_name: "Sized9.png", photo_content_type: "image/png", photo_file_size: 47857, photo_updated_at: "2013-04-03 19:40:28", tenant: tenant2)
 product10 = Product.create(title: "Weatherman Teeth",
                description: "For those solving the 'Case of the Missing Hairspray' at the local news station.",
                price_in_dollars: 75.00, photo_file_name: "Sized10.png", photo_content_type: "image/png", photo_file_size: 26780, photo_updated_at: "2013-04-03 19:40:41")

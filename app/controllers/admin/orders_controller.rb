@@ -4,8 +4,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def index
-    @orders = Order.all
-
+    # @orders = Order.all
+    @orders = current_tenant.orders
   end
 
   def update

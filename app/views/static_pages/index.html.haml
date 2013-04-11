@@ -1,3 +1,7 @@
 %h1 Welcome to StaticPages Index
+%p Check out one of the stores on our platform
+- @tenants.each do |tenant|
+  %li
+    = link_to tenant.name, "#{tenant.path}/products"
 
 / = render 'form'
