@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation,
                   :phone_number_attributes,
-                  :tenant_id
+                  :tenant_id, 
+                  :store_name
+
+  attr_accessor :store_name
 
   # validates :password, presence: true, length: { minimum: 6 }
   # validates :password_confirmation, presence: true
@@ -21,8 +24,9 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :phone_number
 
-  # default_scope { where(tenant_id: Tenant.current_id) }
+  after_create :create_tenant
 
+  # default_scope { where(tenant_id: Tenant.current_id) }
 
   def phone
     phone_number ? phone_number.phone : nil
@@ -35,4 +39,19 @@ class User < ActiveRecord::Base
   def can_receive_messages?
     phone.present? && receive_sms?
   end
+
+  private
+
+  def create_tenant
+    if self.tenant_id.nil?
+      t = Tenant.create(name: self.store_name)
+      if t.save
+        self.tenant_id = t.id
+        self.save
+      end
+    end
+  rescue ArgumentError
+    errors.add "you fucked up!!1"
+  end
+
 end
