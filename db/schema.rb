@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405225420) do
+ActiveRecord::Schema.define(:version => 20130411180559) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "store_id"
+  end
+
+  add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
+
+  create_table "customers", :force => true do |t|
+    t.string   "full_name"
+    t.string   "email"
+    t.string   "display_name"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "line_items", :force => true do |t|
@@ -60,7 +72,10 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.integer  "user_id",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "store_id"
   end
+
+  add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
   create_table "phone_numbers", :force => true do |t|
     t.string   "phone"
@@ -92,9 +107,11 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "slug"
+    t.integer  "store_id"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
+  add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "shipping_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -106,6 +123,11 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "stores", :force => true do |t|
+    t.string "name"
+    t.string "path"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false
     t.string   "display_name"
@@ -114,8 +136,10 @@ ActiveRecord::Schema.define(:version => 20130405225420) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
+    t.integer  "store_id"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
+  add_index "users", ["store_id"], :name => "index_users_on_store_id"
 
 end

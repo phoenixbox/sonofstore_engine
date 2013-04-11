@@ -9,7 +9,7 @@
   .tabbable
     %ul.nav.nav-tabs
       %li.active
-        = link_to "Profile", user_path(@user)
+        = link_to "Profile", admin_user_path(@user)
       %li
         = link_to "Past Orders", orders_path
 .row-fluid
@@ -28,12 +28,4 @@
         %p.span5= @user.display_name
     %li
       .span8
-        %p.span3.header Phone
-        %p.span5= @user.try(:phone)
-    %li
-      .span8
-        %p.span3.header Receive SMS Alerts
-        %p.span5= @user.try(:receive_sms?)
-    %li
-      .span8
-        = link_to "Update Profile", edit_user_path(@user)
+        = link_to "Update Profile", edit_admin_user_path(@user)

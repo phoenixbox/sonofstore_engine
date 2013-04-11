@@ -9,7 +9,7 @@
   .tabbable
     %ul.nav.nav-tabs
       %li
-        = link_to "Profile", user_path(current_user)
+        = link_to "Profile", admin_user_path(current_user)
       %li.active
         = link_to "Past Orders", orders_path
 .row-fluid

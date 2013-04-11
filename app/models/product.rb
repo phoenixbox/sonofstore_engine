@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :title, :description, :price_in_dollars, :active,
   :category_ids, :photo, :photo_file_name, :photo_content_type,
-  :photo_file_size, :photo_updated_at
+  :photo_file_size, :photo_updated_at, :store
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -12,12 +12,8 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, through: :product_categories
   has_many :line_items
+  belongs_to :store
   has_attached_file :photo #,
-    # :storage => :s3,
-    # :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    # :path => ":attachment/:id/:style.:extension",
-    # :bucket => "store-engine"
-
 
 
 
