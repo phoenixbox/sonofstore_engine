@@ -1,6 +1,6 @@
 StoreEngine::Application.routes.draw do
 
-  resources :tenants
+  resources :store
 
   resources :customers
 
@@ -48,8 +48,9 @@ StoreEngine::Application.routes.draw do
   resources :customer_sessions
   resources :phone_numbers
 
-  scope "/:tenant_id" do
+  scope "/:store_id" do
     match "/" => "products#index", :as => :home
+
     resources :products
     namespace :admin do
       resource :dashboard, :only => :show
@@ -58,6 +59,9 @@ StoreEngine::Application.routes.draw do
       resources :categories
       match "/" => "dashboards#show"
     end
+
+  end
+
 
   end
 
