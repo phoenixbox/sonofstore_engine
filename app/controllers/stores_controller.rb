@@ -1,4 +1,4 @@
-class TenantsController < ApplicationController
+class StoreController < ApplicationController
 
   # def current_tenant
   #   @tenant ||= Tenant.find(params[:tenant_id])
@@ -11,13 +11,12 @@ class TenantsController < ApplicationController
   # end
 
   def new
-    @tenant = Tenant.new
+    @store = Store.new
   end
 
   def create
-    @tenant = Tenant.new(params[:tenant])
-    # @user = @tenant.build.user(params[:users])
-    if @tenant.save #&& @user.save
+    @store = Store.new(params[:store])
+    if @store.save
       flash[:notice] = "Cheeers"
       redirect_to root_path
     else

@@ -1,21 +1,21 @@
   class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_tenant
+  helper_method :current_store
 
-  def current_tenant
-    @tenant ||= Tenant.find(params[:tenant_id])
+  def current_store
+    @store ||= Store.find(params[:store_id])
   end
 
   private
 
 
-  def scope_current_tenant
-    Tenant.current_id = current_tenant.id
-    yield
-  ensure
-    Tenant.current_id = nil
-  end
+  # def scope_current_tenant
+  #   Tenant.current_id = current_tenant.id
+  #   yield
+  # ensure
+  #   Tenant.current_id = nil
+  # end
 
   def current_cart
     Cart.find(session[:cart_id])

@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   layout 'static_layout'
-  
+
   def index
-    @tenant = Tenant.new   
+    @store = Store.new
   end
 
 end

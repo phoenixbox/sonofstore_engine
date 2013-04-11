@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation,
                   :phone_number_attributes,
-                  :tenant_id, 
+                  :store_id,
                   :store_name
 
   attr_accessor :store_name
@@ -20,13 +20,12 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_one :phone_number
-  belongs_to :tenant
-  
+  belongs_to :store
+
   accepts_nested_attributes_for :phone_number
 
-  after_create :create_tenant
+  after_create :create_store
 
-  # default_scope { where(tenant_id: Tenant.current_id) }
 
   def phone
     phone_number ? phone_number.phone : nil
@@ -42,11 +41,11 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_tenant
-    if self.tenant_id.nil?
-      t = Tenant.create(name: self.store_name)
+  def create_store
+    if self.store.nil?
+      t = Store.create(name: self.store_name)
       if t.save
-        self.tenant_id = t.id
+        self.store_id = t.id
         self.save
       end
     end
