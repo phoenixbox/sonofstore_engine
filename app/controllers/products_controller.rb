@@ -1,4 +1,4 @@
-  class ProductsController < ApplicationController
+class ProductsController < ApplicationController
 
   def index
     @products = current_store.products
@@ -8,7 +8,7 @@
 
 
   def show
-    @product = Product.find(params[:id])
+    @product = current_store.products.find(params[:id])
     @cart = current_cart
   end
 

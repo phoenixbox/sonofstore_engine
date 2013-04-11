@@ -6,6 +6,7 @@ class Store < ActiveRecord::Base
   has_many :users
   has_many :orders
   has_many :categories
+  has_many :carts
 
   accepts_nested_attributes_for :users
   def self.find(path)

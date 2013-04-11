@@ -61,7 +61,7 @@
             %br/
           %li.form-inline
             .span3.pull-left
-              = button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left", :id => "cart_link"
+              = button_to "Cart", cart_path(current_store, @cart), :method => :get, :class => "btn pull-left", :id => "cart_link"
             .span3.pull-left
               - if @cart.line_items.count >= 1
                 = button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left"

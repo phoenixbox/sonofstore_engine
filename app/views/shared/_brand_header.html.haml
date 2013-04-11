@@ -4,19 +4,19 @@
       %h1
         %a{:href => "/"}
           = image_tag("http://store-engine.s3.amazonaws.com/assets/Cloak_and_DaggerSmall.png")
-    .span6
-      .cart_link.pull-right
-        %span
-          - if current_cart && !admin_user
-            - cart_count = []
-            - current_cart.line_items.each do |li|
-              - cart_count << li.quantity
-            - items_count = cart_count.inject(:+)
-        - if items_count == 1
-          %p= link_to "1 item in cart", cart_path(current_cart)
-        - elsif current_cart.line_items.count == 0
-          %p= link_to "0 items in cart", cart_path(current_cart)
-        - else
-          %p= link_to "#{items_count} items in cart", cart_path(current_cart)
-        = link_to cart_path(current_cart) do
-          %i.icon-shopping-cart.icon-2x
+    / .span6
+    /   .cart_link.pull-right
+    /     %span
+    /       - if current_cart && !admin_user
+    /         - cart_count = []
+    /         - current_cart.line_items.each do |li|
+    /           - cart_count << li.quantity
+    /         - items_count = cart_count.inject(:+)
+    /     - if items_count == 1
+    /       %p= link_to "1 item in cart", cart_path(current_cart)
+    /     - elsif current_cart.line_items.count == 0
+    /       %p= link_to "0 items in cart", cart_path(current_cart)
+    /     - else
+    /       %p= link_to "#{items_count} items in cart", cart_path(current_cart)
+    /     = link_to cart_path(current_cart) do
+    /       %i.icon-shopping-cart.icon-2x

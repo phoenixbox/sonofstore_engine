@@ -7,7 +7,7 @@ class LineItemsController < ApplicationController
     @line_item.product = product
 
     if @line_item.save
-      redirect_to product_path(product)
+      redirect_to product_path(product.store, product)
     else
       flash[:error] = 'An error occurred, please try again'
     end
