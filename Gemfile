@@ -45,6 +45,7 @@ group :development, :test do
   gem 'reek'
   gem 'erb2haml'
   gem 'html2haml'
+  gem 'pry-remote'
 end
 
 group :development do 

@@ -1,9 +1,9 @@
 .row-fluid
   #login
     .span6.offset3
-      %h2.text-center Log In
+      %h2.text-center Admin Log In
       = link_to "Not registered? Sign up here", signup_path
-      = simple_form_for :session, :url => sessions_path, :html => {:class => 'bs-container'} do |f|
+      = simple_form_for :user_session, :url => admin_user_sessions_path, :html => {:class => 'bs-container'} do |f|
         = f.error_notification
         = f.input :email
         = f.input :password

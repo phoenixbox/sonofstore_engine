@@ -7,15 +7,15 @@
         %span.icon-bar
       .nav-collapse
         %ul.nav.pull-right
-          - if current_user
-            - if current_user.display_name != nil
-              - user_name = current_user.display_name
+          - if current_customer
+            - if !current_customer.display_name.blank?
+              - customer_name = current_customer.display_name
             - else
-              - user_name = current_user.full_name
+              - customer_name = current_customer.full_name
             %li
               %p
-                Welcome #{user_name}!
-            %li= link_to "My Account", user_path(current_user)
+                Welcome #{customer_name}!
+            %li= link_to "My Account", customer_path(current_customer)
             %li= link_to "Logout", logout_path
           - else
             %li= link_to "Log In", login_path

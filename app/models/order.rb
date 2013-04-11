@@ -1,11 +1,12 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :user_id, :stripe_card_token
+  attr_accessible :total_price, :user_id, :stripe_card_token, :store
   attr_accessor :stripe_card_token
 
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
 
   belongs_to :user
+  belongs_to :store
   validates_presence_of :total_price, :user_id
 
   def self.create_from_cart(cart, order_details, user)

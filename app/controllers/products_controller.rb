@@ -1,7 +1,9 @@
   class ProductsController < ApplicationController
+
   def index
-    @products = Product.page(params[:page]).per(12)
-    @categories = Category.all
+    @products = current_store.products
+    # @products = Product.page(params[:page]).per(12)
+    # @categories = Category.all
   end
 
 
