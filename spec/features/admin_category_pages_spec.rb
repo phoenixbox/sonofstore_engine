@@ -78,11 +78,11 @@ describe "Category pages" do
       
       it "should have delete links for each category listed" do
         page.should have_content("Beards")
-        page.should have_link("Delete", href: admin_category_path(category))
+        page.should have_link("Delete", href: admin_category_path(category.store, category))
       end
 
       it "should have an edit link on the page" do
-        page.should have_link("Edit", href: edit_admin_category_path(category))
+        page.should have_link("Edit", href: edit_admin_category_path(category.store, category))
       end
     end
   end
@@ -99,7 +99,7 @@ describe "Category pages" do
 
     let!(:category){Category.create(name: "Capybara")}
 
-    before { visit edit_admin_category_path(category) }
+    before { visit edit_admin_category_path(category.store, category) }
 
     it "successfully updates the category" do
       fill_in "Name", with: "Kareem"
@@ -124,8 +124,8 @@ describe "Category pages" do
     before { visit admin_categories_path }
     
     it "successfully deletes the category" do
-      page.click_link(href: admin_category_path(category)) 
-      page.should_not have_link("Delete", href: admin_category_path(category))
+      page.click_link(href: admin_category_path(category.store, category)) 
+      page.should_not have_link("Delete", href: admin_category_path(category.store, category))
     end
   end
 

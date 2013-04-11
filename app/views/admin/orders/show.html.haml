@@ -83,8 +83,8 @@
             Change Order Status To:
         %span
           - if @order.current_status == "pending"
-            = link_to "Cancel", admin_order_path(@order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Cancel", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
           - elsif @order.current_status == "shipped"
-            = link_to "Mark as returned", admin_order_path(@order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Mark as returned", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
           - elsif @order.current_status == "paid"
-            = link_to "Mark as shipped", admin_order_path(@order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Mark as shipped", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"

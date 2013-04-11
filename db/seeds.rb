@@ -80,14 +80,15 @@ product25 = Product.create(title: "Cletus Mullet",
 
 cart1 = Cart.create
 line_item1 = LineItem.create(product_id: 1, cart_id: cart1.id)
-order1 = Order.create(total_price: line_item1.total_price,  user_id: 1)
+order1 = Order.create(total_price: line_item1.total_price,  user_id: 1, store: store1 )
 order1.line_items = []
 order1.line_items << line_item1
 
+# line_item 2 & 3 refer to prod 2,3 which both come from store3
 cart2 = Cart.create
 line_item2 = LineItem.create(product_id: 2, cart_id: cart2.id)
 line_item3 = LineItem.create(product_id: 3, cart_id: cart2.id, quantity: 3)
-order2 = Order.create(total_price: (line_item2.total_price + line_item3.total_price),  user_id: 1)
+order2 = Order.create(total_price: (line_item2.total_price + line_item3.total_price),  user_id: 1, store: store3 )
 order2.line_items = []
 order2.line_items << line_item2
 order2.line_items << line_item3
@@ -97,7 +98,7 @@ cart3 = Cart.create
 line_item4 = LineItem.create(product_id: 4, cart_id: cart3.id, quantity: 2)
 line_item5 = LineItem.create(product_id: 5, cart_id: cart3.id, quantity: 4)
 line_item6 = LineItem.create(product_id: 6, cart_id: cart3.id)
-order3 = Order.create(total_price: (line_item4.total_price + line_item5.total_price + line_item6.total_price),  user_id: 1)
+order3 = Order.create(total_price: (line_item4.total_price + line_item5.total_price + line_item6.total_price),  user_id: 1, store: store3 )
 order3.line_items = []
 order3.line_items << line_item4
 order3.line_items << line_item5
@@ -109,7 +110,7 @@ cart4 = Cart.create
 line_item7 = LineItem.create(product_id: 7, cart_id: cart4.id, quantity: 2)
 line_item8 = LineItem.create(product_id: 8, cart_id: cart4.id, quantity: 2)
 line_item9 = LineItem.create(product_id: 9, cart_id: cart4.id, quantity: 2)
-order4 = Order.create(total_price: (line_item7.total_price + line_item8.total_price + line_item9.total_price),  user_id: 2)
+order4 = Order.create(total_price: (line_item7.total_price + line_item8.total_price + line_item9.total_price),  user_id: 2, store: store2)
 order4.line_items = []
 order4.line_items << line_item7
 order4.line_items << line_item8
@@ -186,15 +187,15 @@ order10.line_items << line_item26
 order10.line_items << line_item27
 order10.cancel
 
-category1 = Category.create(name: "Hats")
-category2 = Category.create(name: "Wigs")
-category3 = Category.create(name: "Glasses")
-category4 = Category.create(name: "Mustaches")
-category5 = Category.create(name: "Teeth & Lips")
-category6 = Category.create(name: "Hair")
-category7 = Category.create(name: "Sideburns")
-category8 = Category.create(name: "Beards")
-category9 = Category.create(name: "Facial Hair")
+category1 = Category.create(name: "Hats", store: store2)
+category2 = Category.create(name: "Wigs", store: store2)
+category3 = Category.create(name: "Glasses", store: store3)
+category4 = Category.create(name: "Mustaches", store: store1)
+category5 = Category.create(name: "Teeth & Lips", store: store2 )
+category6 = Category.create(name: "Hair", store: store2)
+category7 = Category.create(name: "Sideburns", store: store1)
+category8 = Category.create(name: "Beards", store: store1)
+category9 = Category.create(name: "Facial Hair", store: store1)
 
 User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
 User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
