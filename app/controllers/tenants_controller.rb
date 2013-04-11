@@ -1,8 +1,17 @@
 class TenantsController < ApplicationController
 
+  # def current_tenant
+  #   @tenant ||= Tenant.find(params[:tenant_id])
+  # end
+
+  # helper_method :current_tenant
+
+  # def index
+  #   @products = current_tenant.products
+  # end
+
   def new
     @tenant = Tenant.new
-    @tenant.build.user
   end
 
   def create

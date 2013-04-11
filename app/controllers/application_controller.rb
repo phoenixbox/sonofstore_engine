@@ -1,13 +1,11 @@
   class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  around_filter :scope_current_tenant, only: :products
+  helper_method :current_tenant
 
   def current_tenant
-    Tenant.find_by_subdomain! request.subdomain
+    @tenant ||= Tenant.find(params[:tenant_id])
   end
-  
-  helper_method :current_tenant
 
   private
 

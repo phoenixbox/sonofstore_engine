@@ -43,6 +43,11 @@ StoreEngine::Application.routes.draw do
   resources :customer_sessions
   resources :phone_numbers
 
+  scope "/:tenant_id" do
+    match "/" => "products#index", :as => :home
+    end
+
+
 
   root :to => 'static_pages#index'
   # The priority is based upon order of creation:
