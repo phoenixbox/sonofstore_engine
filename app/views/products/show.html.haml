@@ -34,37 +34,37 @@
       .form.form-horizontal
         - if @product.active
           .form-actions
-            = button_to "Add to Cart", line_items_path(product_id: @product), :class => "btn"
-  .cart_sidebar.span4
-    .row-fluid
-      .span12
-        %h4 Your Cart
-    .row-fluid
-      %ul
-        - @cart.line_items.each do |line_item|
-          %li
-            .span7.pull-left
-              %a{"data-original-title" => "See Detail", :href => "#", :rel => "tooltip"}= line_item.product.title
-            .span2.pull-left= line_item.quantity
-            .span2.pull-left
-              = number_to_currency(line_item.total_price)
-            %br/
-    .row-fluid
-      .span12.total-price
-        %ul
-          %li
-            .span7.pull-left
-              %strong
-                Total Price
-            .span3.pull-right
-              %strong= number_to_currency(@cart.total_price)
-            %br/
-          %li.form-inline
-            .span3.pull-left
-              = button_to "Cart", cart_path(@cart), :method => :get, :class => "btn pull-left", :id => "cart_link"
-            .span3.pull-left
-              - if @cart.line_items.count >= 1
-                = button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left"
-            .span5.pull-right
-              = button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse pull-right"
+            = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "btn"
+  / .cart_sidebar.span4
+  /   .row-fluid
+  /     .span12
+  /       %h4 Your Cart
+  /   .row-fluid
+  /     %ul
+  /       - @cart.line_items.each do |line_item|
+  /         %li
+  /           .span7.pull-left
+  /             %a{"data-original-title" => "See Detail", :href => "#", :rel => "tooltip"}= line_item.product.title
+  /           .span2.pull-left= line_item.quantity
+  /           .span2.pull-left
+  /             = number_to_currency(line_item.total_price)
+  /           %br/
+  /   .row-fluid
+  /     .span12.total-price
+  /       %ul
+  /         %li
+  /           .span7.pull-left
+  /             %strong
+  /               Total Price
+  /           .span3.pull-right
+  /             %strong= number_to_currency(@cart.total_price)
+  /           %br/
+  /         %li.form-inline
+  /           .span3.pull-left
+  /             = button_to "Cart", cart_path(current_store, @cart), :method => :get, :class => "btn pull-left", :id => "cart_link"
+  /           .span3.pull-left
+  /             - if @cart.line_items.count >= 1
+  /               = button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left"
+  /           .span5.pull-right
+  /             = button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse pull-right"
 %p= link_to "Back to all products", products_path

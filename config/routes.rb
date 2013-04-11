@@ -28,9 +28,9 @@ StoreEngine::Application.routes.draw do
   end
 
 
-  resources :carts
+  # resources :carts
   resources :categories, :only => [:index, :show]
-  resources :products, :only => [:index, :show]
+  # resources :products, :only => [:index, :show]
 
   put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
   put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
@@ -54,6 +54,7 @@ StoreEngine::Application.routes.draw do
     match "/" => "products#index", :as => :home
 
     resources :products
+    resources :carts
     
     namespace :admin do
       resource :dashboard, :only => :show
