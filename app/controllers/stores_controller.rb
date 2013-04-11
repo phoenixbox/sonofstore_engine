@@ -1,7 +1,9 @@
-class StoreController < ApplicationController
+class StoresController < ApplicationController
 
   def new
     @store = Store.new
+    @store.users.build
+    render :layout => 'application'
   end
 
   def create

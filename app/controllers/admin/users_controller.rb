@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::BaseController
   def new
     @user = User.new
     @user.build_phone_number
+    render :layout => 'application'
   end
 
   def create

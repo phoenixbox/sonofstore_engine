@@ -40,10 +40,12 @@ StoreEngine::Application.routes.draw do
   resources :billing_address
   resources :shipping_addresses
   resources :line_items
+  resources :stores
 
   get 'signup', to: 'customers#new', as: 'signup'
   get 'login', to: 'customer_sessions#new', as: 'login'
   get 'logout', to: 'customer_sessions#destroy', as: 'logout'
+  get 'register', to: 'stores#new', as: 'register'
 
   resources :customer_sessions
   resources :phone_numbers
@@ -58,6 +60,11 @@ StoreEngine::Application.routes.draw do
       resources :products, :except => :destroy
       resources :orders#, :only => [:index, :show, :update]
       resources :categories
+      resources :users #, :except => [:index, :destroy]
+      
+      get 'login', to: 'user_sessions#new', as: 'login'
+      get 'logout', to: 'user_sessions#destroy', as: 'logout'
+      
       match "/" => "dashboards#show"
     end
 
