@@ -9,13 +9,25 @@ class ApplicationController < ActionController::Base
 
   private
 
+
   def current_cart
+
     if session[:cart_id]
-      @cart ||= Cart.find(session[:cart_id])
+      cart = Cart.find(session[:cart_id])
+      unless cart.store == current_store
+        cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
+      end
     else
-      @cart ||= NullCart.new
+      cart = Cart.find_by_sid(session[:session_id])
+      if cart.nil?
+        cart = Cart.create!(store_id: current_store.id, sid: session[:session_id])
+      end
     end
+
+    session[:cart_id] = cart.id
+    cart
   end
+
 
   helper_method :current_cart
 

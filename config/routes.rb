@@ -55,17 +55,17 @@ StoreEngine::Application.routes.draw do
 
     resources :products
     resources :carts
-    
+
     namespace :admin do
       resource :dashboard, :only => :show
       resources :products, :except => :destroy
       resources :orders#, :only => [:index, :show, :update]
       resources :categories
       resources :users #, :except => [:index, :destroy]
-      
+
       get 'login', to: 'user_sessions#new', as: 'login'
       get 'logout', to: 'user_sessions#destroy', as: 'logout'
-      
+
       match "/" => "dashboards#show"
       put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
       put '/decrease_quantity_from_order/:id' => 'orders#decrease_quantity_from_order', :as => 'decrease_quantity_from_order'
@@ -79,12 +79,6 @@ StoreEngine::Application.routes.draw do
 
 
   root :to => 'static_pages#index'
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

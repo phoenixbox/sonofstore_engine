@@ -1,8 +1,12 @@
 class LineItemsController < ApplicationController
 
+  # before_filter :find_or_create_cart, only: :create
+
   def create
-    cart = find_cart
-    binding.pry
+    logger.debug("in line_item create")
+
+    cart = find_or_create_cart
+    logger.debug(session[:cart_id])
     product = Product.find(params[:product_id])
     @line_item = cart.add_product(product.id)
     @line_item.product = product
@@ -29,19 +33,30 @@ class LineItemsController < ApplicationController
 
   private
 
-  def find_cart
-    if current_cart.store == current_store
-      cart = current_cart
-    else
-      cart = Cart.find_by_store_id(current_store.id)
-      if cart
-        session[:cart_id] = cart.id
-      else
-        cart = Cart.create!(:store_id => current_store.id)
-        session[:cart_id] = cart.id
-      end
-      cart
+  def find_or_create_cart
+    logger.debug("in find_or_create_cart")
+
+    cart = current_cart
+    if cart.nil?
+      cart = Cart.create!(:store_id => current_store.id)
     end
+    logger.debug("cart equals #{cart}")
+    cart
   end
+
+  # def find_cart
+  #   if current_cart.store == current_store
+  #     cart = current_cart
+  #   else
+  #     cart = Cart.find_by_store_id(current_store.id)
+  #     if cart
+  #       session[:cart_id] = cart.id
+  #     else
+  #       cart = Cart.create!(:store_id => current_store.id)
+  #       session[:cart_id] = cart.id
+  #     end
+  #     cart
+  #   end
+  # end
 
 end
