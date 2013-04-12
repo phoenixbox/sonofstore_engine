@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412035154) do
+ActiveRecord::Schema.define(:version => 20130412194836) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "user_id"
@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(:version => 20130412035154) do
   end
 
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
-
-  create_table "customers", :force => true do |t|
-    t.string   "full_name"
-    t.string   "email"
-    t.string   "display_name"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
 
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
@@ -142,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20130412035154) do
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
     t.integer  "store_id"
+    t.boolean  "guest"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
