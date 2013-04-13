@@ -20,3 +20,7 @@
 
         %ul.nav.pull-right
           / %li= link_to "My Cart", cart_path(current_store, current_cart)
+            %li= link_to "Log In", login_path
+            %li= link_to "Sign Up", signup_path
+        %ul.nav.pull-right
+          %li= link_to "My Cart", cart_path(current_store, current_cart)
