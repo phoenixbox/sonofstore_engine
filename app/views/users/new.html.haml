@@ -3,24 +3,6 @@
     .span6.offset3
       %h2.text-center Create an Account
       = link_to "Already registered? Log in here", login_path, :class => 'text-center'
-      = form_for @user, :html => { :class => 'bs-container' } do |f|
-        = f.label "Full Name"
-        = f.text_field :full_name
-
-        = f.label "Email"
-        = f.text_field :email
-
-        = f.label "Username (optional)"
-        = f.text_field :display_name
-
-        = f.label "Password"
-        = f.text_field :password
-
-        = f.label "Password Confirmation"
-        = f.text_field :password_confirmation
-        %br
-        = f.submit "Register", :class => "btn-primary"
-      
       
       = render 'form'
 
