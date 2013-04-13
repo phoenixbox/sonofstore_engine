@@ -11,3 +11,26 @@
         = "current session: #{session.inspect}"
         = "current_store: #{current_store.inspect}"
        
+        / = "current cart: #{current_cart.inspect}"
+        / = "current session: #{session.inspect}"
+        / = "current_store: #{current_store.inspect}"
+
+        / - if current_cart.store == current_store
+        /   = "hello"
+        / - else
+        /   = "no cart for you"
+        / only show the cart if the current_cart.store == store_id
+
+        /   - if current_cart && !admin_user
+        /     - cart_count = []
+        /     - current_cart.line_items.each do |li|
+        /       - cart_count << li.quantity
+        /     - items_count = cart_count.inject(:+)
+        / - if items_count == 1
+        /   %p= link_to "1 item in cart", cart_path(current_cart)
+        / - elsif current_cart.line_items.count == 0
+        /   %p= link_to "0 items in cart", cart_path(current_cart)
+        / - else
+        /   %p= link_to "#{items_count} items in cart", cart_path(current_cart)
+        / = link_to cart_path(current_cart) do
+        /   %i.icon-shopping-cart.icon-2x
