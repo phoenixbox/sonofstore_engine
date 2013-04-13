@@ -8,6 +8,27 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(session[:user_id]), notice: "Thank you for signing up!"
+  layout 'signup'
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+  end
+
+  def index
+    @users = User.all
+  end
+
+  def new
+    @user = User.new
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      UserMailer.signup_confirmation_email(@user).deliver
+      session[:user_id] = @user.id
+      flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_user_path(@user) )}".html_safe
+      redirect_back_or_default(session[:return_to])
     else
       render "new"
     end

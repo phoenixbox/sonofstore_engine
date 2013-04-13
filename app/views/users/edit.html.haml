@@ -13,6 +13,10 @@
       %li
         = link_to "Past Orders", orders_path
 = simple_form_for @customer do |f|
+        = link_to "Profile", @user
+      / %li
+      /   = link_to "Past Orders", orders_path
+= simple_form_for @user do |f|
   = f.error_notification
   = f.input :full_name
   = f.input :email

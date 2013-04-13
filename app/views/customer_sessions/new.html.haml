@@ -2,8 +2,8 @@
   #login
     .span6.offset3
       %h2.text-center Log In
-      = link_to "Not registered? Sign up here", signup_path
-      = simple_form_for :session, :url => customer_sessions_path, :html => {:class => 'bs-container'} do |f|
+      = link_to "Not registered? Sign up here", new_session_path
+      = simple_form_for :session, :url => sessions_path, :html => {:class => 'bs-container'} do |f|
         = f.error_notification
         = f.input :email
         = f.input :password
