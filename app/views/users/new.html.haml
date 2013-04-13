@@ -20,8 +20,6 @@
         = f.text_field :password_confirmation
         %br
         = f.submit "Register", :class => "btn-primary"
-      
-      
       = render 'form'
 
       - if current_user.nil?
