@@ -4,5 +4,12 @@ class UserMailer < ActionMailer::Base
   def order_confirmation_email(user)
     @user = user
     mail(:to => user.email, :subject => "Order Confirmation")
+  end  
+
+  def signup_confirmation_email(user)
+    @user = user
+    mail(:to => user.email, :subject => "Sign-up Confirmation")
   end
+
+  
 end

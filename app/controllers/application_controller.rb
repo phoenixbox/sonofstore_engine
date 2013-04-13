@@ -2,16 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_store
-
+  
   def current_store
     @store ||= Store.find(params[:store_id])
   end
 
   private
 
-
   def current_cart
-
     if session[:cart_id]
       cart = Cart.find(session[:cart_id])
       unless cart.store == current_store
@@ -23,7 +21,6 @@ class ApplicationController < ActionController::Base
         cart = Cart.create!(store_id: current_store.id, sid: session[:session_id])
       end
     end
-
     session[:cart_id] = cart.id
     cart
   end

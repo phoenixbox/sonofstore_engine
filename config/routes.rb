@@ -1,48 +1,23 @@
 StoreEngine::Application.routes.draw do
 
   resources :store
-
-  resources :customers
+  resources :sessions
+  resources :users
 
   resources :static_pages, :only => :index
 
-  namespace :admin do
-    # resources :orders, :only => [:index, :show, :update]
-    # resources :categories
-    # resources :products, :except => :destroy
-    # resource :dashboard, :only => :show
-    # resources :user_sessions
-    # resources :users #, :except => [:index, :destroy]
-    # put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
-    # put '/decrease_quantity_from_order/:id' => 'orders#decrease_quantity_from_order', :as => 'decrease_quantity_from_order'
-    # get '/', to: 'user_sessions#new'
-
-    # get 'signup', to: 'users#new', as: 'signup'
-    # get 'login', to: 'user_sessions#new', as: 'login'
-    # get 'logout', to: 'user_sessions#destroy', as: 'logout'
-
-    # scope "/:tenant_id" do
-    # match "/" => "products#index", :as => :home
-    # resources :products
-    # end
-  end
-
-
-  # resources :carts
   resources :categories, :only => [:index, :show]
-  # resources :products, :only => [:index, :show]
 
   put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
   put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
 
-  resources :orders
+  
 
   resources :billing_address
   resources :shipping_addresses
   resources :line_items
   resources :stores
 
-  get 'signup', to: 'customers#new', as: 'signup'
   get 'login', to: 'customer_sessions#new', as: 'login'
   get 'logout', to: 'customer_sessions#destroy', as: 'logout'
   get 'register', to: 'stores#new', as: 'register'
@@ -55,6 +30,7 @@ StoreEngine::Application.routes.draw do
 
     resources :products
     resources :carts
+    resources :orders
 
     namespace :admin do
       resource :dashboard, :only => :show
