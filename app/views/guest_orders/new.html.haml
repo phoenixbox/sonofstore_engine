@@ -1,0 +1,22 @@
+#signup
+  .row-fluid
+    .span6.offset3
+      %h2.text-center Guest Checkout
+      = render 'form'
+      
+    
+
+      / - unless session = new_user_url
+      /   - session[:return_to] = request.referrer
+      / - if session[:return_to].nil?
+      /   - session[:return_to] = root_path
+      / add it to the session
+      /if that variable does equal the signup page, don't add it to the session
+
+
+      / - if current_user.nil?
+      /   - session[:return_to] = root_path
+      / - elsif request.referrer == "http://localhost:3000/users/new"
+      /   - session[:return_to] = edit_user_path(current_user)
+      / - else
+      /   - session[:return_to] = request.referrer

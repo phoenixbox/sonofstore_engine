@@ -1,7 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :get_referrer, :only => [:new]
+
   helper_method :current_store
+
+  def get_referrer
+    if request.referrer.include?("login")
+      session[:return_to]
+    elsif request.referrer.include?("users")
+      session[:return_to]
+    else
+      session[:return_to] = request.referrer
+    end
+  end
   
   def current_store
     @store ||= Store.find(params[:store_id])

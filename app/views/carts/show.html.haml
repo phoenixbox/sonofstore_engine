@@ -60,4 +60,6 @@
       .span5.pull-left
         = button_to "Continue Shopping", products_path(current_store), :method => :get, :class => "btn"
       .span2.pull-right
+        = button_to "Checkout As Guest", {:controller => "guest_orders", :action => "new"}, :method => :get, :class => "btn btn-inverse"
+      .span2.pull-right
         = button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse"

@@ -26,15 +26,15 @@ feature "Scenario: Visitor signs in during checkout" do
           page.should have_button "Add to Cart"
           click_button "Add to Cart"
           current_path.should == "/hats/products/mobster-hat"
+          page.should have_link "My Cart"
+          click_link "My Cart"
           page.should have_button "Checkout"
           click_button "Checkout"
-          current_path.should == "/checkout"
-          page.should have_link "Log In"
-          click_link "Log In"
+          current_path.should == "/login"
           fill_in "sessions_email", :with => "email@email.com"
           fill_in "sessions_password", :with => 'pass'
           click_button("Log In")
-          current_path.should == '/checkout'
+          current_path.should include("/hats/carts")
         end
       end
 

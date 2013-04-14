@@ -7,10 +7,16 @@
     = javascript_include_tag "https://js.stripe.com/v1/",  "application"
     = csrf_meta_tags
   %body
-    = render :partial => "shared/navbar"
+    = render :partial => "shared/navbar", :except => {}
     .container
       = render :partial => "shared/brand_header"
       = render :partial => "shared/sub_menu", :locals => {:categories =>  @categories}
       = render :partial => "shared/flash_messages", :locals => {:flash => flash}
       = yield
       = render :partial => "shared/footer"
+      %br
+      = "CURRENT USER:#{current_user.inspect}" if Rails.env.development?
+      %br
+      = "CURRENT CART: #{current_cart.inspect}" if Rails.env.development?
+      %br
+      = "CURRENT STORE: #{current_store.inspect}" if Rails.env.development?

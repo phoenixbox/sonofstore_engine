@@ -2,10 +2,6 @@ class UsersController < ApplicationController
 
   layout 'signup'
 
-  def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
-  end
-
   def index
     @users = User.all
   end
@@ -20,14 +16,14 @@ class UsersController < ApplicationController
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_user_path(@user) )}".html_safe
-      redirect_back_or_default(session[:return_to])
+      redirect_to(session[:return_to])
     else
       render "new"
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def edit
