@@ -5,7 +5,7 @@ class Cart < ActiveRecord::Base
 
   belongs_to :store
 
-  validates_presence_of :sid, :store_id
+  validates_presence_of :store_id #:sid
 
   def add_product(product_id)
     current_item = line_items.find_by_product_id(product_id)

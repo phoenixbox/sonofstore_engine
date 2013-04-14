@@ -1,4 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'factory_girl_rails'
+require 'rspec-rails'
 require 'simplecov'
 SimpleCov.start do
   add_filter '/spec'
