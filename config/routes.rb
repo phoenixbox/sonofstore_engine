@@ -18,8 +18,8 @@ StoreEngine::Application.routes.draw do
   resources :line_items
   resources :stores
 
-  get 'login', to: 'customer_sessions#new', as: 'login'
-  get 'logout', to: 'customer_sessions#destroy', as: 'logout'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy'
   get 'register', to: 'stores#new', as: 'register'
 
   resources :customer_sessions
@@ -39,8 +39,6 @@ StoreEngine::Application.routes.draw do
       resources :categories
       resources :users #, :except => [:index, :destroy]
 
-      get 'login', to: 'user_sessions#new', as: 'login'
-      get 'logout', to: 'user_sessions#destroy', as: 'logout'
 
       match "/" => "dashboards#show"
       put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
