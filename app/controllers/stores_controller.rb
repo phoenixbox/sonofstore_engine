@@ -1,9 +1,10 @@
 class StoresController < ApplicationController
+  layout 'signup'
 
   def new
     @store = Store.new
     @store.users.build
-    render :layout => 'application'
+    render :stores => 'new'
   end
 
   def create

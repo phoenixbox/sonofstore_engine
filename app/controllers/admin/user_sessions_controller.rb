@@ -13,7 +13,7 @@ class Admin::UserSessionsController < Admin::BaseController
       #   redirect_to root_url, notice: "Logged in!"
       # end
       session[:user_id] = @user.id
-      flash[:notice] = "Created!"
+      flash[:notice] = "Logged In!"
       redirect_to admin_user_path(@user)
     else
       flash.now[:error] = "Wrong user email and/or password"

@@ -1,7 +1,6 @@
 StoreEngine::Application.routes.draw do
 
-  resources :store
-  resources :sessions
+  # resources :store
   resources :users
 
   resources :static_pages, :only => :index
@@ -17,12 +16,14 @@ StoreEngine::Application.routes.draw do
   resources :shipping_addresses
   resources :line_items
   resources :stores
+  resources :sessions
 
-  get 'login', to: 'customer_sessions#new', as: 'login'
-  get 'logout', to: 'customer_sessions#destroy', as: 'logout'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'register', to: 'stores#new', as: 'register'
 
-  resources :customer_sessions
+  get 'profile', :to => 'users#show', as: 'profile'
+
   resources :phone_numbers
 
   scope "/:store_id" do
@@ -31,6 +32,7 @@ StoreEngine::Application.routes.draw do
     resources :products
     resources :carts
     resources :orders
+    resources :guest_orders
 
     namespace :admin do
       resource :dashboard, :only => :show

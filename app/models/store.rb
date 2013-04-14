@@ -1,6 +1,9 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :path, :users_attributes
+  attr_accessible :name, :path, :description, :users_attributes
   cattr_accessor :current_id
+
+  validates_uniqueness_of :name, :path
+  validates_presence_of :name, :path
 
   has_many :products
   has_many :users

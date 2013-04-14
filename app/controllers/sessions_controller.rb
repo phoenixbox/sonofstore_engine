@@ -3,11 +3,13 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def create
+  def index
+  end
 
-    @user = User.find_by_email(params[:session][:email])
-    if @user && @user.authenticate(params[:session][:password])
-      # if @use.admin
+  def create
+    @user = User.find_by_email(params[:sessions][:email])
+    if @user && @user.authenticate(params[:sessions][:password])
+      # if @user.admin
       #   session[:user_id] = @user.id
       #   redirect_to admin_dashboard_path, notice: "Logged in!"
       # elsif @user.admin == false
@@ -15,8 +17,8 @@ class SessionsController < ApplicationController
       #   redirect_to root_url, notice: "Logged in!"
       # end
       session[:user_id] = @user.id
-      flash[:notice] = "Created!"
-      redirect_to static_pages_path
+      flash[:notice] = "Logged In!"
+      redirect_to(session[:return_to])
     else
       flash.now[:error] = "Wrong user email and/or password"
       render "new"
