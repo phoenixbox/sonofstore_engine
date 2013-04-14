@@ -39,6 +39,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'capybara'
   gem 'fabrication'
+  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'cane'
   gem 'reek'
