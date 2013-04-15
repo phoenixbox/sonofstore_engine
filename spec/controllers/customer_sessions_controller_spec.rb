@@ -1,5 +1,5 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe CustomerSessionsController do
+# describe CustomerSessionsController do
 
-end
+# end
