@@ -1,6 +1,6 @@
 class BillingAddress < ActiveRecord::Base
-  attr_accessible :street, :city, :state, :zipcode, :consumer_id
+  attr_accessible :street, :city, :state, :zipcode, :order_id
 
-  belongs_to :consumer
-  validates_presence_of :street, :city, :state, :zipcode, :consumer_id
+  belongs_to :order
+  validates_presence_of :street, :city, :state, :zipcode, :order_id
 end

@@ -4,20 +4,23 @@ class Order < ActiveRecord::Base
 
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
+  has_one :shipping_address
+  has_one :billing_address
 
   belongs_to :store
   belongs_to :consumer
   validates_presence_of :total_price, :consumer_id
 
-  def self.create_from_cart(cart, order_details, user)
-
+  def self.create_from_cart(cart, order_details, consumer)
+    binding.pry
     order = new(order_details)
     order.add_line_items(cart)
     order.total_price = order.total_price_from_cart(cart)
-    order.user = user
+    order.consumer = consumer
 
-    order.save_with_payment
-    order
+    if order.save
+      order
+    end
   end
 
   def save_with_payment

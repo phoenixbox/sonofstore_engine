@@ -20,8 +20,19 @@ class OrdersController < ApplicationController
   end
 
   def create
-
-    @order = Order.create_from_cart(current_cart, params[:order], current_user)
+    binding.pry
+    # log in check
+    if current_user
+      # logged in then create new consumer
+      consumer = Consumer.find_by_user_id(current_user)
+      unless consumer
+        consumer = Consumer.create(email: current_user.email)      
+      end
+    else
+      consumer = Consumer.create(email: params[:email])      
+    end
+    
+    @order = Order.create_from_cart(current_cart, params[:order], consumer)
 
     if @order.id
       UserMailer.order_confirmation_email(current_user).deliver
@@ -30,6 +41,7 @@ class OrdersController < ApplicationController
       flash[:notice] = "Your payment was successfully submitted!"
       redirect_to order_path(@order)
     else
+      flash.now[:notice] = "There was an error processing your card!"
       render "new"
     end
   end
