@@ -18,7 +18,7 @@ StoreEngine::Application.routes.draw do
   resources :billing_address
   resources :shipping_addresses
   resources :line_items
-  resources :stores
+  resources :stores 
   resources :sessions
 
   get 'login', to: 'sessions#new', as: 'login'
@@ -43,7 +43,9 @@ StoreEngine::Application.routes.draw do
       resources :orders#, :only => [:index, :show, :update]
       resources :categories
       resources :users #, :except => [:index, :destroy]
+      resources :stores
 
+      match "/edit" => "dashboards#edit"
 
       match "/" => "dashboards#show"
       put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
