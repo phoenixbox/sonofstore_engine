@@ -17,9 +17,8 @@ class User < ActiveRecord::Base
   validates :display_name, :length => { :minimum => 2,
     :maximum => 32 }, :allow_blank => true
 
-  has_many :orders
   has_one :phone_number
-  belongs_to :store
+  belongs_to :consumer
 
   accepts_nested_attributes_for :phone_number
 

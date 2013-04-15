@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :signed_in?
 
   def index
-    @orders = Order.find_all_by_user_id(current_user)
+    @orders = Order.find_all_by_consumer_id(current_user)
   end
 
   def new

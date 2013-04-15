@@ -1,5 +1,8 @@
 StoreEngine::Application.routes.draw do
 
+  resources :consumers
+
+
   # resources :store
   resources :users
 

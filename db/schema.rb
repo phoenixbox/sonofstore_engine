@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414162212) do
+ActiveRecord::Schema.define(:version => 20130415002152) do
 
   create_table "billing_addresses", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "consumer_id"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "carts", :force => true do |t|
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(:version => 20130414162212) do
   end
 
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
+
+  create_table "consumers", :force => true do |t|
+    t.string   "email"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
@@ -65,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20130414162212) do
 
   create_table "orders", :force => true do |t|
     t.integer  "total_price", :null => false
-    t.integer  "user_id",     :null => false
+    t.integer  "consumer_id", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "store_id"
@@ -110,13 +119,13 @@ ActiveRecord::Schema.define(:version => 20130414162212) do
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "shipping_addresses", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "consumer_id"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "stores", :force => true do |t|

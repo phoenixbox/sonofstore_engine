@@ -1,6 +1,6 @@
 class ShippingAddress < ActiveRecord::Base
-  attr_accessible :street, :city, :state, :zipcode
+  attr_accessible :street, :city, :state, :zipcode, :consumer_id
 
-  belongs_to :user
-  validates_presence_of :street, :city, :state, :zipcode
+  belongs_to :consumer
+  validates_presence_of :street, :city, :state, :zipcode, :consumer_id
 end
