@@ -12,6 +12,7 @@ class Store < ActiveRecord::Base
   has_many :carts
 
   accepts_nested_attributes_for :users
+
   def self.find(path)
     find_by_path(path)
   end

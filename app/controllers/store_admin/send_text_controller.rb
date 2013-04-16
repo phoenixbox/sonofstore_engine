@@ -1,4 +1,5 @@
-class Admin::SendTextController < Admin::BaseController
+class StoreAdmin::SendTextController < ApplicationController
+
   def index
   end
 

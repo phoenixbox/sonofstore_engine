@@ -1,12 +1,12 @@
-class Admin::ProductsController < Admin::BaseController
+class StoreAdmin::ProductsController < ApplicationController
 
   def index
     @products = current_store.products
-    # @products = Product.all
   end
 
   def new
-    @product = Product.new
+    @store = current_store
+    @product = current_store.products.build
   end
 
   def show
@@ -22,9 +22,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def update
+    binding.pry
     @product = Product.find(params[:id])
     if @product.update_attributes params[:product]
-      redirect_to admin_products_path, notice: "Product Updated!"
+      redirect_to store_admin_products_path(current_store),t, notice: "Product Updated!"
     else
       # flash[:error] = "An error occurred, please try again"
       render :edit
@@ -32,9 +33,9 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(params[:product].merge({store_id: current_store.id}))
     if @product.save
-      redirect_to admin_products_path, notice: "Product Added!"
+      redirect_to store_home_path, notice: "Product Added!"
     else
       render :new
     end

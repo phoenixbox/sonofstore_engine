@@ -32,14 +32,16 @@ class OrdersController < ApplicationController
     if current_user
       @consumer = Consumer.find_by_user_id(current_user)
       unless @consumer
-        @consumer = Consumer.create(email: current_user.email, user_id: current_user.id)      
+        @consumer = Consumer.create(email: current_user.email, user_id: current_user.id)
       end
     else
-      @consumer = Consumer.create(email: params[:order][:email])     
+      @consumer = Consumer.create(email: params[:order][:email])
     end
-    session[:consumer_id] = @consumer.id    
+    session[:consumer_id] = @consumer.id
     @order = Order.create_from_cart(current_cart, params[:order].merge({store_id: current_store.id}), @consumer)
+
     if @order.id
+
       UserMailer.order_confirmation_email(@consumer).deliver
       current_cart.destroy
       session[:cart_id] = nil

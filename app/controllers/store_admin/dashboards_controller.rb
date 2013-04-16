@@ -1,5 +1,5 @@
-class Admin::DashboardsController < Admin::BaseController
-  
+class StoreAdmin::DashboardsController < ApplicationController
+
   def show
     @orders = current_store.orders
 

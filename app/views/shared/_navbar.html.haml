@@ -7,11 +7,12 @@
         %span.icon-bar
       .nav-collapse
         %ul.nav.pull-right
+          %li= link_to "My Cart", cart_path(current_store, current_cart)
           - if current_user  
-            %li= link_to "My Cart", cart_path(current_store, current_cart)
+            %li
+              %p Welcome #{current_user.full_name}
             %li= link_to "My Account", profile_path
             %li= link_to "Logout", logout_path
           - else
-            %li= link_to "My Cart", cart_path(current_store, current_cart)
             %li= link_to "Log In", new_session_path
             %li= link_to "Sign Up", new_user_path

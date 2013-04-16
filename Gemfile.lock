@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/EppO/rolify.git
+  revision: 1a7c1af51962291b43db22f33f707e80b51343ee
+  specs:
+    rolify (3.3.0.rc4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -283,6 +289,7 @@ DEPENDENCIES
   rails-footnotes (>= 3.7.9)
   rake
   reek
+  rolify!
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-context

@@ -1,6 +1,15 @@
+%w[store_admin, stocker_admin, super_admin].each do |role|
+  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+  puts 'role: ' << role
+end
+
+
 store1 = Store.create(name: "Mustaches", path: "mustaches")
 store2 = Store.create(name: "Hats", path: "hats")
 store3 = Store.create(name: "Glasses", path: "glasses")
+store4 = Store.create(name: "Xmen", path: "xmen")
+store5 = Store.create(name: "Avengers", path: "avengers")
+store6 = Store.create(name: "Justice League", path: "justice-league")
 
 product1 = Product.create(title: "Pencil-Thin Mustache",
                description: "Adhesive, mystery-solving facial hair that is sure to fool anyone and everyone.",
@@ -197,16 +206,27 @@ category7 = Category.create(name: "Sideburns", store: store1)
 category8 = Category.create(name: "Beards", store: store1)
 category9 = Category.create(name: "Facial Hair", store: store1)
 
-User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
-User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
+
+user1 = User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
             password: "password", password_confirmation: "password")
-User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
+user2 = User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "j3")
-User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com",
+user3 = User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "SkrilleX")
-admin = User.create(full_name: "Tony Stark", email: "admin@example.com", password: "password")
-admin.admin = true
-admin.save
+
+user4 = User.create(full_name: "Professor X", email: "admin@example.com", password: "password")
+user4.add_role :super_admin
+
+user5 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password", store_id: 4)
+user5.add_role :store_admin
+
+user6 = User.create(full_name: "Ironman", email: "ironmanw@example.com", password: "password", store_id: 5)
+user6.add_role :store_admin
+
+user7 = User.create(full_name: "Batman", email: "batman@example.com", password: "password", store_id: 6)
+user7.add_role :store_admin
+
+user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password: "password")
 
 ProductCategory.create(product_id: (product1.id), category_id: (category4.id))
 ProductCategory.create(product_id: (product1.id), category_id: (category6.id))

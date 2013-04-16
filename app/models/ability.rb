@@ -1,11 +1,12 @@
-  # class Ability
-#   include CanCan::Ability
+class Ability
+  include CanCan::Ability
 
-#   def initialize(user)
-#     if user.admin?
-#       can :manage, :all
-#     else
-#       can :read, :all
-#     end
-#   end
-# end
+  def initialize(user)
+      user ||= User.new # guest user (not logged in)
+      if user.admin?
+        can :manage, :all
+      else
+        can :read, :all
+      end
+  end
+end

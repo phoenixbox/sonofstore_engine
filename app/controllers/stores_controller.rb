@@ -1,24 +1,32 @@
 class StoresController < ApplicationController
-  layout 'signup'
+  layout 'session'
+
+  def index
+    @stores = Store.all
+  end
 
   def new
     @store = Store.new
-    @store.users.build
+   @store.users.build
     render :stores => 'new'
   end
 
   def create
     @store = Store.new(params[:store])
     if @store.save
+      current_user.store_id = @store.id
+      current_user.save
+
       flash[:notice] = "Cheeers"
-      redirect_to admin_dashboard_path(@store.path)
+      redirect_to store_admin_path(@store)
     else
-      flash[:notice] = "Fuck"
+      flash[:notice] = "There was a problem"
       render "new"
     end
   end
 
   def show
+    @store = Store.find(params[:store_id])
   end
 
 

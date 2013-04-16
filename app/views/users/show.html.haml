@@ -9,7 +9,7 @@
   .tabbable
     %ul.nav.nav-tabs
       %li.active
-        = link_to "Profile", user_path(@user)
+        = link_to "Profile", profile_path
       %li
         = link_to "Past Orders", profile_orders_path
 .row-fluid
@@ -36,7 +36,7 @@
     /     %p.span5= @customer.try(:receive_sms?)
     %li
       .span8
-        = link_to "Update Profile", edit_user_path(@user) 
+        = link_to "Update Profile", edit_profile_path
     %li
       .span8
-        = link_to "Create a Store", new_store_path
+        = link_to "Create a Store", create_new_store_path

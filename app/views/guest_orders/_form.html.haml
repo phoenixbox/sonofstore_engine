@@ -1,7 +1,0 @@
-= simple_form_for :guest_orders, :url => guest_orders_path, :html => {:class => 'bs-container'} do |f|
-  = f.error_notification
-  = f.input :email
-  = f.input :billing
-  = f.input :shipping
-  = f.button :submit, :value => "Log In", :class => "btn-primary"
-  = f.error :base
