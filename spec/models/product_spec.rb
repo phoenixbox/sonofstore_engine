@@ -33,7 +33,7 @@ describe Product do
     end
 
     it "has errors" do
-      expect(product).to have(2).errors_on(:price)
+      expect(product).to have(1).errors_on(:price)
     end
   end
 
