@@ -1,5 +1,5 @@
 @import "bootstrap";
-body { padding-top: 60px; }
+body { padding-top: 60px; background: #f1f1f1; }
 @import "font-awesome";
 
 @mixin product_detail_header {
@@ -306,8 +306,8 @@ Work w/ Jess on this
 ****************************/
 
 body {
-        overflow-x: hidden;
-        background: #f1f1f1;
+  overflow-x: hidden;
+  background: #f1f1f1;
 }
 .navbar-inner {
   height: 100%;
@@ -334,7 +334,7 @@ body {
 .nav li a {
   font-family: 'Questrial', sans-serif;
   text-transform: uppercase;
-  font-size:1.1em;
+  font-size:1.2em;
   background: none !important;
   box-shadow: none !important;
   color: #fff !important;
@@ -353,8 +353,17 @@ body {
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
+.brand-dark {
+  color: #222 !important;
+  text-align: center;
+  display: block;
+  margin-bottom: 1em;
+  font-size: 3em !important;
+}
 .brand:hover {
   color: #28b8df !important;
+  background: none;
+  text-decoration: none;
 }
 .hero-unit {
   margin-top: 1em;
@@ -389,9 +398,9 @@ body {
   display: block;
   background: #ede483;
   padding: 1em 1em 1em 2em;
-  border-radius: 35px;
+  border-radius: 3px;
   margin-top: 4.5em;
-  color: #09313c;
+  color: #09313c !important;
   text-transform: uppercase;
   font-family: 'Questrial', sans-serif;
   -webkit-transition: all 1s ease-in-out;
@@ -400,6 +409,49 @@ body {
   transition: all 1s ease-in-out;
 }
 .primary-button:hover {
+  text-decoration: none;
+  color: #09313c;
+  background: #28b8df;
+}
+.admin-primary-button {
+  float: right;
+  display: block;
+  background: #ede483;
+  margin-top: .4em;
+  padding: 1em 2em 1em 2em;
+  border-radius: 3px;
+  color: #09313c;
+  text-transform: uppercase;
+  font-family: 'Questrial', sans-serif;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.admin-primary-button:hover {
+  text-decoration: none;
+  background: #28b8df;
+}
+.form-primary-button {
+  float: left;
+  display: block;
+  border: none !important;
+  display: block;
+  width: 100% !important;
+  background: #ede483;
+  margin-top: .4em;
+  padding: 1em 2em 1em 2em;
+  border-radius: 3px !important;
+  color: #09313c;
+  text-shadow: none !important;
+  text-transform: uppercase;
+  font-family: 'Questrial', sans-serif;
+  -webkit-transition: all 1s ease-in-out !important;
+  -moz-transition: all 1s ease-in-out !important;
+  -o-transition: all 1s ease-in-out !important;
+  transition: all 1s ease-in-out !important;
+}
+.form-primary-button:hover {
   text-decoration: none;
   background: #28b8df;
 }
@@ -426,4 +478,26 @@ body {
 }
 .notification-move {
   right:0px;
+}
+.single-form {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.single-form form {
+  background: white;
+  padding: 3em;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #d4d4d4;
+  float: left;
+}
+.single-form input {
+  border: none;
+  font-size: 1.2em;
+  box-shadow: none !important;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+}
+.inset {
+  text-align: center;
 }
