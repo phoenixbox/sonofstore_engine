@@ -462,15 +462,20 @@ body {
   top:115px;
   right:-270px;
   width:200px;
-  background:#266236;
   padding:1.5em 1em 1.5em 2em;
   color: #fff;
-  border-top-left-radius: 35px;
-  border-bottom-left-radius: 35px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+}
+.notification-success {
+  background:#266236;
+}
+.notification-error {
+  background: #b63030;
 }
 .notification span {
   padding-left:.5em;
@@ -483,6 +488,12 @@ body {
   float: none;
   margin-left: auto;
   margin-right: auto;
+}
+.single-form h4 {
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 1em;
+  font-family: 'Questrial', sans-serif;
 }
 .single-form form {
   background: white;
