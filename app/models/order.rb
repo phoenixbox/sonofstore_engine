@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store
-  attr_accessor :stripe_card_token
+  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
+  attr_accessor :stripe_card_token, :email, :card_number, :card_month, :card_code, :card_year
 
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
@@ -11,22 +11,24 @@ class Order < ActiveRecord::Base
   belongs_to :consumer
   validates_presence_of :total_price, :consumer_id
 
+  accepts_nested_attributes_for :billing_address, :shipping_address
+
+  before_save :check_if_guest
+
   def self.create_from_cart(cart, order_details, consumer)
-    binding.pry
     order = new(order_details)
     order.add_line_items(cart)
     order.total_price = order.total_price_from_cart(cart)
     order.consumer = consumer
 
-    if order.save
-      order
-    end
+    order.save_with_payment
+    order
   end
 
   def save_with_payment
     if valid?
       Stripe::Charge.create(amount: self.total_price * 100, currency: "usd",
-        card: stripe_card_token, description: self.user.email)
+        card: stripe_card_token, description: self.consumer.email)
       save!
       self.paid
     end
@@ -132,5 +134,16 @@ class Order < ActiveRecord::Base
 
   def ship
     events.create! status: "shipped" if paid?
+  end
+
+  private
+
+  def check_if_guest
+    binding.pry
+    consumer = Consumer.find(self.consumer_id)
+    unless consumer.user
+      self.random_order_id = "#{Array.new(10){rand(36).to_s(36)}.join}"
+    end
+    binding.pry
   end
 end

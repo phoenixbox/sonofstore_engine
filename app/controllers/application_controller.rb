@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_consumer
-    @current_consumer ||= Consumer.find(session[:consumer_id]) if session[:consumer_id]
+    @current_consumer ||= Consumer.find(session[:consumer_id])
   end
 
   helper_method :current_user, :current_consumer, :admin_user

@@ -16,7 +16,8 @@ class UsersController < ApplicationController
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_user_path(@user) )}".html_safe
-      redirect_to(session[:return_to])
+      # redirect_to(session[:return_to])
+      redirect_to @user
     else
       render "new"
     end

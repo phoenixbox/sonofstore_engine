@@ -26,6 +26,7 @@ StoreEngine::Application.routes.draw do
   get 'register', to: 'stores#new', as: 'register'
 
   get 'profile', :to => 'users#show', as: 'profile'
+  get 'profile/orders', :to => 'orders#index', as: 'profile_orders'
 
   resources :phone_numbers
 
