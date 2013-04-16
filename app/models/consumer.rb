@@ -5,7 +5,7 @@ class Consumer < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :orders
-  has_one :user
+  belongs_to :user
 
   
 end

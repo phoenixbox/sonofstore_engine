@@ -1,5 +1,45 @@
-%h3 Order Total:
-%h3= number_to_currency current_cart.total_price
+/ %h3 Order Total:
+/ %h3= number_to_currency current_cart.total_price
+
+/ = simple_form_for @order do |f|
+/   - if @order.errors.any?
+/     #error_explanation
+/       %h2
+/         = pluralize(@order.errors.count, "error")
+/         prohibited this charge from processing:
+/       %ul
+/         - @order.errors.full_messages.each do |msg|
+/           %li= msg
+/   = f.hidden :stripe_card_token
+/   %h4 Personal Details
+/   = f.input :email, placeholder: current_user.email
+/   %h4 Shipping Address
+/   = f.simple_fields_for :shipping_address do |s|
+/     = s.input :street
+/     = s.input :city
+/     = s.input :state
+/     = s.input :zipcode
+/   %h4 Billing Address
+/   = f.simple_fields_for :billing_address do |b|
+/     = b.input :street
+/     = b.input :city
+/     = b.input :state
+/     = b.input :zipcode
+/   %h4 Payment Details
+/   = f.input :card_number
+/   = f.input :card_code
+/   = f.input :card_month, as: :date, start_year: Date.today.year + 10,
+/                               end_year: Date.today.year, discard_day: true,
+/                               order: [:month, :year]
+/   / = f.input :card_year, {start_year: Date.today.year, end_year: Date.today.year+15}
+
+/   = f.button :submit, value: "Order"
+/   = f.error :base        
+
+
+
+
+
 = form_for(@order) do |f|
   - if @order.errors.any?
     #error_explanation
@@ -9,6 +49,33 @@
       %ul
         - @order.errors.full_messages.each do |msg|
           %li= msg
+
+  = f.hidden_field :stripe_card_token
+  
+  .field
+    = f.label :email, "Email"
+    = f.text_field :email
+
+    = f.fields_for :billing_address do |s|
+      = s.label :street, "Street"
+      = s.text_field :street
+      = s.label :city, "City"
+      = s.text_field :city
+      = s.label :state, "State"
+      = s.text_field :state
+      = s.label :zipcode, "Zipcode"
+      = s.text_field :zipcode
+
+    = f.fields_for :shipping_address do |s|
+      = s.label :street, "Street"
+      = s.text_field :street
+      = s.label :city, "City"
+      = s.text_field :city
+      = s.label :state, "State"
+      = s.text_field :state
+      = s.label :zipcode, "Zipcode"
+      = s.text_field :zipcode
+
   .field
     = label_tag :card_number, "Credit Card Number"
     = text_field_tag :card_number, nil, name: nil
@@ -19,7 +86,7 @@
     = label_tag :card_month, "Card Expiration"
     = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
     = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-  / #stripe_error
-  /   %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+  #stripe_error
+    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
   .actions
     = f.submit

@@ -55,11 +55,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_consumer
-    @current_consumer ||= Consumer.find(session[:consumer_id]) if session[:consumer_id]
-  end
-
-  helper_method :current_user, :current_consumer, :admin_user
+  helper_method :current_user, :admin_user
 
   def authorize
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
