@@ -5,14 +5,14 @@ class Cart < ActiveRecord::Base
 
   belongs_to :store
 
-  validates_presence_of :store_id #:sid
+  validates_presence_of :store_id
 
   def add_product(product_id)
     current_item = line_items.find_by_product_id(product_id)
     if current_item
       current_item.quantity += 1
     else
-      current_item = line_items.build(product_id: product_id)
+      current_item = LineItem.create(product_id: product_id)
     end
     current_item
   end
@@ -34,6 +34,6 @@ class Cart < ActiveRecord::Base
   end
 
   def empty?
-    line_items.empty?
+    LineItem.find_all_by_cart_id(self.id).empty?
   end
 end
