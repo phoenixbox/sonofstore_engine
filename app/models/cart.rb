@@ -12,7 +12,7 @@ class Cart < ActiveRecord::Base
     if current_item
       current_item.quantity += 1
     else
-      current_item = LineItem.create(product_id: product_id)
+      current_item = line_items.build(product_id: product_id)
     end
     current_item
   end
@@ -36,6 +36,5 @@ class Cart < ActiveRecord::Base
   def empty?
     LineItem.find_all_by_cart_id(self.id).empty?
   end
-
 
 end

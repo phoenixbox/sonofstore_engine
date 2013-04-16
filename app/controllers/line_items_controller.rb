@@ -3,8 +3,7 @@ class LineItemsController < ApplicationController
   # before_filter :find_or_create_cart, only: :create
 
   def create
-    logger.debug("in line_item create")
-
+    binding.pry
     cart = find_or_create_cart
     logger.debug(session[:cart_id])
     product = Product.find(params[:product_id])
