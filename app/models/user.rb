@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     :maximum => 32 }, :allow_blank => true
 
   has_one :phone_number
-  belongs_to :consumer
+  has_one :consumer
 
   accepts_nested_attributes_for :phone_number
 

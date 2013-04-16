@@ -15,4 +15,7 @@ class Admin::DashboardsController < Admin::BaseController
     # end
   end
 
+  def edit
+    @store = Store.find(params[:store_id])
+  end
 end

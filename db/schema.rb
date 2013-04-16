@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415002152) do
+ActiveRecord::Schema.define(:version => 20130416045659) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "consumer_id"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(:version => 20130415002152) do
     t.string   "zipcode"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "order_id"
   end
+
+  add_index "billing_addresses", ["order_id"], :name => "index_billing_addresses_on_order_id"
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -44,11 +47,9 @@ ActiveRecord::Schema.define(:version => 20130415002152) do
 
   create_table "consumers", :force => true do |t|
     t.string   "email"
-    t.integer  "billing_address_id"
-    t.integer  "shipping_address_id"
     t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "customers", :force => true do |t|
@@ -82,11 +83,12 @@ ActiveRecord::Schema.define(:version => 20130415002152) do
   add_index "order_events", ["order_id"], :name => "index_order_events_on_order_id"
 
   create_table "orders", :force => true do |t|
-    t.integer  "total_price", :null => false
-    t.integer  "consumer_id", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "total_price",     :null => false
+    t.integer  "consumer_id",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "store_id"
+    t.string   "random_order_id"
   end
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
@@ -135,7 +137,10 @@ ActiveRecord::Schema.define(:version => 20130415002152) do
     t.string   "zipcode"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "order_id"
   end
+
+  add_index "shipping_addresses", ["order_id"], :name => "index_shipping_addresses_on_order_id"
 
   create_table "stores", :force => true do |t|
     t.string "name"

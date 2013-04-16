@@ -119,73 +119,73 @@ order4.paid
 order4.ship
 order4.return
 
-cart5 = Cart.create
-line_item10 = LineItem.create(product_id: 10, cart_id: cart5.id)
-line_item11 = LineItem.create(product_id: 11, cart_id: cart5.id)
-order5 = Order.create(total_price: (line_item10.total_price + line_item11.total_price),  consumer_id: 2)
-order5.line_items = []
-order5.line_items << line_item10
-order5.line_items << line_item11
-order5.cancel
+# cart5 = Cart.create
+# line_item10 = LineItem.create(product_id: 10, cart_id: cart5.id)
+# line_item11 = LineItem.create(product_id: 11, cart_id: cart5.id)
+# order5 = Order.create(total_price: (line_item10.total_price + line_item11.total_price),  consumer_id: 2)
+# order5.line_items = []
+# order5.line_items << line_item10
+# order5.line_items << line_item11
+# order5.cancel
 
-cart6 = Cart.create
-line_item12 = LineItem.create(product_id: 12, cart_id: cart6.id)
-line_item13 = LineItem.create(product_id: 13, cart_id: cart6.id)
-order6 = Order.create(total_price: (line_item12.total_price + line_item13.total_price),  consumer_id: 2)
-order6.line_items = []
-order6.line_items << line_item12
-order6.line_items << line_item13
+# cart6 = Cart.create
+# line_item12 = LineItem.create(product_id: 12, cart_id: cart6.id)
+# line_item13 = LineItem.create(product_id: 13, cart_id: cart6.id)
+# order6 = Order.create(total_price: (line_item12.total_price + line_item13.total_price),  consumer_id: 2)
+# order6.line_items = []
+# order6.line_items << line_item12
+# order6.line_items << line_item13
 
-cart7 = Cart.create
-line_item14 = LineItem.create(product_id: 14, cart_id: cart7.id)
-line_item15 = LineItem.create(product_id: 15, cart_id: cart7.id)
-line_item16 = LineItem.create(product_id: 16, cart_id: cart7.id)
-order7 = Order.create(total_price: (line_item14.total_price + line_item15.total_price + line_item16.total_price),  consumer_id: 3)
-order7.line_items = []
-order7.line_items << line_item14
-order7.line_items << line_item15
-order7.line_items << line_item16
-order7.paid
+# cart7 = Cart.create
+# line_item14 = LineItem.create(product_id: 14, cart_id: cart7.id)
+# line_item15 = LineItem.create(product_id: 15, cart_id: cart7.id)
+# line_item16 = LineItem.create(product_id: 16, cart_id: cart7.id)
+# order7 = Order.create(total_price: (line_item14.total_price + line_item15.total_price + line_item16.total_price),  consumer_id: 3)
+# order7.line_items = []
+# order7.line_items << line_item14
+# order7.line_items << line_item15
+# order7.line_items << line_item16
+# order7.paid
 
-cart8 = Cart.create
-line_item17 = LineItem.create(product_id: 17, cart_id: cart8.id)
-line_item18 = LineItem.create(product_id: 18, cart_id: cart8.id)
-order8 = Order.create(total_price: (line_item17.total_price + line_item18.total_price),  consumer_id: 3)
-order8.line_items = []
-order8.line_items << line_item17
-order8.line_items << line_item18
-order8.paid
-order8.ship
+# cart8 = Cart.create
+# line_item17 = LineItem.create(product_id: 17, cart_id: cart8.id)
+# line_item18 = LineItem.create(product_id: 18, cart_id: cart8.id)
+# order8 = Order.create(total_price: (line_item17.total_price + line_item18.total_price),  consumer_id: 3)
+# order8.line_items = []
+# order8.line_items << line_item17
+# order8.line_items << line_item18
+# order8.paid
+# order8.ship
 
-cart9 = Cart.create
-line_item19 = LineItem.create(product_id: 19, cart_id: cart9.id)
-line_item20 = LineItem.create(product_id: 20, cart_id: cart9.id)
-line_item21 = LineItem.create(product_id: 1, cart_id: cart9.id)
-order9 = Order.create(total_price: (line_item19.total_price + line_item20.total_price + line_item21.total_price),  consumer_id: 3)
-order9.line_items = []
-order9.line_items << line_item19
-order9.line_items << line_item20
-order9.line_items << line_item21
-order9.paid
-order9.ship
-order9.return
+# cart9 = Cart.create
+# line_item19 = LineItem.create(product_id: 19, cart_id: cart9.id)
+# line_item20 = LineItem.create(product_id: 20, cart_id: cart9.id)
+# line_item21 = LineItem.create(product_id: 1, cart_id: cart9.id)
+# order9 = Order.create(total_price: (line_item19.total_price + line_item20.total_price + line_item21.total_price),  consumer_id: 3)
+# order9.line_items = []
+# order9.line_items << line_item19
+# order9.line_items << line_item20
+# order9.line_items << line_item21
+# order9.paid
+# order9.ship
+# order9.return
 
-cart10 = Cart.create
-line_item22 = LineItem.create(product_id: 2, cart_id: cart10.id, quantity: 2)
-line_item23 = LineItem.create(product_id: 3, cart_id: cart10.id)
-line_item24 = LineItem.create(product_id: 4, cart_id: cart10.id, quantity: 3)
-line_item25 = LineItem.create(product_id: 5, cart_id: cart10.id)
-line_item26 = LineItem.create(product_id: 6, cart_id: cart10.id, quantity: 5)
-line_item27 = LineItem.create(product_id: 7, cart_id: cart10.id)
-order10 = Order.create(total_price: (line_item22.total_price + line_item23.total_price + line_item24.total_price + line_item25.total_price + line_item26.total_price + line_item27.total_price),  consumer_id: 3)
-order10.line_items = []
-order10.line_items << line_item22
-order10.line_items << line_item23
-order10.line_items << line_item24
-order10.line_items << line_item25
-order10.line_items << line_item26
-order10.line_items << line_item27
-order10.cancel
+# cart10 = Cart.create
+# line_item22 = LineItem.create(product_id: 2, cart_id: cart10.id, quantity: 2)
+# line_item23 = LineItem.create(product_id: 3, cart_id: cart10.id)
+# line_item24 = LineItem.create(product_id: 4, cart_id: cart10.id, quantity: 3)
+# line_item25 = LineItem.create(product_id: 5, cart_id: cart10.id)
+# line_item26 = LineItem.create(product_id: 6, cart_id: cart10.id, quantity: 5)
+# line_item27 = LineItem.create(product_id: 7, cart_id: cart10.id)
+# order10 = Order.create(total_price: (line_item22.total_price + line_item23.total_price + line_item24.total_price + line_item25.total_price + line_item26.total_price + line_item27.total_price),  consumer_id: 3)
+# order10.line_items = []
+# order10.line_items << line_item22
+# order10.line_items << line_item23
+# order10.line_items << line_item24
+# order10.line_items << line_item25
+# order10.line_items << line_item26
+# order10.line_items << line_item27
+# order10.cancel
 
 category1 = Category.create(name: "Hats", store: store2)
 category2 = Category.create(name: "Wigs", store: store2)
