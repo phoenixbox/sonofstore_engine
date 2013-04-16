@@ -27,16 +27,18 @@ StoreEngine::Application.routes.draw do
 
   get 'profile', :to => 'users#show', as: 'profile'
   get 'profile/orders', :to => 'orders#index', as: 'profile_orders'
+  match 'guest_order/:random' => 'orders#show_guest_order', as: 'guest_order'
 
   resources :phone_numbers
 
   scope "/:store_id" do
     match "/" => "products#index", :as => :home
+    match 'checkout' => 'orders#new', as: 'checkout'
+    match 'checkout/type' => 'orders#type', as: 'checkout_type'
 
     resources :products
     resources :carts
     resources :orders
-    resources :guest_orders
 
     namespace :admin do
       resource :dashboard, :only => :show

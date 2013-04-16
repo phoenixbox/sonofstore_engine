@@ -36,4 +36,6 @@ class Cart < ActiveRecord::Base
   def empty?
     LineItem.find_all_by_cart_id(self.id).empty?
   end
+
+
 end

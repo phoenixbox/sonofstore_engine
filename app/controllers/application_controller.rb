@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :get_referrer, :only => [:new]
+  before_filter :get_referrer, :only => [:new, :checkout_funnel]
 
   helper_method :current_store
 
@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
       session[:return_to]
     elsif request.referrer.include?("users")
       session[:return_to]
+    elsif request.referrer.include?("carts")
+      session[:return_to] = new_order_path(current_store)
     else
       session[:return_to] = request.referrer
     end

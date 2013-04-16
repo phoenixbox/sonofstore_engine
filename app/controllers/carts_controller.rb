@@ -27,4 +27,8 @@ class CartsController < ApplicationController
       redirect_to :back
     end
   end
+
+  # def checkout_conduit
+    
+  # end
 end

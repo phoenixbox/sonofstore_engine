@@ -30,22 +30,26 @@ class OrdersController < ApplicationController
 
   def create
     if current_user
-      consumer = Consumer.find_by_user_id(current_user)
-      unless consumer
-        consumer = Consumer.create(email: current_user.email, user_id: current_user.id)      
+      @consumer = Consumer.find_by_user_id(current_user)
+      unless @consumer
+        @consumer = Consumer.create(email: current_user.email, user_id: current_user.id)      
       end
     else
-      # guest
-      consumer = Consumer.create(email: params[:order][:email])     
+      @consumer = Consumer.create(email: params[:order][:email])     
     end
-    session[:consumer_id] = consumer.id    
-    @order = Order.create_from_cart(current_cart, params[:order].merge({store_id: current_store.id}), consumer)
+    session[:consumer_id] = @consumer.id    
+    @order = Order.create_from_cart(current_cart, params[:order].merge({store_id: current_store.id}), @consumer)
     if @order.id
-      UserMailer.order_confirmation_email(consumer).deliver
+      UserMailer.order_confirmation_email(@consumer).deliver
       current_cart.destroy
       session[:cart_id] = nil
-      flash[:notice] = "Your payment was successfully submitted!"
-      redirect_to order_path(current_store, @order)
+      if current_user
+        flash[:notice] = "Your payment was successfully submitted!"
+        redirect_to order_path(current_store, @order)
+      else
+        flash[:notice] = "Your payment was successfully submitted!"
+        redirect_to guest_order_url(@consumer.orders.last.random_order_id)
+      end
     else
       flash.now[:notice] = "There was an error processing your card!"
       render "new"
@@ -62,6 +66,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def type
+    render 'checkout_funnel'
+  end
+
+  def show_guest_order
+    @order = Order.find_by_random_order_id(params[:random])
+  end
+
 
 private
   def signed_in?
@@ -72,9 +84,10 @@ private
   end
 
   def checkout_funnel
-    unless current_user
-      flash[:error] = "Please log in or sign up to continue."
-      # redirect_to root_path
+    unless params[:guest] || current_user
+      redirect_to checkout_type_path(current_store)
+      # flash[:error] = "Please log in or sign up to continue."
+      # redirect_to order_path
     end
   end
 
