@@ -12,7 +12,7 @@
             - pending << order
         = pending.count
       %p.text-center
-        = link_to "Pending", admin_dashboard_path(status: "pending")
+        = link_to "Pending", store_admin_path(status: "pending")
     .stat.span2.pull-left
       %h1#shipped.text-center
         - shipped = []
@@ -21,7 +21,7 @@
             - shipped << order
         = shipped.count
       %p.text-center
-        = link_to "Shipped", admin_dashboard_path(status: "shipped")
+        = link_to "Shipped", store_admin_path(status: "shipped")
     .stat.span3.pull-left
       %h1#paid.text-center
         - paid = []
@@ -30,7 +30,7 @@
             - paid << order
         = paid.count
       %p.text-center
-        = link_to "Paid", admin_dashboard_path(status: "paid")
+        = link_to "Paid", store_admin_path(status: "paid")
     .stat.span2.pull-left
       %h1#cancelled.text-center
         - cancelled = []
@@ -39,7 +39,7 @@
             - cancelled << order
         = cancelled.count
       %p.text-center
-        = link_to "Cancelled", admin_dashboard_path(status: "cancelled")
+        = link_to "Cancelled", store_admin_path(status: "cancelled")
     .stat.span2.pull-left
       %h1#returned.text-center
         - returned = []
@@ -48,7 +48,7 @@
             - returned << order
         = returned.count
       %p.text-center
-        = link_to "Returned", admin_dashboard_path(status: "returned")
+        = link_to "Returned", store_admin_path(status: "returned")
 %br/
 .row-fluid
   .span12

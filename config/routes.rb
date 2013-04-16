@@ -1,54 +1,54 @@
 StoreEngine::Application.routes.draw do
 
-  resources :consumers
-
-
-  # resources :store
-  resources :users
 
   resources :static_pages, :only => :index
-
-  resources :categories, :only => [:index, :show]
 
   put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
   put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
 
-  
 
+  resources :users, :except => [:index, :destroy, :show]
+  resources :consumers, :except => [:index, :destroy]
   resources :billing_address
-  resources :shipping_addresses
-  resources :line_items
-  resources :stores 
-  resources :sessions
+  resources :shipping_address
+  resources :phone_numbers
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :stores, :only => [:index, :create]
 
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  get 'register', to: 'stores#new', as: 'register'
+  get 'create_new_store', to: 'stores#new', as: 'create_new_store'
 
   get 'profile', :to => 'users#show', as: 'profile'
   get 'profile/orders', :to => 'orders#index', as: 'profile_orders'
+  get 'profile/edit', :to => 'users#edit', as: 'edit_profile'
 
-  resources :phone_numbers
+
+
+  namespace :admin do
+    resources :stores
+  end
+
 
   scope "/:store_id" do
-    match "/" => "products#index", :as => :home
+    get "/", to: "products#index", :as => :store_home
 
-    resources :products
+
+    resources :products, :only => [:index, :show]
     resources :carts
-    resources :orders
-    resources :guest_orders
+    resources :orders, :except => [:edit, :update, :destroy]
+    resources :line_items
+    resources :categories, :only => [:index, :show]
 
-    namespace :admin do
-      resource :dashboard, :only => :show
-      resources :products, :except => :destroy
-      resources :orders#, :only => [:index, :show, :update]
-      resources :categories
-      resources :users #, :except => [:index, :destroy]
-      resources :stores
-
-      match "/edit" => "dashboards#edit"
-
+    namespace :store_admin, :path => "/admin" do
       match "/" => "dashboards#show"
+      # resource :dashboard, :only => :show
+      resources :products, :except => :destroy
+      resources :orders, :except => :destroy
+      resources :categories
+
+      # match "/edit" => "dashboards#edit"
+
       put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'
       put '/decrease_quantity_from_order/:id' => 'orders#decrease_quantity_from_order', :as => 'decrease_quantity_from_order'
     end

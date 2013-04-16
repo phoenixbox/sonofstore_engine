@@ -12,9 +12,10 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Logged In!"
-      redirect_to(session[:return_to])
+      redirect_to stores_path
+      # redirect_to(session[:return_to])
     else
-      flash[:notice] = "Invalid email or password"
+      flash[:alert] = "Invalid email or password"
       redirect_to new_session_path
     end
   end

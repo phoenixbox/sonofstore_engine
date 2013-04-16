@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::BaseController
+class StoreAdmin::UsersController < ApplicationController
   def new
     @user = User.new
     @user.build_phone_number

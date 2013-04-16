@@ -1,0 +1,21 @@
+- provide(:title, 'Admin Edit Product')
+.row-fluid
+  .span12
+    .span6
+      %h3 Edit Existing Product
+-# = render 'form'
+= simple_form_for [:store_admin, @product],
+  :url => store_admin_product_path(current_store, @product), 
+  :method => :put, :html => {:multipart => true} do |f|
+
+  = f.error_notification
+  = f.input :title, input_html: {class: "span6"}
+  = f.input :description, input_html: {class: "span6", rows: 10}
+  = f.input :price_in_dollars
+  = f.input :active, as: :radio_buttons
+  = f.association :categories, as: :check_boxes, :item_wrapper_class => 'inline'
+  = f.input :photo, as: :file, label: "Upload pic"
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+  = f.error :base

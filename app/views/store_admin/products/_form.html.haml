@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @product], :html => {:multipart => true} do |f|
+= simple_form_for [:store_admin, @product], :html => {:multipart => true} do |f|
   = f.error_notification
   = f.input :title, input_html: {class: "span6"}
   = f.input :description, input_html: {class: "span6", rows: 10}

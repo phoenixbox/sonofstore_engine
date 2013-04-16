@@ -1,4 +1,4 @@
-class Admin::CategoriesController < Admin::BaseController
+class StoreAdmin::CategoriesController < ApplicationController
   def index
     # @categories = Category.all
      @categories = current_store.categories
