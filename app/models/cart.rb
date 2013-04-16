@@ -36,4 +36,6 @@ class Cart < ActiveRecord::Base
   def empty?
     line_items.empty?
   end
+
+
 end

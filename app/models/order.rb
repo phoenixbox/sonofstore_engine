@@ -139,11 +139,9 @@ class Order < ActiveRecord::Base
   private
 
   def check_if_guest
-    binding.pry
     consumer = Consumer.find(self.consumer_id)
     unless consumer.user
       self.random_order_id = "#{Array.new(10){rand(36).to_s(36)}.join}"
     end
-    binding.pry
   end
 end

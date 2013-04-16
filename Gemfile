@@ -46,6 +46,7 @@ group :development, :test do
   gem 'erb2haml'
   gem 'html2haml'
   gem 'pry-remote'
+  gem 'letter_opener'
 end
 
 group :development do 
