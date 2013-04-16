@@ -1,6 +1,15 @@
+%w[store_admin, stocker_admin, super_admin].each do |role|
+  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+  puts 'role: ' << role
+end
+
+
 store1 = Store.create(name: "Mustaches", path: "mustaches")
 store2 = Store.create(name: "Hats", path: "hats")
 store3 = Store.create(name: "Glasses", path: "glasses")
+store4 = Store.create(name: "Xmen", path: "xmen")
+store5 = Store.create(name: "Avengers", path: "avengers")
+store6 = Store.create(name: "Justice League", path: "justice-league")
 
 product1 = Product.create(title: "Pencil-Thin Mustache",
                description: "Adhesive, mystery-solving facial hair that is sure to fool anyone and everyone.",
@@ -78,46 +87,46 @@ product25 = Product.create(title: "Cletus Mullet",
                description: "Going to a monster truck rally later? Look the part with the Cletus Mullet!",
                price_in_dollars: 400.00, photo_file_name: "Sized25.png", photo_content_type: "image/png", photo_file_size: 73249, photo_updated_at: "2013-04-03 19:53:57")
 
-cart1 = Cart.create
-line_item1 = LineItem.create(product_id: 1, cart_id: cart1.id)
-order1 = Order.create(total_price: line_item1.total_price,  consumer_id: 1, store: store1 )
-order1.line_items = []
-order1.line_items << line_item1
+# cart1 = Cart.create
+# line_item1 = LineItem.create(product_id: 1, cart_id: cart1.id)
+# order1 = Order.create(total_price: line_item1.total_price,  consumer_id: 1, store: store1 )
+# order1.line_items = []
+# order1.line_items << line_item1
 
-# line_item 2 & 3 refer to prod 2,3 which both come from store3
-cart2 = Cart.create
-line_item2 = LineItem.create(product_id: 2, cart_id: cart2.id)
-line_item3 = LineItem.create(product_id: 3, cart_id: cart2.id, quantity: 3)
-order2 = Order.create(total_price: (line_item2.total_price + line_item3.total_price),  consumer_id: 1, store: store3 )
-order2.line_items = []
-order2.line_items << line_item2
-order2.line_items << line_item3
-order2.paid
+# # line_item 2 & 3 refer to prod 2,3 which both come from store3
+# cart2 = Cart.create
+# line_item2 = LineItem.create(product_id: 2, cart_id: cart2.id)
+# line_item3 = LineItem.create(product_id: 3, cart_id: cart2.id, quantity: 3)
+# order2 = Order.create(total_price: (line_item2.total_price + line_item3.total_price),  consumer_id: 1, store: store3 )
+# order2.line_items = []
+# order2.line_items << line_item2
+# order2.line_items << line_item3
+# order2.paid
 
-cart3 = Cart.create
-line_item4 = LineItem.create(product_id: 4, cart_id: cart3.id, quantity: 2)
-line_item5 = LineItem.create(product_id: 5, cart_id: cart3.id, quantity: 4)
-line_item6 = LineItem.create(product_id: 6, cart_id: cart3.id)
-order3 = Order.create(total_price: (line_item4.total_price + line_item5.total_price + line_item6.total_price),  consumer_id: 1, store: store3 )
-order3.line_items = []
-order3.line_items << line_item4
-order3.line_items << line_item5
-order3.line_items << line_item6
-order3.paid
-order3.ship
+# cart3 = Cart.create
+# line_item4 = LineItem.create(product_id: 4, cart_id: cart3.id, quantity: 2)
+# line_item5 = LineItem.create(product_id: 5, cart_id: cart3.id, quantity: 4)
+# line_item6 = LineItem.create(product_id: 6, cart_id: cart3.id)
+# order3 = Order.create(total_price: (line_item4.total_price + line_item5.total_price + line_item6.total_price),  consumer_id: 1, store: store3 )
+# order3.line_items = []
+# order3.line_items << line_item4
+# order3.line_items << line_item5
+# order3.line_items << line_item6
+# order3.paid
+# order3.ship
 
-cart4 = Cart.create
-line_item7 = LineItem.create(product_id: 7, cart_id: cart4.id, quantity: 2)
-line_item8 = LineItem.create(product_id: 8, cart_id: cart4.id, quantity: 2)
-line_item9 = LineItem.create(product_id: 9, cart_id: cart4.id, quantity: 2)
-order4 = Order.create(total_price: (line_item7.total_price + line_item8.total_price + line_item9.total_price),  consumer_id: 2, store: store2)
-order4.line_items = []
-order4.line_items << line_item7
-order4.line_items << line_item8
-order4.line_items << line_item9
-order4.paid
-order4.ship
-order4.return
+# cart4 = Cart.create
+# line_item7 = LineItem.create(product_id: 7, cart_id: cart4.id, quantity: 2)
+# line_item8 = LineItem.create(product_id: 8, cart_id: cart4.id, quantity: 2)
+# line_item9 = LineItem.create(product_id: 9, cart_id: cart4.id, quantity: 2)
+# order4 = Order.create(total_price: (line_item7.total_price + line_item8.total_price + line_item9.total_price),  consumer_id: 2, store: store2)
+# order4.line_items = []
+# order4.line_items << line_item7
+# order4.line_items << line_item8
+# order4.line_items << line_item9
+# order4.paid
+# order4.ship
+# order4.return
 
 # cart5 = Cart.create
 # line_item10 = LineItem.create(product_id: 10, cart_id: cart5.id)
@@ -197,16 +206,27 @@ category7 = Category.create(name: "Sideburns", store: store1)
 category8 = Category.create(name: "Beards", store: store1)
 category9 = Category.create(name: "Facial Hair", store: store1)
 
-User.create(full_name: "Wolverine", email: "w@example.com", password: "password")
-User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
+
+user1 = User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
             password: "password", password_confirmation: "password")
-User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
+user2 = User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "j3")
-User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com",
+user3 = User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com",
             password: "password", password_confirmation: "password", display_name: "SkrilleX")
-admin = User.create(full_name: "Tony Stark", email: "admin@example.com", password: "password")
-admin.admin = true
-admin.save
+
+user4 = User.create(full_name: "Professor X", email: "admin@example.com", password: "password")
+user4.add_role :super_admin
+
+user5 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password", store_id: 4)
+user5.add_role :store_admin
+
+user6 = User.create(full_name: "Ironman", email: "ironmanw@example.com", password: "password", store_id: 5)
+user6.add_role :store_admin
+
+user7 = User.create(full_name: "Batman", email: "batman@example.com", password: "password", store_id: 6)
+user7.add_role :store_admin
+
+user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password: "password")
 
 ProductCategory.create(product_id: (product1.id), category_id: (category4.id))
 ProductCategory.create(product_id: (product1.id), category_id: (category6.id))

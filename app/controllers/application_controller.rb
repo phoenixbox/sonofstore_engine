@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, :alert => exception.message
+  end
+
   before_filter :get_referrer, :only => [:new]
 
   helper_method :current_store
@@ -14,7 +18,7 @@ class ApplicationController < ActionController::Base
       session[:return_to] = request.referrer
     end
   end
-  
+
   def current_store
     @store ||= Store.find(params[:store_id])
   end
