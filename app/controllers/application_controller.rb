@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
       session[:return_to]
     elsif request.referrer.include?("users")
       session[:return_to]
+    elsif request.referrer.include?("checkout")
+      session[:return_to]
     elsif request.referrer.include?("carts")
       session[:return_to] = new_order_path(current_store)
     else

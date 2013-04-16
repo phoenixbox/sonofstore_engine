@@ -16,8 +16,8 @@ class UsersController < ApplicationController
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
-      # redirect_to(session[:return_to])
-      redirect_to @user
+      redirect_to(session[:return_to])
+      # redirect_to profile_path
     else
       render :new
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Profile updated!"
-      redirect_to @user
+      redirect_to profile_path
     else
       render :edit
     end
