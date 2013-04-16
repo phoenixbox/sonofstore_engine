@@ -51,11 +51,14 @@
           %li= msg
 
   = f.hidden_field :stripe_card_token
-  
+  / conditionally wrap the email requirement field
   .field
-    = f.label :email, "Email"
-    = f.text_field :email
+    / %h3 Order for: "#{current_user.email || 'New Customer'}"
+    -unless current_user
+      = f.label :email, "Email"
+      = f.text_field :email
 
+    %h3 Billing Address
     = f.fields_for :billing_address do |s|
       = s.label :street, "Street"
       = s.text_field :street
@@ -66,6 +69,7 @@
       = s.label :zipcode, "Zipcode"
       = s.text_field :zipcode
 
+      %h3 Shipping Address
     = f.fields_for :shipping_address do |s|
       = s.label :street, "Street"
       = s.text_field :street
@@ -76,6 +80,7 @@
       = s.label :zipcode, "Zipcode"
       = s.text_field :zipcode
 
+  %h3 Payment Details
   .field
     = label_tag :card_number, "Credit Card Number"
     = text_field_tag :card_number, nil, name: nil

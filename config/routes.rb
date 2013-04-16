@@ -29,9 +29,16 @@ StoreEngine::Application.routes.draw do
     resources :stores
   end
 
+  match 'guest_order/:random' => 'orders#show_guest_order', as: 'guest_order'
+
 
   scope "/:store_id" do
+
     get "/", to: "products#index", :as => :store_home
+    match "/" => "products#index", :as => :home
+
+    match 'checkout' => 'orders#new', as: 'checkout'
+    match 'checkout/type' => 'orders#type', as: 'checkout_type'
 
 
     resources :products, :only => [:index, :show]
@@ -54,11 +61,6 @@ StoreEngine::Application.routes.draw do
     end
 
   end
-
-
-
-
-
 
   root :to => 'static_pages#index'
 

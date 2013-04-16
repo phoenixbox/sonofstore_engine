@@ -8,3 +8,9 @@
       Order number: #{@consumer.orders.last.id}
     %p
       Your order has been recieved!
+    -if @consumer.user
+      %p
+        = order_path(@consumer.orders.last.store, @consumer.orders.last.id)
+    -else
+      %p
+        = guest_order_url(@consumer.orders.last.random_order_id)
