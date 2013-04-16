@@ -26,6 +26,7 @@ class Order < ActiveRecord::Base
   end
 
   def save_with_payment
+    binding.pry
     if valid?
       Stripe::Charge.create(amount: self.total_price * 100, currency: "usd",
         card: stripe_card_token, description: self.consumer.email)

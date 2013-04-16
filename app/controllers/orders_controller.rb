@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     if current_user
       @consumer = Consumer.find_by_user_id(current_user)
       unless @consumer
