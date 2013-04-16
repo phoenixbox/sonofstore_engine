@@ -29,15 +29,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # log in check
     if current_user
-      # logged in then create new consumer
       consumer = Consumer.find_by_user_id(current_user)
       unless consumer
         consumer = Consumer.create(email: current_user.email, user_id: current_user.id)      
       end
     else
-      consumer = Consumer.create(email: params[:email])     
+      # guest
+      consumer = Consumer.create(email: params[:order][:email])     
     end
     session[:consumer_id] = consumer.id    
     @order = Order.create_from_cart(current_cart, params[:order].merge({store_id: current_store.id}), consumer)
@@ -75,7 +74,7 @@ private
   def checkout_funnel
     unless current_user
       flash[:error] = "Please log in or sign up to continue."
-      redirect_to root_path
+      # redirect_to root_path
     end
   end
 

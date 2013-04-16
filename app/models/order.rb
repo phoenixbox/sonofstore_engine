@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes
+  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
   attr_accessor :stripe_card_token, :email, :card_number, :card_month, :card_code, :card_year
 
   has_many :line_items
@@ -12,6 +12,8 @@ class Order < ActiveRecord::Base
   validates_presence_of :total_price, :consumer_id
 
   accepts_nested_attributes_for :billing_address, :shipping_address
+
+  before_save :check_if_guest
 
   def self.create_from_cart(cart, order_details, consumer)
     order = new(order_details)
@@ -132,5 +134,16 @@ class Order < ActiveRecord::Base
 
   def ship
     events.create! status: "shipped" if paid?
+  end
+
+  private
+
+  def check_if_guest
+    binding.pry
+    consumer = Consumer.find(self.consumer_id)
+    unless consumer.user
+      self.random_order_id = "#{Array.new(10){rand(36).to_s(36)}.join}"
+    end
+    binding.pry
   end
 end

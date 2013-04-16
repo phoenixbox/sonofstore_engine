@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416031239) do
+ActiveRecord::Schema.define(:version => 20130416045659) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "consumer_id"
@@ -74,11 +74,12 @@ ActiveRecord::Schema.define(:version => 20130416031239) do
   add_index "order_events", ["order_id"], :name => "index_order_events_on_order_id"
 
   create_table "orders", :force => true do |t|
-    t.integer  "total_price", :null => false
-    t.integer  "consumer_id", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "total_price",     :null => false
+    t.integer  "consumer_id",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "store_id"
+    t.string   "random_order_id"
   end
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
