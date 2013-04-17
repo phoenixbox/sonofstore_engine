@@ -3,7 +3,6 @@ class LineItemsController < ApplicationController
   # before_filter :find_or_create_cart, only: :create
 
   def create
-    binding.pry
     cart = find_or_create_cart
     logger.debug(session[:cart_id])
     product = Product.find(params[:product_id])
@@ -12,6 +11,7 @@ class LineItemsController < ApplicationController
 
     if @line_item.save
       redirect_to product_path(product.store, product)
+      flash[:notice] = 'Item Added To Cart'
     else
       flash[:error] = 'An error occurred, please try again'
     end

@@ -8,33 +8,29 @@
 .row-fluid
   .span12
     .page-header
-      %h1
+      %h1.pull-left
         = @product.title.titleize
         - if @product.active == false
           %span.label.label-important Product Retired!
+      %h1.pull-right
+        %span.price_label= number_to_currency(@product.price_in_dollars)
 .row-fluid
-  .detail_box
-    .detail_photo.span3
-      .thumbnail
-        %a{:href => "#"}
-          = image_tag @product.photo.url
+  .product-container
+    .span7
+      %a{:href => "#"}
+        = image_tag "http://placehold.it/600x600&text=[img]"
     .prod_desc.span5
-      .desc
-        %h4 Description
-        %p= @product.description
+      %h4 Description
+      %p= @product.description
+      %br/
+      %br/
       %strong Categories:
       %br/
       - @product.categories.each do |category|
         = link_to category.name, category_path(category)
-      %br/
-      %br/
-      .price
-        %span.price_label= number_to_currency(@product.price_in_dollars)
-        %span.amount
-      .form.form-horizontal
-        - if @product.active
-          .form-actions
-            = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "btn"
+      %span.amount
+      - if @product.active
+        = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "form-primary-button"
   / .cart_sidebar.span4
   /   .row-fluid
   /     .span12
@@ -67,4 +63,3 @@
   /               = button_to "Empty Cart", cart_path(@cart), :method => :delete, data: { confirm: "Are you sure?" }, :class => "btn pull-left"
   /           .span5.pull-right
   /             = button_to "Checkout", {:controller => "orders", :action => "new"}, :method => :get, :class => "btn btn-inverse pull-right"
-%p= link_to "Back to all products", products_path
