@@ -3,7 +3,6 @@ class LineItemsController < ApplicationController
   # before_filter :find_or_create_cart, only: :create
 
   def create
-    binding.pry
     cart = find_or_create_cart
     logger.debug(session[:cart_id])
     product = Product.find(params[:product_id])
@@ -11,8 +10,8 @@ class LineItemsController < ApplicationController
     @line_item.product = product
 
     if @line_item.save
-      flash[:notice] = "#{@line_item.product.title} sucessfully added to your cart!"
-      redirect_to cart_path(product.store, cart)
+      redirect_to product_path(product.store, product)
+      flash[:notice] = 'Item Added To Cart'
     else
       flash[:error] = 'An error occurred, please try again'
     end

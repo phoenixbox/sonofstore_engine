@@ -1,5 +1,6 @@
-.row-fluid
-  #login
-    .span6.offset3
-      %h2.text-center Log In
-      = render 'form'
+.row
+  .single-form.span4
+    %a.brand.brand-dark{:href => "/"} Shopmazing
+    = render 'form'
+    .inset
+      = link_to "Not registered? Sign up here", new_user_path

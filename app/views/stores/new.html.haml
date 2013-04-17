@@ -1,16 +1,4 @@
-#signup
-  .row-fluid
-    .span6.offset3
-      %h2.text-center Create Your Store
-      = simple_form_for @store do |f|
-        = f.error_notification
-        = f.input :name, :label => "Store Name"
-        = f.input :path
-        = f.input :description
-        -# =f.simple_fields_for :users do |u|
-        -#   = u.input :full_name
-        -#   = u.input :email
-        -#   = u.input :password
-        -#   = u.input :password_confirmation
-        = f.button :submit, :value => "Create Store", :class => "btn-primary"
-        = f.error :base
+.row
+  .single-form.span4
+    %a.brand.brand-dark{:href => "/"} Shopmazing
+    = render 'form'
