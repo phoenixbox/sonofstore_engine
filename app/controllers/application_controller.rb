@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
 
 
   def get_referrer
-    if request.referrer.include?("login")
+    if request.referrer.nil?
+      session[:return_to] = root_path
+    elsif request.referrer.include?("login")
       session[:return_to]
     elsif request.referrer.include?("users")
       session[:return_to]
