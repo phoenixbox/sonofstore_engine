@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  layout 'static_layout'
 
   before_filter :signed_in?, only: ['show', 'index']
   before_filter :checkout_funnel, only: 'new'
@@ -14,6 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    render :layout => "payment"
     @cart = current_cart
     if @cart.line_items.empty?
       flash[:error] = "Your cart is currently empty."
@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    render :layout => "payment"
     if current_user
       @consumer = Consumer.find_by_user_id(current_user)
       unless @consumer

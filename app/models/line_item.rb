@@ -3,9 +3,10 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :cart
   belongs_to :product
-  belongs_to :order
+  belongs_to :order, touch: true
 
   def total_price
     product.price_in_dollars * quantity
   end
+
 end

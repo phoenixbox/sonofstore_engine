@@ -16,6 +16,7 @@ class CartsController < ApplicationController
     line_item = current_cart.line_items.find_by_product_id(product)
     line_item.quantity +=1
     line_item.save
+    expire_fragment("product-details-show-page")
     redirect_to :back
   end
 
