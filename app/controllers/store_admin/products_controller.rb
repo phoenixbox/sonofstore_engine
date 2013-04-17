@@ -1,6 +1,7 @@
 class StoreAdmin::ProductsController < ApplicationController
 
-  before_filter :check_admin_access
+  before_filter :require_admin
+  layout 'admin'
 
   def index
     @products = current_store.products

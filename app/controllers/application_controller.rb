@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
 
   def current_store
-    if current_user && current_user.is_any_kind_of_admin?
+    if current_user && current_user.super_admin
       @store ||= Store.where(path: params[:store_id]).first
     else
       @store ||= Store.online.where(path: params[:store_id]).first
@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    if current_store.nil? || !current_store.is_admin(current_user)
+    if current_store.nil? || !current_store.is_admin?(current_user)
       not_authenticated
     end
   end
