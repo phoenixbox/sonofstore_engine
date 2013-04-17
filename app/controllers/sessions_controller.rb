@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:sessions][:email])
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
-      flash[:notice] = "Logged In!"
+      flash[:notice] = "Welcome to Shopmazing!"
       # redirect_to stores_path
       redirect_to(session[:return_to])
     else
@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:notice] = "Logout Successful!"
+    redirect_to :back
   end
 
 end

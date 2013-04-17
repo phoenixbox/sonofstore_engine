@@ -19,23 +19,6 @@ describe Consumer do
       expect(consumer1.save).to_not be
     end    
 
-    it "validates presence of billing_address_id" do
-      consumer.billing_address_id = nil
-      expect(consumer.save).to_not be
-    end
-
-    it "validates uniqueness of billing_address_id" do
-      consumer.billing_address_id = 123
-      consumer.save
-      consumer1.billing_address_id = 123
-      expect(consumer1.save).to_not be
-    end
-
-    it "validates presence of shipping_address_id" do
-      consumer.shipping_address_id = nil
-      expect(consumer.save).to_not be
-    end
-
     it "validates presence of user_id" do
       consumer.user_id = nil
       expect(consumer.save).to_not be
