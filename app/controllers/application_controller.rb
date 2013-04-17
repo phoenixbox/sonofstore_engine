@@ -5,7 +5,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  rescue_from ActionController::RoutingError, :with => :render_not_found
+
   before_filter :get_referrer, :only => [:new, :checkout_funnel]
+
+  def require_current_store
+    unless current_store
+      raise ActionController::RoutingError.new("Store is offline")
+    end
+  end
 
 
   def get_referrer
@@ -22,25 +30,45 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def routing_error
+    raise ActionController::RoutingError.new(params[:path])
+  end
+
+  def render_not_found
+    # render text: "Page Not Found", status: 404
+    # render file => '/public/404.html'
+     render file: "#{Rails.root}/public/404", formats: :html, status: 404
+  end
+
+  # Todo = refactor and memoize
   def current_cart
-    if session[:cart_id]
+
+    if session[:cart_id].nil?
       cart = Cart.find(session[:cart_id])
+
       unless cart.store == current_store
         cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
       end
+
     else
       cart = Cart.find_by_sid(session[:session_id])
+
       if cart.nil?
         cart = Cart.create!(store_id: current_store.id, sid: session[:session_id])
       end
     end
+
     session[:cart_id] = cart.id
     cart
   end
 
 
   def current_store
-    @store ||= Store.find(params[:store_id])
+    if current_user && current_user.is_any_kind_of_admin?
+      @store ||= Store.where(path: params[:store_id]).first
+    else
+      @store ||= Store.online.where(path: params[:store_id]).first
+    end
   end
 
   def current_user
@@ -55,36 +83,22 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
-  # def admin_user
-  #   current_user && current_user.has_any_role?(:super_admin, :store_admin, :stocker_admin)
-  # end
-
-  # def require_admin_user
-  #   redirect_to login_path,
-  #   alert: "Not authorized to access admin section" if !admin_user
-  # end
 
   helper_method :current_user, :current_consumer, :admin_user, :current_store, :current_cart
 
-  # def is_super_admin?
-  #   current_user && current_user.has_role?(:super_admin)
-  # end
 
-  # def is_store_or_stocker_admin?
-  #   current_user && current_user.has_any_role?(:store_admin, :stocker_admin)
-  # end
+  def not_authenticated
+    redirect_to root_path, alert: "You do not have access to this page"
+  end
 
-  # def has_store_access?
-  #   current_store.id == current_user.store_id
-  # end
-
-  # def check_admin_access
-  #   unless (is_store_or_stocker_admin? && has_store_access?) || is_super_admin?
-  #     redirect_to root_path, notice: "not authorized"
-  #   end
-  # end
+  def require_admin
+    if current_store.nil? || !current_store.is_admin(current_user)
+      not_authenticated
+    end
+  end
 
   def require_super_admin
-    redirect_to root_path, alert: "Not a Platform Admin" unless current_user.is_super_admin?
+     not_authenticated unless current_user && current_user.is_super_admin?
   end
+
 end

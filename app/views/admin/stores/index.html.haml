@@ -1,38 +1,24 @@
+-# = logger.debug current_path
+
 - provide(:title, 'Platform Admin Store List')
 .row-fluid
   .span12
     .page-header
       %h1 Platform Administration Portal
 
--# .row-fluid
--#   .tabbable
--#     %ul.nav.nav-tabs
--#       %li.active
--#         = link_to "Stores", "#"
 .row-fluid
-  .span12
-    .span6
-      %h4 Manage Stores
-    -# .span6.header-button
-    -#   %button.btn.pull-right{:href => "#"} Add New Product
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        = link_to "Approved Stores", admin_stores_path({status: "approved"})
+      %li.active
+        = link_to admin_stores_path({status: "pending"}) do 
+          Pending Stores
+          %span.badge.badge-info 3
+      %li
+        = link_to "Declined Stores", admin_stores_path({status: "declined"})
 
-.row-fluid
-  .span12
-    %table.table.table-striped.table-bordered.cart-detail
-      %thead
-        %tr
-          %th.span2 Store Name
-          %th.span2 Store Path
-          %th.span4 Description
-          %th.span2 Pilot
-          %th.span2 Admin Action
-      %tbody
-        - @stores.each do |store|
-          %tr
-            %td= store.name
-            %td= store.path
-            %td= store.description
-            %td
-              %a{:href => "#"} Administer
-            %td
-              %a{:href => "#"} Approve
+- if @flag == "pending" || @flag == "declined"
+  = render :partial => "pending_stores_table", locals: {stores: @stores}
+- else @flag == "approved"   
+  = render :partial => "approved_stores_table", locals: {stores: @stores}

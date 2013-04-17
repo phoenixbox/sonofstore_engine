@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  # before_filter :find_cart
+  before_filter :require_current_store
 
   def index
     @products = current_store.products

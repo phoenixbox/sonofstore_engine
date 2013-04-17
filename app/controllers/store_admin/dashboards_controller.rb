@@ -1,6 +1,6 @@
 class StoreAdmin::DashboardsController < ApplicationController
 
-  before_filter :check_admin_access
+  before_filter :require_admin
 
   def show
     @orders = current_store.orders
