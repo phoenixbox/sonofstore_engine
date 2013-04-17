@@ -18,6 +18,8 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
 gem "rolify",        :git => "git://github.com/EppO/rolify.git"
+gem 'newrelic_rpm'
+gem 'redis-store', '~> 1.0.0'
 
 
 group :assets do
@@ -57,7 +59,7 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rails-footnotes', '>= 3.7.9'
+  # gem 'rails-footnotes', '>= 3.7.9'
   # gem 'meta_request'
 end
 

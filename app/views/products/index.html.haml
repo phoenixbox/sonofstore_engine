@@ -1,23 +1,24 @@
-%h1= current_store.name
-%ul.breadcrumb
-  %li
-    %span.divider
-      / 
-  %li.active
-    All Products
-.row-fluid
-  .span12
-    .page-header
-      %h1
-.row-fluid
-  .thumbnails.product_list
-    - @products.each do |product|
-      - if product.active
-        %li.span3
-          .thumbnail
-            = link_to product_path(product.store, product) do
-              = image_tag product.photo_url.to_s
-            .caption
-              %h5= link_to product.title.truncate(10), product_path(product.store, product)
-              %p= number_to_currency(product.price_in_dollars)
-  = paginate @products
+-cache ("products-index") do
+  %h1= current_store.name
+  %ul.breadcrumb
+    %li
+      %span.divider
+        / 
+    %li.active
+      All Products
+  .row-fluid
+    .span12
+      .page-header
+        %h1
+  .row-fluid
+    .thumbnails.product_list
+      - @products.each do |product|
+        - if product.active
+          %li.span3
+            .thumbnail
+              = link_to product_path(product.store, product) do
+                = image_tag product.photo_url.to_s
+              .caption
+                %h5= link_to product.title.truncate(10), product_path(product.store, product)
+                %p= number_to_currency(product.price_in_dollars)
+    = paginate @products
