@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
+  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store_id, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
   attr_accessor :stripe_card_token, :email, :card_number, :card_month, :card_code, :card_year
 
   has_many :line_items
@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :store
   belongs_to :consumer
-  validates_presence_of :total_price, :consumer_id
+  validates_presence_of :total_price, :consumer_id, :store_id
 
   accepts_nested_attributes_for :billing_address, :shipping_address
 

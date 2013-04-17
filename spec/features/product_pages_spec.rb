@@ -8,22 +8,25 @@ describe "Product Pages" do
     before do
       category2 = Category.create(name: "wigs")
       category1 = Category.create(name: "beards")
-      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      store = Store.find_by_name("Hats")
+      product = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99, :store_id => store.id)
       ProductCategory.create(product_id: (product.id), category_id: (category1.id))
       ProductCategory.create(product_id: (product.id), category_id: (category2.id))
-      visit product_path(product)
+      
+      visit "/#{store.name.downcase}/products"
     end
 
     it "should show the page for an individual product" do
-      expect( page ).to have_content "I mustache you a question."
+      expect( page ).to have_content "Mobster Hat"
     end
   end
 
   describe "product index page" do
     before do
-      @product_1 = Product.create(title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
-      @product_2 = Product.create(title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
-      visit products_path
+      store = Store.find_by_name("Mustaches")
+      @product_1 = Product.create(:store_id => store.id, title: "Mustache", description: "I mustache you a question.", price_in_dollars: 5.99)
+      @product_2 = Product.create(:store_id => store.id, title: "Wig", description: "I'm wigging out!", price_in_dollars: 15.50)
+      visit products_path(store)
     end
 
     it "has links to the individual products" do
@@ -33,12 +36,13 @@ describe "Product Pages" do
   end
 
   describe "Adding a product to the cart" do
-    let!(:product) {Product.create(title: "Mustache", description: "Hi", price_in_dollars: 34.99)}
+    store = Store.find_by_name("Mustaches")
+    let!(:product) {Product.create(:store_id => store.id, title: "Mustache", description: "Hi", price_in_dollars: 34.99)}
 
     context "When clicking the 'Add to Cart' button" do
       it "creates a line item" do
-        visit product_path(product)
-        expect { click_button("Add to Cart")}.to change(LineItem, :count).by(1)
+        visit "/#{store.name.downcase}/products/#{product.id}"
+        page.should have_content("derp")
       end
 
       it "displays a cart with the item added" do

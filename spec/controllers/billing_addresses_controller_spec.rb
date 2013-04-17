@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BillingAddressController do
+describe BillingAddressesController do
   describe "GET #index" do
     it "returns http success" do
       get 'index'

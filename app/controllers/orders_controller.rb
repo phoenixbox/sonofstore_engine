@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
       @consumer = Consumer.create(email: params[:order][:email])
     end
     session[:consumer_id] = @consumer.id
+    binding.pry
     @order = Order.create_from_cart(current_cart, params[:order].merge({store_id: current_store.id}), @consumer)
 
     if @order.id
