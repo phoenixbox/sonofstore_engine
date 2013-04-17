@@ -3,10 +3,6 @@ StoreEngine::Application.routes.draw do
 
   resources :static_pages, :only => :index
 
-  put '/add_quantity_to_cart/:id' => 'carts#add_quantity_to_cart', :as => 'add_quantity_to_cart'
-  put '/decrease_quantity_from_cart/:id' => 'carts#decrease_quantity_from_cart', :as => 'decrease_quantity_from_cart'
-
-
   resources :users, :except => [:index, :destroy, :show]
   resources :consumers, :except => [:index, :destroy]
   resources :billing_address
@@ -27,10 +23,13 @@ StoreEngine::Application.routes.draw do
 
   namespace :admin do
     resources :stores
+    resources :line_items, :only => [] do
+      put 'increase_quantity', :on => :member
+      put 'decrease_quantity', :on => :member
+    end
   end
 
   match 'guest_order/:random' => 'orders#show_guest_order', as: 'guest_order'
-
 
   scope "/:store_id" do
 
@@ -42,16 +41,28 @@ StoreEngine::Application.routes.draw do
 
 
     resources :products, :only => [:index, :show]
-    resources :carts
     resources :orders, :except => [:edit, :update, :destroy]
     resources :line_items
+
+    resources :carts do
+        put 'increase_quantity', :on => :member
+        put 'decrease_quantity', :on => :member
+    end
+
+
+
     resources :categories, :only => [:index, :show]
 
     namespace :store_admin, :path => "/admin" do
       match "/" => "dashboards#show"
       # resource :dashboard, :only => :show
       resources :products, :except => :destroy
-      resources :orders, :except => :destroy
+      
+      resources :orders, :except => :destroy do
+        put 'increase_quantity', :on => :member
+        put 'decrease_quantity', :on => :member
+      end
+      
       resources :categories
 
       # match "/edit" => "dashboards#edit"

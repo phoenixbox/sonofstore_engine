@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:notice] = "Logout Successful!"
+    redirect_to :back
   end
 
 end
