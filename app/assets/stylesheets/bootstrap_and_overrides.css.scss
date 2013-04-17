@@ -589,3 +589,21 @@ p.form-light {
 .cart-visible {
   display: block !important;
 }
+.category {
+  background: #d7f1ff;
+  padding: .3em .8em .3em .8em;
+  border-radius: 3px;
+  color: #05222a !important;
+  margin-right:.5em;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.category:hover {
+  background: #28b8df;
+  text-decoration: none;
+}
+.full-line {
+  width: 100%;
+}
