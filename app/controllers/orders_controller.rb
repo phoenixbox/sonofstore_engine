@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  layout 'static_layout'
+  layout 'signup'
 
   before_filter :signed_in?, only: ['show', 'index']
   before_filter :checkout_funnel, only: 'new'

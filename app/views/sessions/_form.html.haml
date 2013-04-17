@@ -1,9 +1,7 @@
-#login
-  .span6.offset3
-    = link_to "Not registered? Sign up here", new_user_path
-    = simple_form_for :sessions, :url => sessions_path, :html => {:class => 'bs-container'} do |f|
-      = f.error_notification
-      = f.input :email
-      = f.input :password
-      = f.button :submit, :value => "Log In", :class => "btn-primary"
-      = f.error :base
+= simple_form_for :sessions, :url => sessions_path do |f|
+  %h4= "Welcome back!"
+  = f.error_notification
+  = f.input :email, label: false, input_html: { placeholder: "Email" }
+  = f.input :password, label: false, input_html: { placeholder: "Password" }
+  = f.button :submit, :value => "Log In", :class => "form-primary-button"
+  = f.error :base
