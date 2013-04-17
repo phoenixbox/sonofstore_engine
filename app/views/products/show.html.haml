@@ -17,7 +17,7 @@
     .detail_photo.span3
       .thumbnail
         %a{:href => "#"}
-          = image_tag @product.photo_url.to_s
+          = image_tag @product.photo.url
     .prod_desc.span5
       .desc
         %h4 Description

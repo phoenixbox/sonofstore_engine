@@ -16,8 +16,8 @@
         %li.span3
           .thumbnail
             = link_to product_path(product.store, product) do
-              = image_tag product.photo_url.to_s
+              = image_tag product.photo.url
             .caption
-              %h5= link_to product.title.truncate(10), product_path(product.store, product)
+              %h5= link_to product.title.truncate(15), product_path(product.store, product)
               %p= number_to_currency(product.price_in_dollars)
   = paginate @products
