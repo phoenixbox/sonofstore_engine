@@ -1,4 +1,8 @@
 class StoreAdmin::OrdersController < ApplicationController
+
+  before_filter :require_admin
+  layout 'admin'
+
   def show
     @order = Order.find(params[:id])
   end

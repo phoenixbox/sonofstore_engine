@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  rolify
   has_secure_password
+  
   paginates_per 16
   
   attr_accessible :display_name,
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_one :phone_number
   has_one :consumer
+  has_many :user_store_roles
+  has_many :stores, :through => :user_store_roles
 
   accepts_nested_attributes_for :phone_number
 
@@ -35,5 +37,18 @@ class User < ActiveRecord::Base
   def can_receive_messages?
     phone.present? && receive_sms?
   end
-  
+
+  def assign_super_admin
+    self.super_admin = true
+    self.save
+  end
+
+  def is_super_admin?
+    self.super_admin
+  end
+
+  def assign_role(store, role)
+    UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id, store_id: store_id).update_attributes(role: role)
+  end
+
 end

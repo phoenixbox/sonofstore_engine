@@ -149,12 +149,24 @@ ActiveRecord::Schema.define(:version => 20130416234353) do
     t.string "name"
     t.string "path"
     t.string "description"
+    t.string "status"
   end
+
+  create_table "user_store_roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_store_roles", ["store_id", "user_id"], :name => "index_user_store_roles_on_store_id_and_user_id", :unique => true
+  add_index "user_store_roles", ["user_id"], :name => "index_user_store_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false
     t.string   "display_name"
-    t.boolean  "admin",           :default => false, :null => false
+    t.boolean  "super_admin",     :default => false, :null => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false

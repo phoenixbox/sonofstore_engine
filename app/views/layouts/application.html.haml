@@ -9,8 +9,8 @@
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
   %body
     = render :partial => "shared/navbar"
+
     #content.container
-      / = render :partial => "shared/brand_header"
       = render :partial => "shared/sub_menu", :locals => {:categories =>  @categories}
       = render :partial => "shared/flash_messages", :locals => {:flash => flash}
       = yield

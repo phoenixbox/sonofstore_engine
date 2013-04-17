@@ -5,7 +5,15 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  rescue_from ActionController::RoutingError, :with => :render_not_found
+
   before_filter :get_referrer, :only => [:new, :checkout_funnel]
+
+  def require_current_store
+    unless current_store
+      raise ActionController::RoutingError.new("Store is offline")
+    end
+  end
 
 
   def get_referrer
@@ -24,41 +32,45 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_store
-    @store ||= Store.find(params[:store_id])
+  def routing_error
+    raise ActionController::RoutingError.new(params[:path])
   end
 
+  def render_not_found
+    # render text: "Page Not Found", status: 404
+    # render file => '/public/404.html'
+     render file: "#{Rails.root}/public/404", formats: :html, status: 404
+  end
+
+  # Todo = refactor and memoize
   def current_cart
-    if session[:cart_id]
+
+    if session[:cart_id].nil?
       cart = Cart.find(session[:cart_id])
+
       unless cart.store == current_store
         cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
       end
+
     else
       cart = Cart.find_by_sid(session[:session_id])
+
       if cart.nil?
         cart = Cart.create!(store_id: current_store.id, sid: session[:session_id])
       end
     end
+
     session[:cart_id] = cart.id
     cart
   end
 
-  # def current_cart
-  #   if !session[:cart_id]
-  #     cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
-  #   else
-  #     cart = Cart.find(session[:cart_id])
-  #   end
-  #   session[:cart_id] = cart.id
-  #   cart
-  # end
-
-  helper_method :current_cart
-
 
   def current_store
-    @store ||= Store.find(params[:store_id])
+    if current_user && current_user.super_admin
+      @store ||= Store.where(path: params[:store_id]).first
+    else
+      @store ||= Store.online.where(path: params[:store_id]).first
+    end
   end
 
   def current_user
@@ -73,14 +85,22 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
-  def admin_user
-    current_user && current_user.admin?
+
+  helper_method :current_user, :current_consumer, :admin_user, :current_store, :current_cart
+
+
+  def not_authenticated
+    redirect_to root_path, alert: "You do not have access to this page"
   end
 
-  def require_admin_user
-    redirect_to login_path,
-    alert: "Not authorized to access admin section" if !admin_user
+  def require_admin
+    if current_store.nil? || !current_store.is_admin?(current_user)
+      not_authenticated
+    end
   end
 
-  helper_method :current_user, :current_consumer, :admin_user, :current_store
+  def require_super_admin
+     not_authenticated unless current_user && current_user.is_super_admin?
+  end
+
 end

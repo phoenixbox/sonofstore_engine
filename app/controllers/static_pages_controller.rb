@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   layout 'static_layout'
 
   def index
-    @stores = Store.all  
+    @stores = Store.online
   end
 
 end
