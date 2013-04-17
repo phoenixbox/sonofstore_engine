@@ -11,7 +11,7 @@
     = render :partial => "shared/navbar"
     .container
       = render :partial => "shared/brand_header"
-      = render :partial => "shared/sub_menu", :locals => {:categories =>  @categories}
+      -# = render :partial => "shared/sub_menu", :locals => {:categories =>  @categories}
       = render :partial => "shared/flash_messages", :locals => {:flash => flash}
       = yield
       = render :partial => "shared/footer"

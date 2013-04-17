@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
   has_secure_password
-  
+
   attr_accessible :display_name,
                   :email,
                   :full_name,
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates :display_name, :length => { :minimum => 2,
     :maximum => 32 }, :allow_blank => true
 
+  belongs_to :store
   has_one :phone_number
   has_one :consumer
 
@@ -34,5 +35,5 @@ class User < ActiveRecord::Base
   def can_receive_messages?
     phone.present? && receive_sms?
   end
-  
+
 end

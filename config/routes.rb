@@ -26,6 +26,7 @@ StoreEngine::Application.routes.draw do
 
 
   namespace :admin do
+    get "/", to: "stores#index", as: 'platform_home'
     resources :stores
   end
 
@@ -51,8 +52,8 @@ StoreEngine::Application.routes.draw do
       match "/" => "dashboards#show"
       # resource :dashboard, :only => :show
       resources :products, :except => :destroy
-      resources :orders, :except => :destroy
-      resources :categories
+      resources :orders, :except => [:destroy]
+      resources :categories, :except => :show
 
       # match "/edit" => "dashboards#edit"
 

@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :store
+  attr_accessible :name, :store_id
 
   validates_uniqueness_of :name
   validates_presence_of :name

@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user
-    current_user && current_user.admin?
+    current_user && current_user.has_any_role?(:super_admin, :store_admin, :stocker_admin)
   end
 
   def require_admin_user
@@ -83,4 +83,28 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :current_consumer, :admin_user, :current_store
+
+  def is_super_admin?
+    binding.pry
+    current_user && current_user.has_role?(:super_admin)
+  end
+
+  def is_store_or_stocker_admin?
+    binding.pry
+    current_user && current_user.has_any_role?(:store_admin, :stocker_admin)
+  end
+
+  def has_store_access?
+    current_store.id == current_user.store_id
+  end
+
+  def check_admin_access
+    unless (is_store_or_stocker_admin? && has_store_access?) || is_super_admin?
+      redirect_to root_path, notice: "not authorized"
+    end
+  end
+
+  def require_admin
+    redirect_to root_path, alert: "Not a Platform Admin" unless is_super_admin?
+  end
 end

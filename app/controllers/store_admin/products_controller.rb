@@ -1,5 +1,7 @@
 class StoreAdmin::ProductsController < ApplicationController
 
+  before_filter :check_admin_access
+
   def index
     @products = current_store.products
   end
@@ -22,10 +24,9 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def update
-    binding.pry
     @product = Product.find(params[:id])
     if @product.update_attributes params[:product]
-      redirect_to store_admin_products_path(current_store),t, notice: "Product Updated!"
+      redirect_to store_admin_products_path(current_store), notice: "Product Updated!"
     else
       # flash[:error] = "An error occurred, please try again"
       render :edit

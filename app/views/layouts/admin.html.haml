@@ -7,10 +7,10 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = render :partial => "shared/navbar"
+    = render :partial => "shared/admin_navbar"
     .container
       = render :partial => "shared/brand_header"
       = render :partial => "shared/flash_messages", :locals => {:flash => flash}
-      = render :partial => "shared/admin_menu"
+      -# = render :partial => "shared/admin_menu"
       = yield
       = render :partial => "shared/footer"

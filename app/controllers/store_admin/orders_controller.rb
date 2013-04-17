@@ -1,4 +1,6 @@
 class StoreAdmin::OrdersController < ApplicationController
+  before_filter :check_admin_access
+
   def show
     @order = Order.find(params[:id])
   end

@@ -1,8 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.all
-    @products = Product.all
+    @categories = current_store.categories
   end
 
 #     respond_to do |format|

@@ -1,4 +1,7 @@
 class StoreAdmin::CategoriesController < ApplicationController
+
+  before_filter :check_admin_access
+
   def index
     # @categories = Category.all
      @categories = current_store.categories
@@ -15,7 +18,7 @@ class StoreAdmin::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes params[:category]
-      redirect_to admin_categories_path, notice: "Category Updated!"
+      redirect_to store_admin_categories_path, notice: "Category Updated!"
     else
       flash[:error] = "An error occurred, please try again"
       render :edit
@@ -23,10 +26,10 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(params[:category].merge({store_id: current_store.id}))
     if @category.save
-      redirect_to admin_categories_path,
-      notice: "Category Added!"
+      flash[:notice] = "Category Added!"
+      redirect_to store_admin_categories_path
     else
       render "new"
     end
@@ -35,9 +38,8 @@ class StoreAdmin::CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-
-    redirect_to admin_categories_path,
-    notice: "Category was successfully deleted"
+    flash[:notice] = "Category was successfully deleted"
+    redirect_to store_admin_categories_path
   end
 
 end

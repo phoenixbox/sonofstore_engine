@@ -1,7 +1,5 @@
 class Admin::StoresController < Admin::BaseController
 
-  layout 'signup'
-
   def edit
     @store = Store.find(params[:store_id])
   end

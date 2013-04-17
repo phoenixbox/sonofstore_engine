@@ -196,15 +196,15 @@ product25 = Product.create(title: "Cletus Mullet",
 # order10.line_items << line_item27
 # order10.cancel
 
-category1 = Category.create(name: "Hats", store: store2)
-category2 = Category.create(name: "Wigs", store: store2)
-category3 = Category.create(name: "Glasses", store: store3)
-category4 = Category.create(name: "Mustaches", store: store1)
-category5 = Category.create(name: "Teeth & Lips", store: store2 )
-category6 = Category.create(name: "Hair", store: store2)
-category7 = Category.create(name: "Sideburns", store: store1)
-category8 = Category.create(name: "Beards", store: store1)
-category9 = Category.create(name: "Facial Hair", store: store1)
+category1 = Category.create(name: "Hats", store_id: store2)
+category2 = Category.create(name: "Wigs", store_id: store2)
+category3 = Category.create(name: "Glasses", store_id: store3)
+category4 = Category.create(name: "Mustaches", store_id: store1)
+category5 = Category.create(name: "Teeth & Lips", store_id: store2 )
+category6 = Category.create(name: "Hair", store_id: store2)
+category7 = Category.create(name: "Sideburns", store_id: store1)
+category8 = Category.create(name: "Beards", store_id: store1)
+category9 = Category.create(name: "Facial Hair", store_id: store1)
 
 
 user1 = User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.com",
