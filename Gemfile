@@ -32,6 +32,8 @@ group :assets do
 end
 
 group :development, :test do
+  gem "shoulda-matchers"
+  gem "shoulda-context"
   gem 'rspec-rails'
   gem 'capybara'
   gem 'unicorn'
@@ -48,6 +50,7 @@ group :development, :test do
   gem 'html2haml'
   gem 'pry-remote'
   gem 'letter_opener'
+  gem 'faker'
 end
 
 group :development do 
