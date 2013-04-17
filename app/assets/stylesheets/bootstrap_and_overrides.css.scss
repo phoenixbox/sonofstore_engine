@@ -309,7 +309,7 @@ h1, h2, h3, h4, h5, strong {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   background: #f1f1f1;
 }
 .navbar-inner {
@@ -465,7 +465,7 @@ body {
   font-family: 'Questrial', sans-serif;
   text-transform: uppercase;
   position:absolute;
-  top:115px;
+  top:110px;
   right:-270px;
   width:200px;
   padding:1.5em 1em 1.5em 2em;
@@ -527,4 +527,65 @@ body {
 }
 .footer {
   margin-top: 3em;
+}
+.cart-detail {
+  box-shadow: 0px 0px 5px #d4d4d4;
+  border: none;
+  border-radius: 3px;
+}
+th {
+  font-family: 'Questrial', sans-serif;
+  text-transform: uppercase;
+}
+td {
+  font-family: 'Questrial', sans-serif;
+}
+.dual-option-form-left {
+  float: left;
+}
+.dual-option-form-right {
+  float: right;
+  width: 218px;
+  margin-left: 3.5em;
+  padding-left: 3.5em;
+  border-left: 1px solid #ccc;
+}
+.number {
+  padding: .9em 1.1em .9em 1.1em;
+  background: #ccc;
+  float: left;
+  border-radius: 50px;
+  color: white;
+  font-size: 1.3em;
+  text-align: center;
+}
+.number-list {
+  float: left;
+  padding: .8em 0em .8em 0em;
+}
+.number-list-link {
+  line-height: 3.2em;
+  margin-left: 1em;
+  font-size: 1.1em;
+}
+p.form-light {
+  text-align: center;
+  font-size: 1.1em;
+  color: #999;
+}
+.thumbnail {
+  background: #fff;
+  border: none;
+  box-shadow: 0px 0px 5px #d4d4d4;
+  position: relative;
+}
+[class^="cart-hidden"] {
+  position: absolute;
+  bottom: 0;
+  width: 85%;
+  padding: 1em;
+  display: none;
+}
+.cart-visible {
+  display: block !important;
 }

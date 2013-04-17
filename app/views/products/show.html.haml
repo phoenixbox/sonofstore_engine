@@ -1,7 +1,7 @@
 .row-fluid
   %ul.breadcrumb
     %li
-      = link_to "Home", "/"
+      = link_to "Home", store_home_path
       %span.divider /
     %li.active
       = @product.title.titleize
@@ -31,6 +31,7 @@
       %span.amount
       - if @product.active
         = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "form-primary-button"
+      %hr
   / .cart_sidebar.span4
   /   .row-fluid
   /     .span12

@@ -12,7 +12,7 @@
         Shopping Cart
 .row-fluid
   .span12
-    %table.table.table-striped.table-bordered.cart-detail
+    %table.table.table-striped.cart-detail
       %thead
         %tr
           %th.span1 Product
@@ -46,7 +46,7 @@
                 = number_to_currency(line_item.total_price)
           - else
             - line_item.destroy
-    %table.table.total.table-bordered
+    %table.table.total.table-bordered.cart-detail
       %tbody
         %tr
           %td.span8
@@ -56,8 +56,7 @@
           %td.span8
           %td.span2 Total
           %td.span2= number_to_currency(@cart.total_price)
-    .span20.form-actions
-      .span5.pull-left
-        = button_to "Continue Shopping", products_path(current_store), :method => :get, :class => "btn"
-      .span2.pull-right
-        = button_to "Checkout", checkout_path(current_store), :method => :get, :class => "btn btn-inverse"
+  .pull-left
+    = button_to "Continue Shopping", products_path(current_store), :method => :get, :class => "btn"
+  .pull-right
+    = button_to "Checkout", checkout_path(current_store), :method => :get, :class => "btn btn-inverse"
