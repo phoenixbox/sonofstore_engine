@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416054037) do
+ActiveRecord::Schema.define(:version => 20130416234353) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "consumer_id"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130416054037) do
     t.datetime "photo_updated_at"
     t.string   "slug"
     t.integer  "store_id"
+    t.string   "photo_url"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
