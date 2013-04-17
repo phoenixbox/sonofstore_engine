@@ -26,7 +26,7 @@ StoreEngine::Application.routes.draw do
 
 
   namespace :admin do
-    get "/", to: "stores#index", as: 'platform_home'
+    # get "/", to: "stores#index", as: 'platform_home'
     resources :stores
   end
 

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  rolify
   has_secure_password
 
   attr_accessible :display_name,
@@ -18,9 +17,10 @@ class User < ActiveRecord::Base
   validates :display_name, :length => { :minimum => 2,
     :maximum => 32 }, :allow_blank => true
 
-  belongs_to :store
   has_one :phone_number
   has_one :consumer
+  has_many :user_store_roles
+  has_many :stores, :through => :user_store_roles
 
   accepts_nested_attributes_for :phone_number
 
@@ -34,6 +34,15 @@ class User < ActiveRecord::Base
 
   def can_receive_messages?
     phone.present? && receive_sms?
+  end
+
+  def assign_super_admin
+    self.super_admin = true
+    self.save
+  end
+
+  def is_super_admin?
+    self.super_admin
   end
 
 end

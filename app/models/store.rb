@@ -1,15 +1,19 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :users_attributes
-  cattr_accessor :current_id
+  before_validation :set_default_status, on: :create
+
 
   validates_uniqueness_of :name, :path
-  validates_presence_of :name, :path
+  validates_presence_of :name, :path, :description
+  validates :status, presence: true, inclusion: { in: %w(online offline pending declined) }
 
   has_many :products
-  has_many :users
   has_many :orders
   has_many :categories
   has_many :carts
+  has_many :user_store_roles
+  has_many :users, :through => :user_store_roles
+
 
   accepts_nested_attributes_for :users
 
@@ -19,6 +23,12 @@ class Store < ActiveRecord::Base
 
   def to_param
     path
+  end
+
+  private
+
+  def set_default_status
+    self.status = 'pending'
   end
 
 end

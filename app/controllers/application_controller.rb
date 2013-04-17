@@ -22,12 +22,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_store
-    @store ||= Store.find(params[:store_id])
-  end
-
-
-
   def current_cart
     if session[:cart_id]
       cart = Cart.find(session[:cart_id])
@@ -43,18 +37,6 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
-
-  # def current_cart
-  #   if !session[:cart_id]
-  #     cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
-  #   else
-  #     cart = Cart.find(session[:cart_id])
-  #   end
-  #   session[:cart_id] = cart.id
-  #   cart
-  # end
-
-  helper_method :current_cart
 
 
   def current_store
@@ -73,38 +55,36 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
-  def admin_user
-    current_user && current_user.has_any_role?(:super_admin, :store_admin, :stocker_admin)
-  end
+  # def admin_user
+  #   current_user && current_user.has_any_role?(:super_admin, :store_admin, :stocker_admin)
+  # end
 
-  def require_admin_user
-    redirect_to login_path,
-    alert: "Not authorized to access admin section" if !admin_user
-  end
+  # def require_admin_user
+  #   redirect_to login_path,
+  #   alert: "Not authorized to access admin section" if !admin_user
+  # end
 
-  helper_method :current_user, :current_consumer, :admin_user, :current_store
+  helper_method :current_user, :current_consumer, :admin_user, :current_store, :current_cart
 
-  def is_super_admin?
-    binding.pry
-    current_user && current_user.has_role?(:super_admin)
-  end
+  # def is_super_admin?
+  #   current_user && current_user.has_role?(:super_admin)
+  # end
 
-  def is_store_or_stocker_admin?
-    binding.pry
-    current_user && current_user.has_any_role?(:store_admin, :stocker_admin)
-  end
+  # def is_store_or_stocker_admin?
+  #   current_user && current_user.has_any_role?(:store_admin, :stocker_admin)
+  # end
 
-  def has_store_access?
-    current_store.id == current_user.store_id
-  end
+  # def has_store_access?
+  #   current_store.id == current_user.store_id
+  # end
 
-  def check_admin_access
-    unless (is_store_or_stocker_admin? && has_store_access?) || is_super_admin?
-      redirect_to root_path, notice: "not authorized"
-    end
-  end
+  # def check_admin_access
+  #   unless (is_store_or_stocker_admin? && has_store_access?) || is_super_admin?
+  #     redirect_to root_path, notice: "not authorized"
+  #   end
+  # end
 
-  def require_admin
-    redirect_to root_path, alert: "Not a Platform Admin" unless is_super_admin?
+  def require_super_admin
+    redirect_to root_path, alert: "Not a Platform Admin" unless current_user.is_super_admin?
   end
 end

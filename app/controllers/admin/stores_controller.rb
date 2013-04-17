@@ -1,5 +1,10 @@
 class Admin::StoresController < Admin::BaseController
 
+
+  def index
+    @stores = Store.all
+  end
+
   def edit
     @store = Store.find(params[:store_id])
   end

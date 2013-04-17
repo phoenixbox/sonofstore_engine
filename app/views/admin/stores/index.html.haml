@@ -4,11 +4,35 @@
     .page-header
       %h1 Platform Administration Portal
 
+-# .row-fluid
+-#   .tabbable
+-#     %ul.nav.nav-tabs
+-#       %li.active
+-#         = link_to "Stores", "#"
 .row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li.active
-        = link_to "Stores", "#"
-      %li
-        = link_to "Manage Team", "#"
+  .span12
+    .span6
+      %h4 Manage Stores
+    -# .span6.header-button
+    -#   %button.btn.pull-right{:href => "#"} Add New Product
 
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span2 Store Name
+          %th.span2 Store Path
+          %th.span4 Description
+          %th.span2 Pilot
+          %th.span2 Admin Action
+      %tbody
+        - @stores.each do |store|
+          %tr
+            %td= store.name
+            %td= store.path
+            %td= store.description
+            %td
+              %a{:href => "#"} Administer
+            %td
+              %a{:href => "#"} Approve
