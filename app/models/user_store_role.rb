@@ -1,5 +1,5 @@
 class UserStoreRole < ActiveRecord::Base
-  attr_accessible :user_id, :store_id, :role, as: :super_admin
+  attr_accessible :user_id, :store_id, :role
 
   belongs_to :user
   belongs_to :store

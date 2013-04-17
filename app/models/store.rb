@@ -15,6 +15,8 @@ class Store < ActiveRecord::Base
   has_many :users, :through => :user_store_roles
 
 
+
+
   accepts_nested_attributes_for :users
 
   def self.find(path)
@@ -23,6 +25,14 @@ class Store < ActiveRecord::Base
 
   def to_param
     path
+  end
+
+  def is_admin?(user)
+    UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+  end
+
+  def is_stocker?(user)
+    UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "stocker")
   end
 
   private
