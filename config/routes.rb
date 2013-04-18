@@ -57,6 +57,7 @@ StoreEngine::Application.routes.draw do
       match "/" => "dashboards#show"
       # resource :dashboard, :only => :show
       resources :products, :except => :destroy
+      
       resources :members
       resources :categories, :except => :show
       resources :stores, :only => [:index, :edit, :update]
@@ -66,6 +67,7 @@ StoreEngine::Application.routes.draw do
         put 'decrease_quantity', :on => :member
       end
       
+
       # match "/edit" => "dashboards#edit"
 
       put '/add_quantity_to_order/:id' => 'orders#add_quantity_to_order', :as => 'add_quantity_to_order'

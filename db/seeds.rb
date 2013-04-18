@@ -65,6 +65,13 @@ user3 = User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartla
             password: "password", password_confirmation: "password", display_name: "SkrilleX")
 
 user4 = User.create(full_name: "Professor X", email: "admin@example.com", password: "password")
+ HEAD
+user5 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password")
+user6 = User.create(full_name: "Ironman", email: "ironmanw@example.com", password: "password")
+user7 = User.create(full_name: "Batman", email: "batman@example.com", password: "password")
+user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password: "password")
+
+user4.assign_super_admin
 user4.super_admin = true
 user4.save
 
@@ -74,8 +81,9 @@ user6 = User.create(full_name: "Ironman", email: "ironmanw@example.com", passwor
 
 user7 = User.create(full_name: "Batman", email: "batman@example.com", password: "password")
 
-user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password: "password")
-
+UserStoreRole.create({user_id: 5, store_id: 1, role: 'admin'})
+UserStoreRole.create({user_id: 6, store_id: 2, role: 'stocker'})
+UserStoreRole.create({user_id: 7, store_id: 3, role: 'admin'})
 
 
 

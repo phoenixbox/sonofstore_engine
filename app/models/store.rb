@@ -1,7 +1,7 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :users_attributes, :status
   before_validation :set_default_status, on: :create
-  before_validation :convert_to_url
+  # before_validation :convert_to_url
 
 
   validates_uniqueness_of :name, :path
