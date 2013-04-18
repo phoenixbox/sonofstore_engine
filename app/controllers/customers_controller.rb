@@ -7,7 +7,8 @@ class CustomersController < ApplicationController
     @customer = Customer.new(params[:customer])
     if @customer.save
       session[:customer_id] = @customer.id
-      redirect_to customer_path(session[:customer_id]), notice: "Thank you for signing up!"
+      redirect_to customer_path(session[:customer_id]),
+        notice: "Thank you for signing up!"
     else
       render "new"
     end

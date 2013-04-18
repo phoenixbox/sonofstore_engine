@@ -27,7 +27,8 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category].merge({store_id: current_store.id}))
+    @category = Category.new(params[:category].
+      merge({store_id: current_store.id}))
     if @category.save
       flash[:notice] = "Category Added!"
       redirect_to store_admin_categories_path
