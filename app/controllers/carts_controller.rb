@@ -6,7 +6,7 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
     @cart.destroy
-    session[:cart_id] = nil
+    session.delete(:cart_id)
     flash[:error] = "Your cart is currently empty."
     redirect_to :back
   end
