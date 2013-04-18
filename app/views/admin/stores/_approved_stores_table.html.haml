@@ -8,13 +8,13 @@
           %th.span3 Description
           %th.span2 Pilot
           %th.span1 Status
-          %th.span2 Change Status
+          %th.span2 Actions
       %tbody
         - stores.each do |store|
           %tr
-            %td= store.name
-            %td= store.path
-            %td= truncate(store.description, length: 32)
+            %td= store.name.capitalize
+            %td= store.path.capitalize
+            %td= truncate(store.description.capitalize, length: 32)
             %td
               %a{:href => "#"} Administer
             %td= store.status.titleize

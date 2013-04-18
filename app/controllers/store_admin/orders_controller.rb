@@ -38,7 +38,6 @@ class StoreAdmin::OrdersController < ApplicationController
   end
 
   def increase_quantity
-    binding.pry
     order = Order.find(params[:id])
     product = Product.find(params[:id])
     line_item = LineItem.find(product)

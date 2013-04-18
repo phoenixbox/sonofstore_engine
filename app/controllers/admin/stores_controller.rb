@@ -1,7 +1,9 @@
 class Admin::StoresController < Admin::BaseController
 
+  layout 'super_admin'
 
   def index
+    @all_stores = Store.all
     case params[:status]
     when "pending"
       @stores = Store.pending
@@ -45,6 +47,8 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def show
+    @all_stores = Store.all
+    
     @store = Store.find(params[:store_id])
   end
 

@@ -1,4 +1,4 @@
-- provide(:title, 'Admin Add New Product')
+- provide(:title, 'Add New Member')
 .row-fluid
   .span12
     .page-header
@@ -18,8 +18,10 @@
       %li
         = link_to "Manage Admins", store_admin_members_path
 
-.row-fluid
-  .span12
-    .span6
-      %h3 Add New Product
-= render 'form'
+= simple_form_for :invite, :url => store_admin_members_path do |f|
+  = f.error_notification 
+  = f.input :email, label: false, input_html: { placeholder: "Email" }
+  = f.hidden_field :role, value: @role
+  = f.button :submit, :value => "Add New Member", :class => "form-primary-button"
+  = f.error :base
+

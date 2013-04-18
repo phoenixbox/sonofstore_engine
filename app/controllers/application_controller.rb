@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
 
 
   def get_referrer
-    if request.referrer.include?("login")
+    if request.referrer.nil?
+      session[:return_to] = root_path
+    elsif request.referrer.include?("login")
       session[:return_to]
     elsif request.referrer.include?("users")
       session[:return_to]
@@ -83,6 +85,13 @@ class ApplicationController < ActionController::Base
     if current_user.nil?
       redirect_to login_path
     elsif current_store.nil? || !current_store.is_admin?(current_user)
+      not_authenticated
+    end
+  end
+
+  def require_admin_or_stocker
+    @role = current_store.admin_or_stocker?(current_user)
+    if current_store.nil? || !@role
       not_authenticated
     end
   end

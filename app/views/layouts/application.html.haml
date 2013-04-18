@@ -14,10 +14,5 @@
       = render :partial => "shared/sub_menu", :locals => {:categories =>  @categories}
       = render :partial => "shared/flash_messages", :locals => {:flash => flash}
       = yield
-      = render :partial => "shared/footer"
-      %br
-      = "CURRENT USER:#{current_user.inspect}" if Rails.env.development?
-      %br
-      = "CURRENT CART: #{current_cart.inspect}" if Rails.env.development?
-      %br
-      = "CURRENT STORE: #{current_store.inspect}" if Rails.env.development?
+      -cache ("footer-admin-layout") do
+        = render :partial => "shared/footer"

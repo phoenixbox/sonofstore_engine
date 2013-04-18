@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout 'session'
+  layout 'profile', only: [:show]
 
   def index
     @users = User.all
@@ -7,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => 'session'
   end
 
   def create
@@ -29,6 +31,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    # render :layout => 'profile'
   end
 
   def edit

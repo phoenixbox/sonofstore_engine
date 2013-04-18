@@ -5,21 +5,21 @@
       %span.divider /
     %li.active
       My Account
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li.active
-        = link_to "Profile", profile_path
-      %li
-        = link_to "Past Orders", profile_orders_path
-      %li
-        = link_to "Your Stores", "#"
+/ .row-fluid
+/   .tabbable
+/     %ul.nav.nav-tabs
+/       %li.active
+/         = link_to "Profile", profile_path
+/       %li
+/         = link_to "Past Orders", profile_orders_path
+/       %li
+/         = link_to "Your Stores", "#"
 .row-fluid
   %ul.profile
     %li
       .span8
-        %p.span3.header Full Name
-        %p.span5= @user.full_name
+        %h3.span3.header Full Name
+        %h3.span5= @user.full_name
     %li
       .span8
         %p.span3.header Email

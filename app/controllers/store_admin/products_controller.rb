@@ -1,10 +1,12 @@
 class StoreAdmin::ProductsController < ApplicationController
 
-  before_filter :require_admin
+  before_filter :require_admin_or_stocker
+
   layout 'admin'
 
   def index
     @products = current_store.products
+    @orders = current_store.orders
   end
 
   def new
@@ -14,10 +16,6 @@ class StoreAdmin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html
-    end
   end
 
   def edit
