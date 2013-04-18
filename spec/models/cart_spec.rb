@@ -21,29 +21,29 @@ describe Cart do
     expect(cart.line_items.count).to eq 1
   end
 
-  it "can increase_quantity(product_id)" do
-    cart = Cart.create(:store_id => 999)
-    line_item1 = LineItem.create(product_id: 999, cart_id: cart.id)
-    cart.increase_quantity(999)
-    cart.increase_quantity(999)
-    count = Hash.new(0)
-    cart.line_items.each do |c|
-      count[:i] += c.quantity
-    end 
-    expect(count[:i]).to eq 3
-  end
+  # it "can increase_quantity(product_id)" do
+  #   cart = Cart.create(:store_id => 999)
+  #   line_item1 = LineItem.create(product_id: 999, cart_id: cart.id)
+  #   cart.increase_quantity(999)
+  #   cart.increase_quantity(999)
+  #   count = Hash.new(0)
+  #   cart.line_items.each do |c|
+  #     count[:i] += c.quantity
+  #   end 
+  #   expect(count[:i]).to eq 3
+  # end
 
-  it "can decrease_quantity(product_id)" do
-    cart1 = Cart.create(:store_id => 6969)
-    line_item1 = LineItem.create(product_id: 6969, cart_id: cart1.id)
-    cart1.decrease_quantity(6969)
-    cart1.decrease_quantity(6969)
-    count = Hash.new(0)
-    cart1.line_items.each do |c|
-      count[:i] += c.quantity
-    end 
-    expect(count[:i]).to eq -1
-  end
+  # it "can decrease_quantity(product_id)" do
+  #   cart1 = Cart.create(:store_id => 6969)
+  #   line_item1 = LineItem.create(product_id: 6969, cart_id: cart1.id)
+  #   cart1.decrease_quantity(6969)
+  #   cart1.decrease_quantity(6969)
+  #   count = Hash.new(0)
+  #   cart1.line_items.each do |c|
+  #     count[:i] += c.quantity
+  #   end 
+  #   expect(count[:i]).to eq -1
+  # end
 
   it "can determine emptiness" do
     cart = Cart.create(:store_id => 6969)

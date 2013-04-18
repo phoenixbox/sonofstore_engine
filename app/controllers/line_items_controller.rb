@@ -4,7 +4,6 @@ class LineItemsController < ApplicationController
 
   def create
     cart = find_or_create_cart
-    logger.debug(session[:cart_id])
     product = Product.find(params[:product_id])
     @line_item = cart.add_product(product.id)
     @line_item.product = product

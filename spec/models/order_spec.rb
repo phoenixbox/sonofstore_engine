@@ -4,7 +4,7 @@ describe Order do
 
   context "is a valid order" do
     let!(:consumer){Consumer.create(:email => "consumer@buy.com")}
-    let!(:order){Order.create(total_price: 45, :consumer_id => consumer.id)}
+    let!(:order){Order.create(store_id: 1, total_price: 45, :consumer_id => consumer.id)}
     it "is valid" do
       expect(order).to be_valid
     end
@@ -59,14 +59,54 @@ describe Order do
   end
 
   describe 'Order.create_from_cart' do
-    let!(:consumer){Consumer.create(:email => "consumer@buy.com")}
+    let(:consumer){Consumer.create(:email => "consumer@buy.com")}
     let!(:cart){Cart.create}
-    let!(:store{Store.create})
-    let!(:product){Product.create(:title => "os title", :desc => "os desc", :price => 123, :store_id => store.id)}
+    let!(:store){Store.create}
+    let!(:product){Product.create(:title => "os title", :description => "os desc", :price_in_dollars => 123, :store_id => store.id)}
     let!(:line_item){LineItem.create(:product_id => 1, :cart_id => cart.id)}
     it 'can self.create_from_cart(cart, order_details, consumer)' do
-      order = Order.create_from_cart(cart, store_id: store.id, consumer)
+      order = Order.create_from_cart(cart, {"stripe_card_token"=>"tok_1f6oxg5j6k1FLn",
+ "email"=>"dooder@oo",
+ "billing_address_attributes"=>
+  {"street"=>"1123", "city"=>"Denver", "state"=>"CO", "zipcode"=>"80203"},
+ "shipping_address_attributes"=>
+  {"street"=>"1123", "city"=>"Denver", "state"=>"CO", "zipcode"=>"80203"},
+ "store_id"=>2}, consumer )
       expect(order).to be_valid
     end
   end
+
+  describe 'Order.all.select' do
+    it 'do what it do' do
+      expect(Order.pending).to be_kind_of(Array)
+    end
+
+    it 'can Order.paid' do
+      expect(Order.paid).to be_kind_of(Array)
+    end
+
+    it 'can Order.cancelled' do
+      expect(Order.cancelled).to be_kind_of(Array)
+    end
+
+    it 'can Order.shipped' do
+      expect(Order.shipped).to be_kind_of(Array)
+    end
+
+    it 'can Order.returned' do
+      expect(Order.returned).to be_kind_of(Array)
+    end
+  end
+  # describe "save_with_payment" do
+  #   let!(:consumer){Consumer.create(:email => "consumer@buy.com")}
+  #   let!(:cart){Cart.create}
+  #   let!(:store){Store.create}
+  #   let!(:product){Product.create(:title => "os title", :description => "os desc", :price_in_dollars => 123, :store_id => store.id)}
+  #   let!(:line_item){LineItem.create(:product_id => 1, :cart_id => cart.id)}
+  #   let(:order){Order.create(store_id: store.id, consumer_id: consumer.id, total_price: line_item.total_price)}
+  #   it 'can save_with_payment' do
+  #     expect(order).to be_valid
+  #     expect(order.save_with_payment).to be_valid
+  #   end
+  # end
 end

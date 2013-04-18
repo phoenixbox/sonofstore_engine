@@ -1,6 +1,4 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'factory_girl_rails'
-require 'rspec-rails'
 require 'simplecov'
 SimpleCov.start do
   add_filter '/spec'
@@ -41,6 +39,5 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.include Rails.application.routes.url_helpers
-  config.include ExampleData::Projects
 end
 
