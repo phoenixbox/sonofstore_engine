@@ -18,20 +18,20 @@
           .caption
             %h5= link_to product.title, product_path(product.store, product)
             %p= number_to_currency(product.price_in_dollars)
-  / = paginate @products
-  :javascript
-    $(document).ready(function(){
-      $('[id^="thumbnail"]').hover(function(){
-        var className = $(this).children('[class^="cart-hidden"]').attr('class');
-        var classIndex = className.match(/\d+/);
-        $('.cart-hidden-'+classIndex).addClass("cart-visible");
-        },
-        function() {
-        var className = $(this).children('[class^="cart-hidden"]').attr('class');
-        var classIndex = className.match(/\d+/);
-        $('.cart-hidden-'+classIndex).removeClass("cart-visible");
-      });
-      $('#category-dropdown').click(function() { 
-        return false;
-      });
+= paginate @products
+:javascript
+  $(document).ready(function(){
+    $('[id^="thumbnail"]').hover(function(){
+      var className = $(this).children('[class^="cart-hidden"]').attr('class');
+      var classIndex = className.match(/\d+/);
+      $('.cart-hidden-'+classIndex).addClass("cart-visible");
+      },
+      function() {
+      var className = $(this).children('[class^="cart-hidden"]').attr('class');
+      var classIndex = className.match(/\d+/);
+      $('.cart-hidden-'+classIndex).removeClass("cart-visible");
     });
+    $('#category-dropdown').click(function() { 
+      return false;
+    });
+  });

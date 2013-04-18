@@ -1,22 +1,17 @@
-.row-fluid
-  %ul.breadcrumb
-    %li
-      = link_to "Home", "/"
-      %span.divider /
-    %li.active
-      My Account
-.row-fluid
-  .tabbable
+.row
+  .single-form.span4
+    %a.brand.brand-dark{:href => "/"} Shopmazing
     = simple_form_for @user do |f|
+      %h4 Edit Your Profile
       = f.error_notification
-      = f.input :full_name
-      = f.input :email
-      = f.input :display_name
+      = f.input :full_name, label: false, input_html: { placeholder: "Full name" }
+      = f.input :email, label: false, input_html: { placeholder: "Email" }
+      = f.input :display_name, label: false, input_html: { placeholder: "Display name" }
       = f.simple_fields_for :phone_number do |p|
-        = p.input :phone
+        = p.input :phone, label: false, input_html: { placeholder: "Phone" }
         = p.input :receive_sms, label: "Receive SMS?", as: :radio_buttons, :item_wrapper_class => 'inline'
-      = f.input :password
-      = f.input :password_confirmation
+      = f.input :password, label: false, input_html: { placeholder: "Password" }
+      = f.input :password_confirmation, label: false, input_html: { placeholder: "Password confirmation" }
       = f.error :base
       %div
-        = f.button :submit, :value => "Update Profile", :class => "btn-primary"
+        = f.button :submit, :value => "Update Profile", :class => "form-primary-button"

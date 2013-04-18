@@ -351,7 +351,7 @@ body {
   box-shadow: none;
 }
 .navbar-fixed-left{
-  position:absolute;
+  position:fixed;
   height: 100%;
   top:0;
   left:0;
@@ -499,7 +499,7 @@ body {
 }
 .widget {
   background: #fff;
-  padding: 2em 2.1em 2em 2.1em;
+  padding: 2em 1.7em 2em 1.7em;
   border-radius: 3px;
   box-shadow: 0px 0px 5px #d4d4d4;
 }

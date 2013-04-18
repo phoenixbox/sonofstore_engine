@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
   layout 'session'
+  layout 'profile', only: [:index]
 
   def index
     @stores = Store.online
