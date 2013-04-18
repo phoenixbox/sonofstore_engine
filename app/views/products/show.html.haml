@@ -14,6 +14,7 @@
     %p.pull-left= @product.description
     %span.amount
     - if @product.active
+      = image_tag @product.photo.url
       = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "form-primary-button"
     %hr.pull-left.full-line
     - @product.categories.each do |category|
