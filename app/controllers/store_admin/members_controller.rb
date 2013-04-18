@@ -23,10 +23,12 @@ class StoreAdmin::MembersController < ApplicationController
     if @user
       @user.assign_role(current_store.id, params[:invite][:role])
 
-      logger.debug("Sending Email to existing user")
-    else
+      data = {user: @user, store_id: current_store}
+      AdminMailer.registered_admin_invite(data).deliver
 
-      logger.debug("Sending Email to new user")
+    else
+      data = {user: params[:invite][:email], store_id: current_store}
+      AdminMailer.unregistered_admin_invite(data).deliver
     end
 
     flash[:notice] = "Member Invited!"
@@ -34,6 +36,11 @@ class StoreAdmin::MembersController < ApplicationController
   end
 
   def destroy
+
+    @user = User.find(params[:user])
+    data = {user: @user, store_id: current_store}
+
+    AdminMailer.admin_removal_confirmation(data).deliver
 
     @user_store_role = UserStoreRole.where(store_id: params[:id], user_id: params[:user]).first
     @user_store_role.destroy
