@@ -30,7 +30,9 @@ class Store < ActiveRecord::Base
   end
 
   def is_admin?(user)
-    user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+    if user
+      user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+    end
   end
 
   def is_stocker?(user)
@@ -42,7 +44,15 @@ class Store < ActiveRecord::Base
   end
 
   def is_any_kind_of_admin?(user)
-    user.super_admin || is_admin?(user) || is_stocker?(user)
+    is_admin?(user) || is_stocker?(user)
+  end
+
+  def admin_or_stocker?(user)
+    if is_admin?(user)
+      :admin
+    elsif is_stocker?(user)
+      :stocker
+    end
   end
 
   private
