@@ -10,6 +10,4 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email, :subject => "Sign-up Confirmation")
   end
-
-
 end

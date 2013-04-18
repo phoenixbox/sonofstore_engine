@@ -6,7 +6,9 @@ class Store < ActiveRecord::Base
 
   validates_uniqueness_of :name, :path
   validates_presence_of :name, :path, :description
-  validates :status, presence: true, inclusion: { in: %w(online offline pending declined) }
+  validates :status,
+   presence: true,
+   inclusion: { in: %w(online offline pending declined) }
 
   has_many :products
   has_many :orders
@@ -32,7 +34,9 @@ class Store < ActiveRecord::Base
 
   def is_admin?(user)
     if user
-      user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+    user.super_admin || UserStoreRole.exists?(store_id: self.id,
+                                              user_id: user.id,
+                                              role: "admin")
     end
   end
 

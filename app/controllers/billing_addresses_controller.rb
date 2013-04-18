@@ -1,4 +1,4 @@
-class BillingAddressController < ApplicationController
+class BillingAddressesController < ApplicationController
 
   def index
     @billing_address = BillingAddress.all

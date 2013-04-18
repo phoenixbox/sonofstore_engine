@@ -16,7 +16,9 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
-      flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
+      flash[:notice] = "Click here to make changes to your account:
+      #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".
+      html_safe
 
       if session[:return_to].nil?
         redirect_to root_path

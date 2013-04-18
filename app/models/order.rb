@@ -1,6 +1,9 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
-  attr_accessor :stripe_card_token, :email, :card_number, :card_month, :card_code, :card_year
+  attr_accessible :total_price, :consumer_id, :stripe_card_token, :store_id,
+    :email, :store_id, :billing_address_attributes,
+    :shipping_address_attributes, :random_order_id
+  attr_accessor :stripe_card_token, :email, :card_number, :card_month,
+    :card_code, :card_year
 
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
@@ -9,7 +12,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :store
   belongs_to :consumer
-  validates_presence_of :total_price, :consumer_id
+  validates_presence_of :total_price, :consumer_id, :store_id
 
   accepts_nested_attributes_for :billing_address, :shipping_address
 
@@ -79,7 +82,8 @@ class Order < ActiveRecord::Base
   #     @twilio_client.account.sms.messages.create(
   #       :from => "+1#{twilio_phone_number}",
   #       :to => number_to_send_to,
-  #       :body => "Your order has been shipped and will be delivered on Monday April 7th, 2013. Thank you!!!")
+  #       :body => "Your order has been shipped and
+  #will be delivered on Monday April 7th, 2013. Thank you!!!")
   #   end
   # end
 

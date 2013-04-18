@@ -46,7 +46,8 @@ class ApplicationController < ActionController::Base
     if session[:cart_id] && session[:cart_id][current_store.id]
       cart = Cart.find(session[:cart_id][current_store.id])
     else
-      cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
+      cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id],
+        current_store.id)
       session[:cart_id] = { current_store.id => cart.id }
     end
 
@@ -75,7 +76,8 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user, :current_consumer, :admin_user, :current_store, :current_cart
+  helper_method :current_user, :current_consumer,
+   :admin_user, :current_store, :current_cart
 
 
   def not_authenticated
