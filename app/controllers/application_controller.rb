@@ -80,7 +80,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    if current_store.nil? || !current_store.is_admin?(current_user)
+    if current_user.nil?
+      redirect_to login_path
+    elsif current_store.nil? || !current_store.is_admin?(current_user)
       not_authenticated
     end
   end
