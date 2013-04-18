@@ -16,8 +16,12 @@
       %li
         = link_to "Manage Categories", store_admin_categories_path
       %li
-        = link_to "Manage Admins", "#"
+        = link_to "Manage Admins", store_admin_members_path
+      %li
+        = link_to "Settings", edit_store_admin_store_path(current_store, current_store.id)
 
+      %li.active
+        = link_to "Your Stores", store_admin_stores_path(current_store, current_store.id)
 
 .row-fluid
   .span12

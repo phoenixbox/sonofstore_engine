@@ -1,6 +1,7 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :users_attributes, :status
   before_validation :set_default_status, on: :create
+  before_validation :convert_to_url
 
 
   validates_uniqueness_of :name, :path
@@ -60,5 +61,9 @@ class Store < ActiveRecord::Base
   def set_default_status
     self.status = 'pending'
   end
+
+  # def convert_to_url
+  #   self.path = path.parameterize
+  # end
 
 end

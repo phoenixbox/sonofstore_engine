@@ -1,6 +1,10 @@
 class StoreAdmin::StoresController < ApplicationController
 
-  before_filter :require_admin
+  before_filter :require_admin, except: :index
+
+  def index
+    @stores = current_user.stores
+  end
 
   def edit
     @store ||= current_store

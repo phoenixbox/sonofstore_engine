@@ -60,7 +60,7 @@ StoreEngine::Application.routes.draw do
       resources :products, :except => :destroy
       resources :members
       resources :categories, :except => :show
-      resources :stores, :only => [:edit, :update]
+      resources :stores, :only => [:index, :edit, :update]
 
       resources :orders, :except => :destroy do
         put 'increase_quantity', :on => :member

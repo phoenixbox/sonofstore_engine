@@ -23,7 +23,7 @@
     = f.error_notification
     = f.input :name
     = f.input :path
-    = f.input :description
+    = f.input :description, as: :text
     = f.error :base
     %div
       = f.button :submit, :value => "Update Store", :class => "btn-primary"
