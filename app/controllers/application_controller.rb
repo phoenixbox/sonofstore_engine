@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  before_filter :get_referrer, :only => [:new, :checkout_funnel]
 
   def get_referrer
     if request.referrer.nil?

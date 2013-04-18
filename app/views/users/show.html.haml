@@ -24,11 +24,11 @@
           .span8
             %p.span3.header Email
             %p.span5= @user.email
-        - if @user.display_name
-          %li
-            .span8
-              %p.span3.header Display Name
-              %p.span5= @user.display_name
+        - if @user.displ
+        %li
+          .span8
+            %p.span3.header Display Name
+            %p.span5= @user.display_name
         %li
           .span8
             = link_to "Update Profile", edit_profile_path
