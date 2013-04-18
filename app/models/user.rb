@@ -45,7 +45,8 @@ class User < ActiveRecord::Base
   end
 
   def assign_role(store, role)
-    UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id, store_id: store_id).update_attributes(role: role)
+    UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id,
+      store_id: store_id).update_attributes(role: role)
   end
 
 end
