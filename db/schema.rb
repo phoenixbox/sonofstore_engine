@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416234353) do
+ActiveRecord::Schema.define(:version => 20130418024051) do
 
   create_table "billing_addresses", :force => true do |t|
     t.integer  "consumer_id"
@@ -171,18 +171,9 @@ ActiveRecord::Schema.define(:version => 20130416234353) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
-    t.integer  "store_id"
     t.boolean  "guest"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
-  add_index "users", ["store_id"], :name => "index_users_on_store_id"
-
-  create_table "users_roles", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-  end
-
-  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
 end

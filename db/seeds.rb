@@ -1,11 +1,13 @@
 require 'faker'
+<<<<<<< HEAD
+=======
 
-####
-#ROLES
-%w[store_admin, stocker_admin, super_admin].each do |role|
-  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-  puts 'role: ' << role
-end
+store1 = Store.create(name: "Xmen", path: "xmen", description: "all things xmen", status: "pending")
+store2 = Store.create(name: "Avengers", path: "avengers", description: "all things avengers", status: "online")
+store3 = Store.create(name: "Justice League", path: "justice-league", description: "all things justice league", status: "online")
+>>>>>>> 8140cedfe80928874f69cce4e4f0092370a38adf
+
+
 
 #####
 #STORES
@@ -32,7 +34,15 @@ user3 = User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartla
             password: "password", password_confirmation: "password", display_name: "SkrilleX")
 
 user4 = User.create(full_name: "Professor X", email: "admin@example.com", password: "password")
+<<<<<<< HEAD
 user4.add_role :super_admin
+=======
+user5 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password", store_id: 4)
+user6 = User.create(full_name: "Ironman", email: "ironmanw@example.com", password: "password", store_id: 5)
+user7 = User.create(full_name: "Batman", email: "batman@example.com", password: "password", store_id: 6)
+user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password: "password")
+user4.assign_super_admin
+>>>>>>> 8140cedfe80928874f69cce4e4f0092370a38adf
 
 user5 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password", store_id: 4)
 user5.add_role :store_admin
@@ -50,12 +60,12 @@ user8 = User.create(full_name: "Magneto", email: "magneto@example.com", password
 end
 [store1,store2,store3,store4,store5,store6,store7,store8,store9,store10].each do |s|
   10_001.times do |int|
-   
+
     Product.create(title: "#{Faker::Lorem.words(2).join.to_s}"+"#{rand(1..10000000000)}"+"#{rand(1..100000000000)}",
                     description: "#{Faker::Lorem.words(3).join.to_s}",
                     price_in_dollars: rand(1..int),
                     store_id: s.id, :photo_url => "http://store-engine.s3.amazonaws.com/products/photos/000/000/027/original/blue_ball_pack.jpg")
-  end 
+  end
 
   10.times do |i|
     Category.create(:name => "category"+"#{s.id}"+"#{rand(1..100000000)}", :store_id => s.id)
