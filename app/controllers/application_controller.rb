@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::RoutingError, :with => :render_not_found
 
-  before_filter :get_referrer, :only => [:new, :checkout_funnel]
-
   def require_current_store
     unless current_store
       raise ActionController::RoutingError.new("Store is offline")
@@ -42,23 +40,13 @@ class ApplicationController < ActionController::Base
 
   # Todo = refactor and memoize
   def current_cart
-
-    if session[:cart_id].nil?
-      cart = Cart.find(session[:cart_id])
-
-      unless cart.store == current_store
-        cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
-      end
-
+    if session[:cart_id] && session[:cart_id][current_store.id]
+      cart = Cart.find(session[:cart_id][current_store.id])
     else
-      cart = Cart.find_by_sid(session[:session_id])
-
-      if cart.nil?
-        cart = Cart.create!(store_id: current_store.id, sid: session[:session_id])
-      end
+      cart = Cart.find_or_create_by_sid_and_store_id(session[:session_id], current_store.id)
+      session[:cart_id] = { current_store.id => cart.id }
     end
 
-    session[:cart_id] = cart.id
     cart
   end
 

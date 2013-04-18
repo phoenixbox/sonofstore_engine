@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
 
       UserMailer.order_confirmation_email(@consumer).deliver
       current_cart.destroy
-      session[:cart_id] = nil
+      session.delete(:cart_id)
       if current_user
         flash[:notice] = "Your payment was successfully submitted!"
         redirect_to order_path(current_store, @order)
