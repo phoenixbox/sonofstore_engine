@@ -389,7 +389,7 @@ body {
 .hero-unit {
   margin-top: 1em;
   padding: 0;
-  background: url('http://i.imgur.com/MLW6zRz.jpg');
+  background: url("http://i.imgur.com/Fb5C4vd.jpg") no-repeat center #000;
   height: 550px;
   border-radius: 0px !important;
 }
@@ -767,4 +767,21 @@ p.form-light {
 }
 .widget-declined {
   color: #b63030; 
+}
+.splash-heading {
+  text-align:center;
+  text-transform: uppercase;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.shrink_mac {
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 2em;
+}
+.product-image {
+  width: 212px;
 }
