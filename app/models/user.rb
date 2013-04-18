@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  
-  paginates_per 16
-  
+
   attr_accessible :display_name,
                   :email,
                   :full_name,
