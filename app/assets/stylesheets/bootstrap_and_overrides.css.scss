@@ -347,6 +347,23 @@ body {
 .nav li a:hover {
   color: #28b8df !important;
 }
+.admin-header .navbar-inner {
+  box-shadow: none;
+}
+.navbar-fixed-left{
+  position:absolute;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index:1030;
+  margin-bottom:0;
+  .navbar {
+    height: 100%;
+  }
+  .navbar-inner {
+    border-radius: 0;
+  }
+}
 .brand {
   font-family: 'Damion', cursive;
   color: #fff !important;
@@ -438,6 +455,75 @@ body {
 .admin-primary-button:hover {
   text-decoration: none;
   background: #28b8df;
+}
+.admin-brand {
+  margin-top: .5em;
+}
+#admin-menu {
+  clear: left;
+  margin: 0;
+  width: 122%;
+  list-style-type: none;
+  padding-top: 2em;
+  margin-left: -20px;
+}
+#admin-menu a {
+  display: block;
+  color: #28b8df;
+  padding: 1em 0.4em 1em 1.2em;
+  width: 87.8%;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1.3em;
+}
+#admin-menu a:hover {
+  text-decoration: none;
+  background: #083542;
+}
+#admin-menu a.active {
+  background: #828e91;
+  color: #fff;
+}
+#right-pane {
+  margin-left: 19em;
+  margin-top: .9em;
+}
+.admin-header h2 {
+  float: left;
+}
+.dashboard {
+  margin-top: 1em;
+}
+.widget {
+  background: #fff;
+  padding: 2em 1.3em 2em 1.3em;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #d4d4d4;
+}
+.widget h4 {
+  text-align: center;
+  font-family: 'Questrial', sans-serif;
+  margin-top: 0;
+  color: #848484;
+}
+.widget-count {
+  font-weight: normal;
+  text-align: center;
+  display: block;
+  font-size: 5em;
+  margin-top: .4em;
+  margin-bottom: .1em;
+}
+.widget-count a {
+  color: #0088cc !important;
+  &:hover{
+    color: #005580 !important;
+    text-decoration: none;
+    background: none;
+  }
+}
+.widget-count a:hover {
+  text-decoration: none;
+  background: none;
 }
 .form-primary-button {
   float: left;
@@ -607,4 +693,55 @@ p.form-light {
 }
 .full-line {
   width: 100%;
+}
+#right-pane {
+        margin-left: 19em;
+        margin-top: .9em;
+}
+.confirmation {
+  background: white;
+  padding: 2em;
+  width: 748px;
+  margin-left: 0;
+  margin-top:2em;
+  box-shadow: 0px 0px 5px #d4d4d4;
+  border-radius: 3px;
+  float: left;
+}
+.confirmation-buttons {
+  width: 20em;
+  display:block;
+  float: left;
+  width: 20em;
+  display: block;
+  position: absolute;
+  right: 0;
+  background: #fff;
+  display: none;
+}
+.over-up {
+  display: block !important;
+}
+#admin-tab {
+  clear: left;
+  margin-left: 0;
+  background: #fff;
+  padding: 3em;
+  border-radius: 3px;
+  box-shadow: 10px 9px 5px -9px #d4d4d4;
+}
+#admin-tabs {
+  list-style-type: none;
+}
+#admin-tabs li {
+  float: left;
+  background: none;
+  padding: 1em 2em 1em 2em;
+  margin-top: 2em;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+#admin-tabs li.active {
+  background: #fff;
+  box-shadow: 10px 9px 5px -9px #d4d4d4;
 }

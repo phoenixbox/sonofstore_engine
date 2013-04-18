@@ -1,17 +1,15 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      %a.btn.btn-navbar{"data-toggle" => ".nav-collapse"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      .nav-collapse
-        %ul.nav.pull-right
-          - if current_user
-            %li
-              %p Welcome #{current_user.full_name}
-            %li= link_to "My Account", profile_path
-            %li= link_to "Logout", logout_path
-          - else
-            %li= link_to "Log In", new_session_path
-
+%header.admin-header
+  .navbar.navbar-fixed-left
+    .navbar
+      .navbar-inner
+        %a.brand.admin-brand{:href => "#"} Shopmazing
+        %ul#admin-menu
+          %li
+            %a.active{:href => "#"}
+              Dashboard
+          %li
+            %a{:href => "#"}
+              Orders
+          %li
+            %a{:href => "#"}
+              Products

@@ -1,24 +1,90 @@
--# = logger.debug current_path
+/ -# = logger.debug current_path
 
-- provide(:title, 'Platform Admin Store List')
-.row-fluid
-  .span12
-    .page-header
-      %h1 Platform Administration Portal
+/ - provide(:title, 'Platform Admin Store List')
+/ .row-fluid
+/   .span12
+/     .page-header
+/       %h1 Platform Administration Portal
 
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Approved Stores", admin_stores_path({status: "approved"})
-      %li.active
-        = link_to admin_stores_path({status: "pending"}) do 
-          Pending Stores
-          %span.badge.badge-info 3
-      %li
-        = link_to "Declined Stores", admin_stores_path({status: "declined"})
+/ .row-fluid
+/   .tabbable
+/     %ul.nav.nav-tabs
+/       %li
+/         = link_to "Approved Stores", admin_stores_path({status: "approved"})
+/       %li.active
+/         = link_to admin_stores_path({status: "pending"}) do 
+/           Pending Stores
+/           %span.badge.badge-info 3
+/       %li
+/         = link_to "Declined Stores", admin_stores_path({status: "declined"})
 
-- if @flag == "pending" || @flag == "declined"
-  = render :partial => "pending_stores_table", locals: {stores: @stores}
-- else @flag == "approved"   
-  = render :partial => "approved_stores_table", locals: {stores: @stores}
+/ - if @flag == "pending" || @flag == "declined"
+/   = render :partial => "pending_stores_table", locals: {stores: @stores}
+/ - else @flag == "approved"   
+/   = render :partial => "approved_stores_table", locals: {stores: @stores}
+
+%section#right-pane
+  .row.admin-header
+    .span10
+      %h2 Store Name
+      %a.admin-primary-button{:href => "#"}
+        View Your Store
+  %section.dashboard
+    .row
+      .span3.widget
+        %h4 Total Orders
+        %h2.widget-count
+          %a{:href => "#"} 24
+      .span3.widget
+        %h4 Total Orders
+        %h2.widget-count
+          %a{:href => "#"} 24
+      .span3.widget
+        %h4 Total Orders
+        %h2.widget-count
+          %a{:href => "#"} 24
+  
+    / .confirmation.span8
+    /   %a.over{:href => "/deactivate", :style => "float: right;"}
+    /     Deactivate
+    /   .this-one{:style => "position: relative;"}
+    /     .confirmation-buttons
+    /       .the-buttons{:style => "float:right;"}
+    /         Are you sure?
+    /         %a.confirmation-button{:href => "#"}
+    /           Yes
+    /         \/
+    /         %a.confirmation-button{:href => "#"}
+    /           No
+
+  / .tabbable
+  /   %ul.nav.nav-tabs
+  /     %li
+  /       = link_to "Approved Stores", admin_stores_path({status: "approved"})
+  /     %li.active
+  /       = link_to admin_stores_path({status: "pending"}) do 
+  /         Pending Stores
+  /         %span.badge.badge-info 3
+  /     %li
+  /       = link_to "Declined Stores", admin_stores_path({status: "declined"})
+  - something = params[:status]
+  :javascript
+    $(document).ready(function(){
+      var something = window.location.toString().split('?')[1].split('=')[1];
+      $('.' + something).addClass('active');
+    })
+  %ul#admin-tabs
+    %li.approved
+      = link_to "Approved Stores", admin_stores_path({status: "approved"})
+    %li.pending
+      = link_to admin_stores_path({status: "pending"}) do 
+        Pending Stores
+        %span.badge.badge-info 3
+    %li.declined
+      = link_to "Declined Stores", admin_stores_path({status: "declined"})
+
+  #admin-tab.span10
+    - if @flag == "pending" || @flag == "declined"
+      = render :partial => "pending_stores_table", locals: {stores: @stores}
+    - else @flag == "approved"   
+    = render :partial => "approved_stores_table", locals: {stores: @stores}
