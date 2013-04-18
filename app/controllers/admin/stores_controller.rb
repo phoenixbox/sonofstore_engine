@@ -28,10 +28,12 @@ class Admin::StoresController < Admin::BaseController
     @store = Store.find_by_path(params[:id])
 
     if params[:toggle] == "approve"
-      @store.update_attributes({status: "online"}) if @store.status == "pending" || @store.status == "declined"
+      @store.
+        update_attributes({status: "online"}) if @store.status == "pending" || @store.status == "declined"
       redirect_to admin_stores_path, notice: "status successfully updated"
     elsif params[:toggle] == "decline"
-      @store.update_attributes({status: "declined"}) if @store.status == "pending"
+      @store.
+        update_attributes({status: "declined"}) if @store.status == "pending"
       redirect_to admin_stores_path, notice: "status successfully updated"
     elsif params[:toggle] == "disable"
       @store.update_attributes({status: "offline"}) if @store.status == "online"
@@ -48,7 +50,7 @@ class Admin::StoresController < Admin::BaseController
 
   def show
     @all_stores = Store.all
-    
+
     @store = Store.find(params[:store_id])
   end
 

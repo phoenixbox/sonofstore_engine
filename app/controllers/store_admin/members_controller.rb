@@ -4,8 +4,10 @@ class StoreAdmin::MembersController < ApplicationController
   layout 'admin'
 
   def index
-    @admins = UserStoreRole.where(store_id: current_store.id, role: 'admin').map(&:user)
-    @stockers = UserStoreRole.where(store_id: current_store.id, role: 'stocker').map(&:user)
+    @admins = UserStoreRole.where(store_id: current_store.id, role: 'admin').
+      map(&:user)
+    @stockers = UserStoreRole.
+      where(store_id: current_store.id, role: 'stocker').map(&:user)
   end
 
   def new
@@ -42,7 +44,8 @@ class StoreAdmin::MembersController < ApplicationController
 
     AdminMailer.admin_removal_confirmation_email(data).deliver
 
-    @user_store_role = UserStoreRole.where(store_id: params[:id], user_id: params[:user]).first
+    @user_store_role = UserStoreRole.
+      where(store_id: params[:id], user_id: params[:user]).first
     @user_store_role.destroy
 
 
