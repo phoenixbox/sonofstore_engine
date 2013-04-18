@@ -5,6 +5,7 @@ class StoreAdmin::ProductsController < ApplicationController
 
   def index
     @products = current_store.products
+    @orders = current_store.orders
   end
 
   def new

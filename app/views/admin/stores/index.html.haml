@@ -25,24 +25,37 @@
 
 %section#right-pane
   .row.admin-header
-    .span10
-      %h2 Store Name
+    .span11
+      %h2 
+        = "Welcome, #{current_user.full_name}"
       %a.admin-primary-button{:href => "#"}
         View Your Store
   %section.dashboard
     .row
       .span3.widget
-        %h4 Total Orders
-        %h2.widget-count
-          %a{:href => "#"} 24
+        %h4 Online Stores
+        %h2.widget-count.widget-online
+          - online = []
+          - @all_stores.each do |store|
+            - if store.status == "online"
+              - online << store
+          = online.count
       .span3.widget
-        %h4 Total Orders
-        %h2.widget-count
-          %a{:href => "#"} 24
+        %h4 Pending Stores
+        %h2.widget-count.widget-pending
+          - pending = []
+          - @all_stores.each do |store|
+            - if store.status == "pending"
+              - pending << store
+          = pending.count
       .span3.widget
-        %h4 Total Orders
-        %h2.widget-count
-          %a{:href => "#"} 24
+        %h4 Declined Stores
+        %h2.widget-count.widget-declined
+          - declined = []
+          - @all_stores.each do |store|
+            - if store.status == "declined"
+              - declined << store
+          = declined.count
   
     / .confirmation.span8
     /   %a.over{:href => "/deactivate", :style => "float: right;"}
@@ -67,19 +80,23 @@
   /         %span.badge.badge-info 3
   /     %li
   /       = link_to "Declined Stores", admin_stores_path({status: "declined"})
-  - something = params[:status]
   :javascript
     $(document).ready(function(){
-      var something = window.location.toString().split('?')[1].split('=')[1];
-      $('.' + something).addClass('active');
+      try {
+        var something = window.location.toString().split('?')[1].split('=')[1];
+        $('.approved').removeClass('active');
+        $('.' + something).addClass('active');
+      }
+      catch(err) {
+        var something = window.location.toString().split('?')[1].split('=')[1];
+      }
     })
   %ul#admin-tabs
-    %li.approved
+    %li.approved.active
       = link_to "Approved Stores", admin_stores_path({status: "approved"})
     %li.pending
       = link_to admin_stores_path({status: "pending"}) do 
         Pending Stores
-        %span.badge.badge-info 3
     %li.declined
       = link_to "Declined Stores", admin_stores_path({status: "declined"})
 
@@ -87,4 +104,4 @@
     - if @flag == "pending" || @flag == "declined"
       = render :partial => "pending_stores_table", locals: {stores: @stores}
     - else @flag == "approved"   
-    = render :partial => "approved_stores_table", locals: {stores: @stores}
+      = render :partial => "approved_stores_table", locals: {stores: @stores}
