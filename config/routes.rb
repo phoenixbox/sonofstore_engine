@@ -57,7 +57,7 @@ StoreEngine::Application.routes.draw do
       match "/" => "dashboards#show"
       # resource :dashboard, :only => :show
       resources :products, :except => :destroy
-
+      resources :members
       resources :categories, :except => :show
 
       resources :orders, :except => :destroy do

@@ -1,0 +1,69 @@
+- provide(:title, 'Admin Product List')
+.row-fluid
+  .span12
+    .page-header
+      %h1 Administration Portal
+
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        = link_to "Dashboard", store_admin_path
+      %li
+        = link_to "Past Orders", store_admin_orders_path
+      %li.active
+        = link_to "Manage Products", store_admin_products_path
+      %li
+        = link_to "Manage Categories", store_admin_categories_path
+      %li
+        = link_to "Manage Admins", "#"
+
+.row-fluid
+  .span12
+    .span6
+      %h3 Store Admins
+    .span6.header-button
+      = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"), method: :get, :class => "btn pull-right"
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span3 Full Name
+          %th.span3 Email
+          %th.span3 Role
+          %th.span3 Action
+      %tbody
+        - @admins.each do |admin|
+          %tr
+            %td= admin.full_name
+            %td= admin.email
+            %td Admin
+            %td= link_to "Remove", "#"
+
+%br
+%br
+
+.row-fluid
+  .span12
+    .span6
+      %h3 Stockers
+    .span6.header-button
+      = link_to "Add New Stocker", new_store_admin_member_path(current_store, {:role => "stocker"}), method: :get, :class => "btn pull-right"
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span3 Full Name
+          %th.span3 Email
+          %th.span3 Role
+          %th.span3 Action
+      %tbody
+        - @stockers.each do |stocker|
+          %tr
+            %td= stocker.full_name
+            %td= stocker.email
+            %td Stocker
+            %td= link_to "edit", "#"
+
