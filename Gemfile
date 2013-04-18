@@ -50,6 +50,7 @@ group :development, :test do
   gem 'html2haml'
   gem 'pry-remote'
   gem 'letter_opener'
+  gem 'faker'
 end
 
 group :development do 

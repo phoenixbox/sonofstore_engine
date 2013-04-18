@@ -1,10 +1,29 @@
 - provide(:title, 'Admin Category List')
 .row-fluid
   .span12
+    .page-header
+      %h1 Administration Portal
+
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        = link_to "Dashboard", store_admin_path
+      %li
+        = link_to "Past Orders", store_admin_orders_path
+      %li
+        = link_to "Manage Products", store_admin_products_path
+      %li.active
+        = link_to "Manage Categories", store_admin_categories_path
+      %li
+        = link_to "Manage Admins", "#"
+
+.row-fluid
+  .span12
     .span6
       %h3 Categories
     .span6.header-button
-      = button_to "Add Category Product", new_admin_category_path, method: :get, :class => "btn pull-right"
+      = button_to "Add Category Product", new_store_admin_category_path, method: :get, :class => "btn pull-right"
 .row-fluid
   .span12
     %table.table.table-striped.table-bordered.cart-detail
@@ -17,6 +36,6 @@
           %tr
             %td= category.name
             %td
-              = link_to "Edit", edit_admin_category_path(category.store, category)
+              = link_to "Edit", edit_store_admin_category_path(category.store, category)
               |
-              = link_to "Delete", admin_category_path(category.store, category), method: :delete, data: { confirm: 'Are you sure?' }
+              = link_to "Delete", store_admin_category_path(category.store, category), method: :delete, data: { confirm: 'Are you sure?' }

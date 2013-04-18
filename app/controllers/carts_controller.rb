@@ -6,29 +6,25 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
     @cart.destroy
-    session[:cart_id] = nil
+    session.delete(:cart_id)
     flash[:error] = "Your cart is currently empty."
     redirect_to :back
   end
 
-  def add_quantity_to_cart
-    @cart = current_cart
-    @cart.increase_quantity(params[:id])
+  def increase_quantity
+    product = Product.find(params[:id])
+    line_item = current_cart.line_items.find_by_product_id(product)
+    line_item.quantity +=1
+    line_item.save
     redirect_to :back
   end
 
-  def decrease_quantity_from_cart
-    @cart = current_cart
-    @cart.decrease_quantity(params[:id])
-    if @cart.line_items.count == 0
-      flash[:error] = "Your cart is currently empty."
-      redirect_to :back
-    else
-      redirect_to :back
-    end
+  def decrease_quantity
+    product = Product.find(params[:id])
+    line_item = current_cart.line_items.find_by_product_id(product)
+    line_item.quantity -=1
+    line_item.save
+    redirect_to :back
   end
 
-  # def checkout_conduit
-    
-  # end
 end

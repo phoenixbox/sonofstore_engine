@@ -1,0 +1,24 @@
+-# = logger.debug current_path
+
+- provide(:title, 'Platform Admin Store List')
+.row-fluid
+  .span12
+    .page-header
+      %h1 Platform Administration Portal
+
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        = link_to "Approved Stores", admin_stores_path({status: "approved"})
+      %li.active
+        = link_to admin_stores_path({status: "pending"}) do 
+          Pending Stores
+          %span.badge.badge-info 3
+      %li
+        = link_to "Declined Stores", admin_stores_path({status: "declined"})
+
+- if @flag == "pending" || @flag == "declined"
+  = render :partial => "pending_stores_table", locals: {stores: @stores}
+- else @flag == "approved"   
+  = render :partial => "approved_stores_table", locals: {stores: @stores}

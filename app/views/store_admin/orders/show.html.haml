@@ -1,5 +1,24 @@
 - provide(:title, 'Admin Order Detail')
 .row-fluid
+  .span12
+    .page-header
+      %h1 Administration Portal
+
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        = link_to "Dashboard", store_admin_path
+      %li.active
+        = link_to "Past Orders", store_admin_orders_path
+      %li
+        = link_to "Manage Products", store_admin_products_path
+      %li
+        = link_to "Manage Categories", store_admin_categories_path
+      %li
+        = link_to "Manage Admins", "#"
+
+.row-fluid
   .span12.tab_above
     .page-header.order_detail
       %h1
@@ -14,17 +33,20 @@
           %span
             = (@order.created_at).to_time.strftime("%I:%M %P")
             , GMT
-          = link_to "view all past orders", admin_orders_path
+          = link_to "view all past orders", store_admin_orders_path
       .details
         %p.customer
           Customer:
+          - if @order.consumer.user
+            %span.cust_name
+              = @order.consumer.user.full_name
+          - else
+            %span.cust_name
+              Purchased as a guest
+
+          Customer Email:
           %span.cust_name
-            = @order.user.full_name
-      .details
-        %p.customer
-          Email:
-          %span.cust_email
-            = @order.user.email
+            = @order.consumer.email
       .status
         %p.state
           = @order.current_status
@@ -56,9 +78,9 @@
               %form.form-inline
                 %span.uneditable-input.input-small{:type => "text"}= line_item.quantity
                 - if @order.current_status == "pending" || @order.current_status == "paid"
-                  = link_to admin_add_quantity_to_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "+" do
+                  = link_to store_admin_add_quantity_to_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "+" do
                     %i.icon-plus
-                  = link_to admin_decrease_quantity_from_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "-" do
+                  = link_to store_admin_decrease_quantity_from_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "-" do
                     %i.icon-minus
             %td
               = number_to_currency(line_item.product.price_in_dollars)
@@ -83,8 +105,8 @@
             Change Order Status To:
         %span
           - if @order.current_status == "pending"
-            = link_to "Cancel", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Cancel", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
           - elsif @order.current_status == "shipped"
-            = link_to "Mark as returned", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Mark as returned", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
           - elsif @order.current_status == "paid"
-            = link_to "Mark as shipped", admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
+            = link_to "Mark as shipped", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"

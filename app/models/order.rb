@@ -65,23 +65,23 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def send_text_message
+  # def send_text_message
 
-    if user.can_receive_messages?
-      number_to_send_to = self.user.phone #params[:number_to_send_to]
+  #   if user.can_receive_messages?
+  #     number_to_send_to = self.user.phone #params[:number_to_send_to]
 
-      twilio_sid = ENV["TWILIO_SID"]
-      twilio_token = ENV["TWILIO_TOKEN"]
-      twilio_phone_number = "12402930574"
+  #     twilio_sid = ENV["TWILIO_SID"]
+  #     twilio_token = ENV["TWILIO_TOKEN"]
+  #     twilio_phone_number = "12402930574"
 
-      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+  #     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-      @twilio_client.account.sms.messages.create(
-        :from => "+1#{twilio_phone_number}",
-        :to => number_to_send_to,
-        :body => "Your order has been shipped and will be delivered on Monday April 7th, 2013. Thank you!!!")
-    end
-  end
+  #     @twilio_client.account.sms.messages.create(
+  #       :from => "+1#{twilio_phone_number}",
+  #       :to => number_to_send_to,
+  #       :body => "Your order has been shipped and will be delivered on Monday April 7th, 2013. Thank you!!!")
+  #   end
+  # end
 
   def total_price_from_cart(cart)
     self.total_price = cart.total_price

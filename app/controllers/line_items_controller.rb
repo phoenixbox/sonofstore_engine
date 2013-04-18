@@ -10,6 +10,7 @@ class LineItemsController < ApplicationController
 
     if @line_item.save
       redirect_to product_path(product.store, product)
+      flash[:notice] = 'Item Added To Cart'
     else
       flash[:error] = 'An error occurred, please try again'
     end
