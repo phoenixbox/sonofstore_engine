@@ -70,4 +70,4 @@
                 %td= stocker.full_name
                 %td= stocker.email
                 %td Stocker
-                %td= link_to "edit", "#"
+                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: stocker.id), method: :delete, data: { confirm: 'Are you sure?' }

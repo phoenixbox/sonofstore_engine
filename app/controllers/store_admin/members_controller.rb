@@ -24,11 +24,11 @@ class StoreAdmin::MembersController < ApplicationController
       @user.assign_role(current_store.id, params[:invite][:role])
 
       data = {user: @user, store_id: current_store}
-      AdminMailer.registered_admin_invite(data).deliver
+      AdminMailer.registered_admin_invite_email(data).deliver
 
     else
       data = {user: params[:invite][:email], store_id: current_store}
-      AdminMailer.unregistered_admin_invite(data).deliver
+      AdminMailer.unregistered_admin_invite_email(data).deliver
     end
 
     flash[:notice] = "Member Invited!"
@@ -40,7 +40,7 @@ class StoreAdmin::MembersController < ApplicationController
     @user = User.find(params[:user])
     data = {user: @user, store_id: current_store}
 
-    AdminMailer.admin_removal_confirmation(data).deliver
+    AdminMailer.admin_removal_confirmation_email(data).deliver
 
     @user_store_role = UserStoreRole.where(store_id: params[:id], user_id: params[:user]).first
     @user_store_role.destroy
