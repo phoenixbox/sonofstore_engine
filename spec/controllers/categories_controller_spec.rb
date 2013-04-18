@@ -1,19 +1,32 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe CategoriesController do
+# describe CategoriesController do
 
-  describe "GET 'show'" do
-    let(:category){Category.create name: "category"}
+#   describe "GET index" do
+#     it "renders the index template" do
 
-    it "assigns the requested category to category" do
-      get :show, id: category
-      expect(assigns(:category)).to eq category
-    end
+#       visit "/categories"
+#       response.should be_success
+#     end
+#   end
 
-    it "renders the show template" do
-      get :show, id: category
-      expect(response).to render_template :show
-    end
+#   describe "GET 'show'" do
+#     let(:category){Category.create name: "category"}
 
-  end
-end
+#     it "assigns the requested category to category" do
+#       visit "/categories/show/#{category.id}"
+#       response.should be_success
+#     end
+
+#     it "renders the show template" do
+#       visit "/categories/show/#{category.id}"
+#       expect(response).to be_success
+#     end
+
+#     it "renders the show template" do
+#       visit "/categories/show/#{nil}"
+#       expect(response).to be_success
+#     end
+
+#   end
+# end
