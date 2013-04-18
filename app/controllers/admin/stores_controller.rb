@@ -1,5 +1,6 @@
 class Admin::StoresController < Admin::BaseController
 
+  layout 'super_admin'
 
   def index
     @all_stores = Store.all

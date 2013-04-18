@@ -5,11 +5,14 @@
         %a.brand.admin-brand{:href => "#"} Shopmazing
         %ul#admin-menu
           %li
-            %a.active{:href => "#"}
-              Dashboard
+            =link_to 'Dashboard', store_admin_path(current_store), class: "admin_header_link dashboard active"
           %li
-            %a{:href => "#"}
-              Orders
+            =link_to 'Orders', store_admin_orders_path(current_store), class: "admin_header_link orders"
           %li
-            %a{:href => "#"}
-              Products
+            =link_to 'Products', store_admin_products_path(current_store), class: "admin_header_link products"
+          %li
+            =link_to 'Categories', store_admin_categories_path(current_store), class: "admin_header_link categories"
+          %li
+            =link_to 'Admins', store_admin_members_path(current_store), class: "admin_header_link members"
+        %a.admin-primary-button.admin-cta{:href => "#"}
+          View Your Store

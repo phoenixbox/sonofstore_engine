@@ -1,7 +1,7 @@
 class StoreAdmin::DashboardsController < ApplicationController
 
   before_filter :require_admin
-  layout 'session'
+  layout 'admin'
 
   def show
     @orders = current_store.orders
