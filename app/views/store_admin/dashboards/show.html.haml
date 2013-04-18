@@ -46,7 +46,6 @@
             - if order.current_status == "returned"
               - returned << order
           = returned.count
-
   %ul#admin-tabs
     %li.dashboard.active
       = link_to "Dashboard", store_admin_path
