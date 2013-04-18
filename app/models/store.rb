@@ -1,6 +1,7 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :users_attributes, :status
   before_validation :set_default_status, on: :create
+  before_validation :convert_to_url
 
 
   validates_uniqueness_of :name, :path
@@ -30,7 +31,9 @@ class Store < ActiveRecord::Base
   end
 
   def is_admin?(user)
-    user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+    if user
+      user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+    end
   end
 
   def is_stocker?(user)
@@ -42,7 +45,15 @@ class Store < ActiveRecord::Base
   end
 
   def is_any_kind_of_admin?(user)
-    user.super_admin || is_admin?(user) || is_stocker?(user)
+    is_admin?(user) || is_stocker?(user)
+  end
+
+  def admin_or_stocker?(user)
+    if is_admin?(user)
+      :admin
+    elsif is_stocker?(user)
+      :stocker
+    end
   end
 
   private
@@ -50,5 +61,9 @@ class Store < ActiveRecord::Base
   def set_default_status
     self.status = 'pending'
   end
+
+  # def convert_to_url
+  #   self.path = path.parameterize
+  # end
 
 end

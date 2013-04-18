@@ -59,6 +59,9 @@
     %li
       =link_to "Admins", store_admin_members_path(current_store)
 
+    / %li.active
+    /   = link_to "Your Stores", store_admin_stores_path(current_store, current_store.id)
+
   :javascript
     $(document).ready(function(){
       var something = window.location.toString().split('/')[5];

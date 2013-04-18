@@ -33,6 +33,17 @@ class StoreAdmin::MembersController < ApplicationController
     redirect_to store_admin_members_path
   end
 
+  def destroy
+
+    @user_store_role = UserStoreRole.where(store_id: params[:id], user_id: params[:user]).first
+    @user_store_role.destroy
+
+
+    flash[:notice] = "Member Removed"
+    redirect_to store_admin_members_path
+
+  end
+
 
   private
 
